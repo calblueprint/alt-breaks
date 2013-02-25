@@ -1,0 +1,29 @@
+<%= form_for(@testimony) do |f| %>
+  <% if @testimony.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@testimony.errors.count, "error") %> prohibited this testimony from being saved:</h2>
+
+      <ul>
+      <% @testimony.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trip_instance_id %><br />
+    <%= f.number_field :trip_instance_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :context %><br />
+    <%= f.text_area :context %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

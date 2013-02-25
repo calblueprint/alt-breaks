@@ -1,4 +1,18 @@
 Altbreaks::Application.routes.draw do
+  resources :trip_instances
+
+  resources :trips
+
+  resources :testimonies
+
+  devise_for :users
+
+  resources :users
+
+  resources :responses
+
+  resources :posts
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

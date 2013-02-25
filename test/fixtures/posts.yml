@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  trip_instance_id: 1
+  description: MyText
+  video_link: MyString
+
+two:
+  user_id: 1
+  trip_instance_id: 1
+  description: MyText
+  video_link: MyString

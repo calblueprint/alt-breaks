@@ -1,0 +1,2 @@
+module TripInstancesHelper
+end
