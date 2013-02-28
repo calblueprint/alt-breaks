@@ -38,3 +38,6 @@ gem 'devise'
 
 # To use debugger
 # gem 'debugger'
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
