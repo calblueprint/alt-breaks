@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225083851) do
+ActiveRecord::Schema.define(:version => 20130228063422) do
 
   create_table "photos", :force => true do |t|
     t.integer  "testimony_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130225083851) do
     t.string   "video_link"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "title"
   end
 
   create_table "responses", :force => true do |t|

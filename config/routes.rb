@@ -1,4 +1,6 @@
-Altbreaks::Application.routes.draw do
+Altbreaks::Application.routes.draw do  
+  root :to => 'map#index'  #home page
+  
   resources :trip_instances
 
   resources :trips
