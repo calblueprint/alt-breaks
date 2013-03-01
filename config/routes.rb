@@ -1,5 +1,5 @@
 Altbreaks::Application.routes.draw do  
-  root :to => 'map#index'  #home page
+  root :to => "home#index" #home page
   
   resources :trip_instances
 

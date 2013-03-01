@@ -12,4 +12,10 @@ class User < ActiveRecord::Base
   has_many :responses
   has_many :posts
   has_many :trip_permissions
+
+  validates :first_name, :last_name, :presence => :true
+
+  def name
+    return first_name + " " + last_name
+  end
 end

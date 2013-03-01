@@ -3,4 +3,5 @@ class Post < ActiveRecord::Base
   has_many :responses
   belongs_to :user
   belongs_to :trip_instance
+  validates :title, :description, :presence => :true
 end

@@ -23,14 +23,19 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   # GET /posts/new.json
-  def new
-    @post = Post.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @post }
+  def create
+    post = params[:post]
+    if post
+      newpost = Post.new(:title => post[:title], :description => post[:description])
+      newpost.user = current_user
+      if newpost.save
+        redirect_to posts_path
+      end
     end
+
   end
+
+
 
   # GET /posts/1/edit
   def edit
@@ -39,19 +44,9 @@ class PostsController < ApplicationController
 
   # POST /posts
   # POST /posts.json
-  def create
-    @post = Post.new(params[:post])
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render json: @post, status: :created, location: @post }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+  def new
   end
+
 
   # PUT /posts/1
   # PUT /posts/1.json
