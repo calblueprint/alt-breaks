@@ -1,0 +1,22 @@
+<tr class = "response">
+	<td>
+
+		<span class="response-author">
+			<b><%= User.find(response.user_id).name %></b>
+		</span>
+
+		<div class="response-content">
+			<%= response.content %>
+		</div>
+
+		<div id = "comment-wrapper">
+			<span class="comment-delete">
+				<% if !current_user.nil? && (current_user.id ==  response.user_id) %>
+					<%= link_to 'Edit', edit_response_path(response) %>
+					<%= link_to 'Delete', response, method: :delete, data: { confirm: 'Are you sure?' } %>
+				<% end %>
+			</span>
+		</div>
+		<br>
+	</td>
+</tr>

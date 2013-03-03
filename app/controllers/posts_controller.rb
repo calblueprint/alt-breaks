@@ -14,10 +14,13 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @response = Response.new
+    @responses = Response.all
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
+      format.json { render json: @responses }
     end
   end
 
@@ -35,8 +38,6 @@ class PostsController < ApplicationController
 
   end
 
-
-
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
@@ -46,7 +47,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def new
   end
-
 
   # PUT /posts/1
   # PUT /posts/1.json
