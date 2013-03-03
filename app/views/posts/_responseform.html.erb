@@ -12,17 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <%= f.label :response %><br />
+    <%= f.text_area :content, :rows=>"3" %>
   </div>
+
   <div class="field">
-    <%= f.label :post_id %><br />
-    <%= f.number_field :post_id %>
+    <%= f.hidden_field :post_id, :value => @post.id %>
   </div>
+  
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,0 +1,6 @@
+<table class="responses">
+	<% @responses = post.responses %>
+	<% @responses.each do |response| %>
+		<%= render :partial => "responses/response", :locals => {:response => @response} %>
+	<% end %>
+</table>
