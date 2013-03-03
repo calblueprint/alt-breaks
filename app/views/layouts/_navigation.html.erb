@@ -3,11 +3,11 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
     <ul class="dropdown-menu">
-      <li>
-        <a href="#">Action</a>
-      </li>
-      <li><a href="#">Another action</a></li>
-      <li><a href="#">Something else here</a></li>
+      <% Trip.all.each do |trip| %>
+        <li>
+          <%= link_to(trip[:name], trip_path(trip[:id])) %>
+        </li>
+      <% end %>
     </ul>
   </li>
 </ul>
