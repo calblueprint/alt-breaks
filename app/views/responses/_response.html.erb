@@ -1,9 +1,8 @@
 <tr class = "response">
 	<td>
-		<div class="line-separator"></div>
 
 		<span class="response-author">
-			<%= User.find(response.user_id).name %>
+			<b><%= User.find(response.user_id).name %></b>
 		</span>
 
 		<div class="response-content">
@@ -18,5 +17,6 @@
 				<% end %>
 			</span>
 		</div>
+		<br>
 	</td>
 </tr>

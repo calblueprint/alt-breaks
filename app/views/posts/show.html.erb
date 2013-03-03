@@ -20,29 +20,8 @@
 <%= render 'responseform' %>
 
 <br>
-<b>Responses:</b>
-<div id="comment-table"><%= render :partial => 'posts/response_table', :locals => {:post => @post} %>
-
-<table>
-  <tr>
-    <th>User</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @responses.each do |response| %>
-  <tr>
-    <td><%= response.user_id %></td>
-    <td><%= response.content %></td>
-    <% if (!current_user.nil? && (current_user.id ==  response.user_id)) %>
-      <td><%= link_to 'Edit', edit_response_path(response) %></td>
-      <td><%= link_to 'Destroy', posts_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
+<h2>Responses:</h2>
+<div id="comment-table"><%= render :partial => 'posts/response_table', :locals => {:post => @post} %></div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
