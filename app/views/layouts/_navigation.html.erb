@@ -5,7 +5,8 @@
     <ul class="dropdown-menu">
       <% Trip.all.each do |trip| %>
         <li>
-          <%= link_to(trip[:name], trip_path(trip[:id])) %>
+					<%= link_to trip[:name], posts_path %>
+          <!--<%= link_to(trip[:name], trip_path(trip[:id])) %> -->
         </li>
       <% end %>
     </ul>

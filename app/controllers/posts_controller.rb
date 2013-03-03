@@ -38,8 +38,6 @@ class PostsController < ApplicationController
 
   end
 
-
-
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
@@ -49,7 +47,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def new
   end
-
 
   # PUT /posts/1
   # PUT /posts/1.json
