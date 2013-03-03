@@ -3,7 +3,7 @@
 		<div class="line-separator"></div>
 
 		<span class="response-author">
-			<%= response.user_id %>
+			<%= User.find(response.user_id).name %>
 		</span>
 
 		<div class="response-content">
