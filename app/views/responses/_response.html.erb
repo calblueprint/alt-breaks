@@ -3,16 +3,16 @@
 		<div class="line-separator"></div>
 
 		<span class="response-author">
-			<%= User.find(@response.user_id).username %>
+			<%= response.user_id %>
 		</span>
 
 		<div class="response-content">
-			<%= comment.content %>
+			<%= response.content %>
 		</div>
 
 		<div id = "comment-wrapper">
 			<span class="comment-delete">
-				<% if !current_user.nil? && (current_user.id ==  comment.user_id) %>
+				<% if !current_user.nil? && (current_user.id ==  response.user_id) %>
 					<%= link_to 'Edit', edit_response_path(response) %>
 					<%= link_to 'Delete', response, method: :delete, data: { confirm: 'Are you sure?' } %>
 				<% end %>
