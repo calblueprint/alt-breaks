@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130303010100) do
+ActiveRecord::Schema.define(:version => 20130309061237) do
 
   create_table "photos", :force => true do |t|
     t.integer  "testimony_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130303010100) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "title"
+    t.integer  "trip_id"
   end
 
   create_table "responses", :force => true do |t|
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130303010100) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "trip_id"
   end
 
   create_table "trip_permissions", :force => true do |t|
@@ -64,10 +66,11 @@ ActiveRecord::Schema.define(:version => 20130303010100) do
   create_table "trips", :force => true do |t|
     t.string   "location"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "name"
     t.string   "subtitle"
+    t.integer  "current_trip_instance_id"
   end
 
   create_table "users", :force => true do |t|
