@@ -4,11 +4,10 @@
 		<!--Internal NavBar-->
 		<% if user_signed_in? %>
 	    <a href="/posts" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
-			<li><%= link_to('General', root_path) %></li>
 	    <ul class="dropdown-menu">
 	      <% Trip.all.each do |trip| %>
 	        <li>
-	          <%= link_to(trip[:name], internal_trip_path(trip[:id])) %> -->
+	          <%= link_to(trip[:name], trip_path(trip[:id])) %>
 	        </li>
 	      <% end %>
 	    </ul>		
