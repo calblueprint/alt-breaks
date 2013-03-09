@@ -24,6 +24,7 @@ class PostsController < ApplicationController
     end
   end
 
+=begin
   # GET /posts/new
   # GET /posts/new.json
   def create
@@ -35,17 +36,46 @@ class PostsController < ApplicationController
         redirect_to posts_path
       end
     end
+  end
+=end
 
+  # GET /posts/new
+  # GET /posts/new.json
+  def new
+    @post = Post.new
+
+    if params[:type] == 'trip'
+      @trip_id = params[:trip_id]   #need to set param in routing from view where button is
+    elsif params[:type] == 'instance'
+      @trip_instance_id = params[:trip_instance_id] #need to set param in routing from view where button is
+    end
+    
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @post }
+    end
+  end
+
+  # POST /posts
+  # POST /posts.json
+  def create
+    @post = Post.new(params[:post])
+    @post.user = current_user
+
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to posts_path, notice: 'Response was successfully created.' }
+        format.json { render json: @response, status: :created, location: @response }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @response.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
-  end
-
-  # POST /posts
-  # POST /posts.json
-  def new
   end
 
   # PUT /posts/1

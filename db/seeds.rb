@@ -17,12 +17,16 @@ Trip.create(name: 'NOLA', subtitle: 'Hidden, Revealed, Forgotten', location: 'Ne
 Trip.create(name: 'We Are All Arizona', subtitle: 'Confronting the Attacks on Difference', location: 'Phoenix and Tuscon, AZ', description: '')
 Trip.create(name: 'Where The Wild Things Are', subtitle: 'Rethinking Social Justice to Include Our Furry Friends', location: 'Southern and Central Oregon', description: 'Hi')
 
-TripInstance.create(trip_id: 1, year: 2013, description: 'Awesomee') #ID = 1
+TripInstance.create(trip_id: 1, year: 2013, description: 'Awesomee') # ID = 1
 
-User.create(first_name: 'Matt', last_name: 'Leung', email: 'mattleung@gmail.com', password: 'password', major: 'EECS', grad_year: 2014) #Admin/Director, ID = 1
+User.create(first_name: 'Matt', last_name: 'Leung', email: 'mattleung@gmail.com', password: 'password', major: 'EECS', grad_year: 2014) # Admin/Director, ID = 1
 TripPermission.create(trip_instance_id: 1, user_id: 1, permission: 0)
-User.create(first_name: 'Justin', last_name: 'Chan', email: 'justinchan@gmail.com', password: 'password', major: 'EECS', grad_year: 2014) #Break Leader, ID = 2
+User.create(first_name: 'Justin', last_name: 'Chan', email: 'justinchan@gmail.com', password: 'password', major: 'EECS', grad_year: 2014) # Break Leader, ID = 2
 TripPermission.create(trip_instance_id: 1, user_id: 2, permission: 1)
-User.create(first_name: 'Harrison', last_name: 'Tsai', email: 'harrisontsai@gmail.com', password: 'password', major: 'EECS', grad_year: 2015) #Member, ID = 3
+User.create(first_name: 'Harrison', last_name: 'Tsai', email: 'harrisontsai@gmail.com', password: 'password', major: 'EECS', grad_year: 2015) # Member, ID = 3
 TripPermission.create(trip_instance_id: 1, user_id: 3, permission: 2)
 
+Post.create(title: 'What are some pressing issues within the food system?', description: 'Americans spend 9.4% of their disposable income on food. That is less 
+than any other country in the world!', user_id: 2, trip_id: 1)  # Trip Post created by Justin
+Post.create(title: 'What are some pressing issues within the food system?', description: 'Americans spend 9.4% of their disposable income on food. That is less 
+than any other country in the world!', user_id: 2, trip_instance_id: 1)  # Trip Post created by Justin

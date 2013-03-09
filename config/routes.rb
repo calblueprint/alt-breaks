@@ -15,6 +15,9 @@ Altbreaks::Application.routes.draw do
   resources :responses
 
   resources :posts
+  
+  resources :internal_trips
+  match "/internal_trips/:id" => "internal_trips#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

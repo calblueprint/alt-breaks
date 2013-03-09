@@ -1,0 +1,2 @@
+module InternalTripHelper
+end
