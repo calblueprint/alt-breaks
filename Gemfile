@@ -40,5 +40,5 @@ gem 'devise'
 # gem 'debugger'
 #gem "therubyracer", :platform => :ruby
 #gem "less-rails"
-gem "bootstrap-sass"
+gem "bootstrap-sass", '~> 2.3.0.1'
 gem "simple_form"
