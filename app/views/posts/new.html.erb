@@ -1,10 +1,6 @@
 <h1>New post</h1>
 
-<%= simple_form_for :post, :url => posts_path, :method => :post do |f| %>
-<%= f.input :title, :input_html => {:style=> 'width: 400px'} %>
-<%= f.input :description, :input_html => {:size => 5, :style=>'width: 400px'} %>
-<%= f.button :submit %>
-<% end %>
+<%= render 'form' %>
 
-
+<%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>

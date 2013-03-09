@@ -24,21 +24,6 @@ class PostsController < ApplicationController
     end
   end
 
-=begin
-  # GET /posts/new
-  # GET /posts/new.json
-  def create
-    post = params[:post]
-    if post
-      newpost = Post.new(:title => post[:title], :description => post[:description])
-      newpost.user = current_user
-      if newpost.save
-        redirect_to posts_path
-      end
-    end
-  end
-=end
-
   # GET /posts/new
   # GET /posts/new.json
   def new
@@ -64,7 +49,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to posts_path, notice: 'Response was successfully created.' }
+        format.html { redirect_to @post, notice: 'Response was successfully created.' }
         format.json { render json: @response, status: :created, location: @response }
       else
         format.html { render action: "new" }

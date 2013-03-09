@@ -1,9 +1,5 @@
 Altbreaks::Application.routes.draw do  
   root :to => "home#index" #home page
-  
-  resources :trip_instances
-
-  resources :trips
 
   resources :testimonies
 
@@ -16,8 +12,11 @@ Altbreaks::Application.routes.draw do
 
   resources :posts
   
+  resources :trip_instances
+
+  resources :trips
+  
   resources :internal_trips
-  match "/internal_trips/:id" => "internal_trips#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
