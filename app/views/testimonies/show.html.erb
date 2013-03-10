@@ -1,20 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Trip instance:</b>
-  <%= @testimony.trip_instance_id %>
-</p>
+	<h2><%= User.find(@testimony.user_id).name %></h2>
 
-<p>
-  <b>User:</b>
-  <%= @testimony.user_id %>
-</p>
+	<p><%= @testimony.context %></p>
 
-<p>
-  <b>Context:</b>
-  <%= @testimony.context %>
-</p>
+	<%= image_tag @testimony.photo.url %>
 
-
-<%= link_to 'Edit', edit_testimony_path(@testimony) %> |
-<%= link_to 'Back', testimonies_path %>
+	<%= link_to 'Edit', edit_testimony_path(@testimony) %> |
+	<%= link_to 'Back', testimonies_path %>
+</div>
