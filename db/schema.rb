@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130309061237) do
+ActiveRecord::Schema.define(:version => 20130310215338) do
 
   create_table "photos", :force => true do |t|
     t.integer  "testimony_id"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(:version => 20130309061237) do
     t.string   "name"
     t.string   "subtitle"
     t.integer  "current_trip_instance_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "users", :force => true do |t|

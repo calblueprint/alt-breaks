@@ -3,13 +3,14 @@
 <head>
   <title>Altbreaks</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "gmaps4rails", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-dropdown.js"></script>
 </head>
 <body>
-	<header class="navbar navbar-fixed-top">
+  <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">
           <%= render 'layouts/navigation' %>
@@ -17,8 +18,11 @@
       </nav>
     </header>
 
-	<div class="container-fluid">
-		<%= yield %>
-	</div>
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
+  <!-- for gmaps4rails -->
+  <%= yield :scripts %>
+  <!-- i have no idea what the previous line does, its magic -->
 </body>
 </html>
