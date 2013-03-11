@@ -20,6 +20,10 @@ Altbreaks::Application.routes.draw do
 
   match "/map" => "map#index"
 
+  match 'dashboard' => 'dashboard#index'
+  resources :requests 
+  match 'approve_request/:id' => 'requests#approve', :as => 'approve_request'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
