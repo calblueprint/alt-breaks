@@ -1,8 +1,7 @@
-<%= form_for(@testimony) do |f| %>
+<%= form_for @testimony, :html => { :multipart => true } do |f| %>
   <% if @testimony.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@testimony.errors.count, "error") %> prohibited this testimony from being saved:</h2>
-
       <ul>
       <% @testimony.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,17 +11,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :trip_instance_id %><br />
-    <%= f.number_field :trip_instance_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
     <%= f.label :context %><br />
     <%= f.text_area :context %>
   </div>
+
+  <% if params[:type] == 'instance' %>
+  <!--Specific to Trip Instance-->
+    <%= f.hidden_field :trip_instance_id, :value => @trip_instance_id %>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+
+  </div><%= f.file_field :photo %><div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

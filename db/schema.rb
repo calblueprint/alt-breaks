@@ -21,8 +21,12 @@ ActiveRecord::Schema.define(:version => 20130310103347) do
   create_table "photos", :force => true do |t|
     t.integer  "testimony_id"
     t.text     "caption"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_update_at"
   end
 
   create_table "posts", :force => true do |t|
