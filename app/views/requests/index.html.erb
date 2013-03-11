@@ -1,0 +1,18 @@
+<h1>Requests Page</h1>
+<div class="row-fluid">
+<div class="span10 offset1">
+<% if !@trip_instances_without_a_request_from_current_user.nil? %>
+  <%= form_for :requests, :url=>:requests, :method=>:post do |r| %>
+    <% @trip_instances_without_a_request_from_current_user.each do |tr| %>
+      <%= tr.name %> <%=r.check_box tr.name %>
+      <br>
+    <% end %>
+    <br>
+    <br>
+    <%= r.submit %>
+  <% end %>
+<% else %>
+  <h4>No requests can possibly be made!</h4>
+<% end %>
+</div>
+</div>
