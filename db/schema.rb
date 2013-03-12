@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310215338) do
+ActiveRecord::Schema.define(:version => 20130312093121) do
 
   create_table "dashboards", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20130310215338) do
     t.integer  "current_trip_instance_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "gmaps"
   end
 
   create_table "users", :force => true do |t|
