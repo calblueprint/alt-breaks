@@ -118,6 +118,7 @@ trips_hash.each do |trip|
 	end
 
 	TripPermission.create(trip_instance_id: i1.id, user_id: User.all.sample.id, permission: 1) #breakleader
+	TripPermission.create(trip_instance_id: i1.id, user_id: User.all.sample.id, permission: 1) #breakleader
 end
 
 # Trip.create(name: 'Food For Thought', subtitle: 'Food, Justice, and Sustainability', location: 'Greater Bay Area, CA', 

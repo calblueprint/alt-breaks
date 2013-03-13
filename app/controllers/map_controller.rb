@@ -17,7 +17,7 @@ class MapController < ApplicationController
 
     	###
     	# comment out for new breakleader code:
-    	leaders = TripInstance.find(trip.current_trip_instance_id).trip_permissions.where(permission=1).map do |permission|
+    	leaders = TripInstance.find(trip.current_trip_instance_id).trip_permissions.where(permission: 1).map do |permission|
     		permission.user
     	end
     	###
