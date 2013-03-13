@@ -21,9 +21,13 @@ class MapController < ApplicationController
     		permission.user
     	end
     	###
+    	print "the length of the leaders are:" + leaders.length.to_s
+    	print "current instance id is:" + trip.current_trip_instance_id.to_s
 
     	# render teh html that will be requested when the marker is clicked on
-    	marker.infowindow render_to_string :partial => "map/popup", :locals => {:trip => trip, :leaders => leaders}
+    	string_html = render_to_string :partial => "map/popup", :locals => {:trip => trip, :leaders => leaders}
+    	puts string_html
+    	marker.infowindow string_html
     	# return teh json
     	marker.json({:id => trip.id})
     end
