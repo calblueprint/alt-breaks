@@ -1,5 +1,5 @@
 Altbreaks::Application.routes.draw do  
-  root :to => "home#index" #home page
+  root :to => "map#index" #home page
 
   resources :testimonies
 
