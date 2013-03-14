@@ -11,13 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130309061237) do
+ActiveRecord::Schema.define(:version => 20130312093121) do
+
+  create_table "dashboards", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "photos", :force => true do |t|
     t.integer  "testimony_id"
     t.text     "caption"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_update_at"
   end
 
   create_table "posts", :force => true do |t|
@@ -29,6 +38,13 @@ ActiveRecord::Schema.define(:version => 20130309061237) do
     t.datetime "updated_at",       :null => false
     t.string   "title"
     t.integer  "trip_id"
+  end
+
+  create_table "requests", :force => true do |t|
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "user_id"
+    t.integer  "trip_instance_id"
   end
 
   create_table "responses", :force => true do |t|
@@ -71,6 +87,9 @@ ActiveRecord::Schema.define(:version => 20130309061237) do
     t.string   "name"
     t.string   "subtitle"
     t.integer  "current_trip_instance_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
   end
 
   create_table "users", :force => true do |t|

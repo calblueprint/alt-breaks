@@ -1,3 +1,11 @@
 // Place all the styles related to the Map controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.gmaps4rails_map img {
+	max-width: none; //override for stupid bootstrap styles
+}
+
+.gmaps4rails_map label { 
+  width: auto; display:inline; 
+} 

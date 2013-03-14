@@ -1,48 +1,51 @@
 <%= link_to "Alternative Breaks", root_path, :class => 'brand' %>
 <ul class="nav">
-		<!--Internal NavBar-->
-	<% if user_signed_in? %>
-		<li class="dropdown">		
-	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
-	    <ul class="dropdown-menu">
-	      <% Trip.all.each do |trip| %>
-	        <li>
-	          <%= link_to(trip[:name], internal_trip_path(trip[:id])) %>
-	        </li>
-	      <% end %>
-	    </ul>
-		</li>
-		<li class="dropdown">
-			<% if permissions = current_user.trip_permissions %>
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">My Trips <b class="caret"></b></a>
-		    <ul class="dropdown-menu">
-		      <% permissions.each do |p| %>
-						<% instance = p.trip_instance %>
-						<% name = instance.trip.name %>
-		        <li>
-		          <%= link_to(name, trip_instance_path(instance[:id])) %>
-		        </li>
-		      <% end %>
-		    </ul>
-			<% end %>
-		</li>
-		<!--External NavBar-->
-	<% else %>
-		<li class="dropdown">		
-	    <a href="/posts" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
-	    <ul class="dropdown-menu">
-	      <% Trip.all.each do |trip| %>
-	        <li>
-	          <%= link_to(trip[:name], trip_path(trip[:id])) %>
-	        </li>
-	      <% end %>
-	    </ul>
-		</li>
-	<% end %>
+    <!--Internal NavBar-->
+  <% if user_signed_in? %>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <% Trip.all.each do |trip| %>
+          <li>
+            <%= link_to(trip[:name], internal_trip_path(trip[:id])) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <% if permissions = current_user.trip_permissions %>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Trips <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <% permissions.each do |p| %>
+            <% instance = p.trip_instance %>
+            <% name = instance.trip.name %>
+            <li>
+              <%= link_to(name + " " + instance.year.to_s, trip_instance_path(instance[:id])) %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </li>
+    <!--External NavBar-->
+  <% else %>
+    <li class="dropdown">
+      <a href="/posts" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <% Trip.all.each do |trip| %>
+          <li>
+            <%= link_to(trip[:name], trip_path(trip[:id])) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
 </ul>
 
 <ul class="nav pull-right">
   <% if user_signed_in? %>
+    <li>
+    <%= link_to('Dashboard', dashboard_path) %>
+    </li>
     <li>
     <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>
     </li>

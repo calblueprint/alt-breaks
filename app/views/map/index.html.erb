@@ -1,1 +1,3 @@
-<%= @message %>
+<%= gmaps("map_options" => { :detect_location => true, :center_on_user => false, "zoom" => 6, :type => :TERRAIN},
+			"markers" => { "data" => @json }) %>
+<!-- i havre no idea if this will work -->
