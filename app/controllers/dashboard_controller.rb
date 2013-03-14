@@ -12,6 +12,8 @@ def index
     if trip_permission.permission == 1
       is_break_leader = true
       @trip_instance_of_break_leader = trip_permission.trip_instance
+      @trip_name = @trip_instance_of_break_leader.trip.name
+      @trip_year = @trip_instance_of_break_leader.year
     elsif trip_permission.permission == 2
       @all_user_member_trips << trip_permission.trip_instance
     end
