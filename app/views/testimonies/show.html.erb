@@ -5,7 +5,7 @@
 
 	<p><%= @testimony.context %></p>
 
-	<%= image_tag @testimony.photo.url %>
+	<%= image_tag @testimony.photo.url(:thumb) %>
 
 	<%= link_to 'Edit', edit_testimony_path(@testimony) %> |
 	<%= link_to 'Back', testimonies_path %>
