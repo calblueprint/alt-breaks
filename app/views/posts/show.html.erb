@@ -27,6 +27,11 @@
 <%= render 'responseform' %>
 <div id="comment-table"><%= render :partial => 'posts/response_table', :locals => {:post => @post} %></div>
 
-<%= link_to 'Edit', edit_post_path(@post) %>
+<%= link_to 'Edit', edit_post_path(@post) %> | 
+<% if trip = @post.trip %>
+	<%= link_to 'Back', internal_trip_path(trip) %>
+<% elsif trip_instance = @post.trip_instance %>
+	<%= link_to 'Back', trip_instance_path(trip_instance) %>
+<% end %>
 
 </div>
