@@ -24,6 +24,8 @@ Altbreaks::Application.routes.draw do
   resources :requests 
   match 'approve_request/:id' => 'requests#approve', :as => 'approve_request'
 
+  match 'delete_from_trip/:tripinstid/:id' => 'dashboard#delete_from_trip', :as =>'delete_from_trip'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
