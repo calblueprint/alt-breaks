@@ -46,3 +46,8 @@ gem "bootstrap-sass", '~> 2.3.0.1'
 gem "simple_form"
 
 gem 'gmaps4rails'
+
+gem 'asset_sync'
+
+gem 'aws-s3'
+gem 'aws-sdk'

@@ -15,13 +15,9 @@
     <%= f.text_area :context %>
   </div>
 
-  <% if params[:type] == 'instance' %>
-  <!--Specific to Trip Instance-->
-    <%= f.hidden_field :trip_instance_id, :value => @trip_instance_id %>
-  <% end %>
-
   <div class="field">
     <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :trip_instance_id, :value => @trip_instance_id %>
   </div>
 
   </div><%= f.file_field :photo %><div>
