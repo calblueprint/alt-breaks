@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312093121) do
+ActiveRecord::Schema.define(:version => 20130314024938) do
+
+  create_table "admin_permissions", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "dashboards", :force => true do |t|
     t.datetime "created_at", :null => false

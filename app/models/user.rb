@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :responses
   has_many :posts
   has_many :trip_permissions
+  has_one :admin_permission
 
   validates :first_name, :last_name, :presence => :true
 

@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(first_name: 'Kati', last_name: 'Hinman', email: 'kati.hinman@gmail.com', password: 'password', major: 'Unknown', grad_year: 2013) # Admin/Director, ID = 1
+admin1 = User.create(first_name: 'Kati', last_name: 'Hinman', email: 'kati.hinman@gmail.com', password: 'password', major: 'Unknown', grad_year: 2013) # Admin/Director, ID = 1
 # TripPermission.create(trip_instance_id: 1, user_id: 1, permission: 0)
 User.create(first_name: 'Jay', last_name: 'Ryoo', email: 'jay.ryoo@gmail.com', password: 'password', major: 'CS/MCB', grad_year: 2013) # Break Leader, ID = 2
 # TripPermission.create(trip_instance_id: 1, user_id: 2, permission: 1)
@@ -19,6 +19,8 @@ User.create(first_name: 'Matt', last_name: 'Leung', email: 'mattgleung@gmail.com
 # TripPermission.create(trip_instance_id: 1, user_id: 6, permission: 2)
 User.create(first_name: 'Michelle', last_name: 'Chow', email: 'callmemc@gmail.com', password: 'password', major: 'CS/Business', grad_year: 2013) # Member, ID = 7
 # TripPermission.create(trip_instance_id: 2, user_id: 7, permission: 1)
+
+AdminPermission.create(user_id: admin1.id)
 
 test_desc = "Fuck you"
 #<<DESC
