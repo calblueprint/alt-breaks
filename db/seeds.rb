@@ -94,7 +94,7 @@ trips_hash = [
 	:gmaps => true
 }]
 
-# Break Leaders temporarily leading ALL trips
+# Dummy Break Leaders temporarily leading ALL trips
 leader1 = User.create(first_name: 'Bilbo', last_name: 'Baggins', email: 'bilbo.baggins@gmail.com', password: 'password', major: 'Adventure', grad_year: 2013) # Break Leader
 leader2 = User.create(first_name: 'Frodo', last_name: 'Hinman', email: 'frodo.baggins@gmail.com', password: 'password', major: 'Courage', grad_year: 2013) # Break Leader
 
@@ -104,12 +104,13 @@ trips_hash.each do |trip|
 	i2 = TripInstance.create(trip_id: t.id, year: 2012, description: "A great trip from last year.")
 	t.current_trip_instance_id = i1.id
 	t.save
-#	User.all.each do |user|
-#		TripPermission.create(trip_instance_id: i1.id, user_id: user.id, permission: 2)
-#	end
 
   TripPermission.create(trip_instance_id: i1.id, user_id: leader1.id, permission: 1) #breakleader
   TripPermission.create(trip_instance_id: i1.id, user_id: leader2.id, permission: 1) #breakleader
+  
+  #	User.all.each do |user|
+  #		TripPermission.create(trip_instance_id: i1.id, user_id: user.id, permission: 2)
+  #	end
 end
 
 # Admin/Director
@@ -125,8 +126,9 @@ gilmore = User.create(first_name: 'Noah', last_name: 'Gilmore', email: 'noah.w.g
 TripPermission.create(trip_instance_id: 1, user_id: gilmore.id, permission: 2)
 matty = User.create(first_name: 'Matt', last_name: 'Leung', email: 'mattgleung@gmail.com', password: 'password', major: 'EECS', grad_year: 2013)
 TripPermission.create(trip_instance_id: 1, user_id: matty.id, permission: 2)
+
 mc = User.create(first_name: 'Michelle', last_name: 'Chow', email: 'callmemc@gmail.com', password: 'password', major: 'CS/Business', grad_year: 2013) # Member, ID = 7
-TripPermission.create(trip_instance_id: 2, user_id: mc.id, permission: 2)
+TripPermission.create(trip_instance_id: 1, user_id: mc.id, permission: 1) #Break Leader
 
 
 Post.create(title: 'What are some pressing issues within the food system?', description: 'Americans spend 9.4% of their disposable income on food. That is less 
