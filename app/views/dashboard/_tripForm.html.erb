@@ -1,0 +1,10 @@
+<%= form_for(@trip) do |f| %>
+  <div class="modal-body">
+    New Trip Name: <%= f.text_field :name %> <br />
+    Description <%= f.text_field :description %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
