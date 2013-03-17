@@ -4,12 +4,16 @@ before_filter :require_login
 def index
   #boolean to see if someone's a break leader
   is_break_leader = false
+  is_admin = false
 
   #empty array stores trip permissions a user has member status in
   @all_user_member_trips = []
   @trip_permissions = current_user.trip_permissions
   @trip_permissions.each do |trip_permission|
-    if trip_permission.permission == 1
+  @admin_permission = current_user.admin_permission
+    if @admin_permission != nil
+      is_admin = true
+    elsif trip_permission.permission == 1
       is_break_leader = true
       @trip_instance_of_break_leader = trip_permission.trip_instance
       @trip_name = @trip_instance_of_break_leader.trip.name
@@ -20,12 +24,20 @@ def index
   end
 
 
-
-  if is_break_leader
+  if is_admin
+    admin
+  elsif is_break_leader
     break_leader(@trip_instance_of_break_leader)
   else
     regular_user
   end
+end
+
+def admin
+  @trip_instance = TripInstance.new
+  @trip_permission = TripPermission.new
+  @trip = Trip.new
+  render :action => :admin_dashboard
 end
 
 def break_leader(trip_instance_of_break_leader)

@@ -6,6 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+<<<<<<< HEAD
+=======
+admin1 = User.create(first_name: 'Kati', last_name: 'Hinman', email: 'kati.hinman@gmail.com', password: 'password', major: 'Unknown', grad_year: 2013) # Admin/Director, ID = 1
+# TripPermission.create(trip_instance_id: 1, user_id: 1, permission: 0)
+User.create(first_name: 'Jay', last_name: 'Ryoo', email: 'jay.ryoo@gmail.com', password: 'password', major: 'CS/MCB', grad_year: 2013) # Break Leader, ID = 2
+# TripPermission.create(trip_instance_id: 1, user_id: 2, permission: 1)
+User.create(first_name: 'Justin', last_name: 'Chan', email: 'hellojustinchan@gmail.com', password: 'password', major: 'EECS', grad_year: 2014) # Member, ID = 3
+# TripPermission.create(trip_instance_id: 1, user_id: 3, permission: 2)
+User.create(first_name: 'Harrison', last_name: 'Tsai', email: 'harrisontsai0123@gmail.com', password: 'password', major: 'EECS', grad_year: 2015) # Member, ID = 4
+# TripPermission.create(trip_instance_id: 1, user_id: 4, permission: 2)
+User.create(first_name: 'Noah', last_name: 'Gilmore', email: 'noah.w.gilmore@gmail.com', password: 'password', major: 'EECS', grad_year: 2015) # Member, ID = 5
+User.create(first_name: 'Matt', last_name: 'Leung', email: 'mattgleung@gmail.com', password: 'password', major: 'EECS', grad_year: 2013) # Member, ID = 6
+# TripPermission.create(trip_instance_id: 1, user_id: 6, permission: 2)
+User.create(first_name: 'Michelle', last_name: 'Chow', email: 'callmemc@gmail.com', password: 'password', major: 'CS/Business', grad_year: 2013) # Member, ID = 7
+# TripPermission.create(trip_instance_id: 2, user_id: 7, permission: 1)
+
+AdminPermission.create(user_id: admin1.id)
+
+>>>>>>> 7553ddf95e13fb90bccb69852ccd98bcc3355f25
 test_desc = "Fuck you"
 #<<DESC
 #Have you ever heard the wolf cry to the blue corn moon, or asked the grinning bobcat why he grins? From the squirrels that run about the trees and telephone wires of our own Berkeley campus to the untamed beasts of the unfamiliar wilderness, we’re surrounded by creatures big and small. And there’s something about us and these creatures – a fascination, a passion, a connection, an indescribably intense yearning to understand – and again and again, we give into our curiosities and instincts. Yet in our anthropocentric society, we often overlook pressing animal welfare issues and repeatedly turn a blind eye to even the most outrageous of unmasked truths. We live in a world of sensitive ecology, but all too often fail to consider the repercussions of our actions on our Earth’s co-inhabitants in the hunt for our own convenience and benefit. In our DeCal, we’ll familiarize ourselves with some of the nation’s most pressing animal welfare issues, including past and current animal welfare legislation, lab testing, pet overpopulation, shelter policy, wildlife preservation, and domestic animal abuse, through classroom debate and discussion, guest lectures, and field trips to local facilities, such as animal shelters and wildlife hospitals. Having acquainted ourselves with the local air, we’ll make our way up to southern Oregon where participants will have the opportunity to engage with, learn from, and contribute to the efforts of our community partners at animal shelters, preserves, and sanctuaries. As in the words of our past leaders, we hope that our trip participants will conclude their semester knowing that they can be an impenetrable voice for those who have no words, after having experienced firsthand the silent, living testaments to stories of mistreatment, neglect, but most strikingly and lastingly, of strength and resilience. #ID = 2

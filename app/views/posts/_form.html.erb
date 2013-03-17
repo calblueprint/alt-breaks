@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -31,3 +32,38 @@
     <%= f.submit %>
   </div>
 <% end %>
+=======
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, rows: 6 %>
+  </div>
+
+	<!--Specific to Trip-->
+	<% if params[:type] == 'trip' %>
+  	<%= f.hidden_field :trip_id, :value => @trip_id %>
+	<% elsif params[:type] == 'instance' %>
+	<!--Specific to Trip Instance-->
+  	<%= f.hidden_field :trip_instance_id, :value => @trip_instance_id %>
+	<% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+>>>>>>> 7553ddf95e13fb90bccb69852ccd98bcc3355f25
