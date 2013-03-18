@@ -1,4 +1,4 @@
-<div class="name"><%= trip.name %></div>
+<div class="name"><a href="/trips/<%= trip.id %>"><%= trip.name %></a></div>
 <div class="leaders">
 	<% leaders.slice(0, leaders.length-1).each do |leader| %>
 		<%= leader.first_name %> and
