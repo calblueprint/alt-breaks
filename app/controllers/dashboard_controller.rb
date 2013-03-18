@@ -8,28 +8,30 @@ def index
 
   #empty array stores trip permissions a user has member status in
   @all_user_member_trips = []
-  @trip_permissions = current_user.trip_permissions
-  @trip_permissions.each do |trip_permission|
-  @admin_permission = current_user.admin_permission
-    if @admin_permission != nil
-      is_admin = true
-    elsif trip_permission.permission == 1
-      is_break_leader = true
-      @trip_instance_of_break_leader = trip_permission.trip_instance
-      @trip_name = @trip_instance_of_break_leader.trip.name
-      @trip_year = @trip_instance_of_break_leader.year
-    elsif trip_permission.permission == 2
-      @all_user_member_trips << trip_permission.trip_instance
-    end
-  end
-
-
-  if is_admin
+  
+  if @admin_permission = current_user.admin_permission
     admin
-  elsif is_break_leader
-    break_leader(@trip_instance_of_break_leader)
+    puts 'IS ADMIN!!'
   else
-    regular_user
+    @trip_permissions = current_user.trip_permissions
+    @trip_permissions.each do |trip_permission|
+      if trip_permission.permission == 1
+        is_break_leader = true
+        @trip_instance_of_break_leader = trip_permission.trip_instance
+        @trip_name = @trip_instance_of_break_leader.trip.name
+        @trip_year = @trip_instance_of_break_leader.year
+      elsif trip_permission.permission == 2
+        @all_user_member_trips << trip_permission.trip_instance
+      end
+    end
+    
+    if is_break_leader
+      puts 'IS BREAK LEADER'
+      break_leader(@trip_instance_of_break_leader)
+    else
+      puts 'IS REGULAR USER'
+      regular_user
+    end
   end
 end
 

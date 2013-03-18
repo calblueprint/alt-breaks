@@ -25,6 +25,7 @@ class TestimoniesController < ApplicationController
   # GET /testimonies/new.json
   def new
     @testimony = Testimony.new
+    @trip_instance_id = params[:trip_instance_id]
 
     respond_to do |format|
       format.html # new.html.erb
