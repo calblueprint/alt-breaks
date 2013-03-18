@@ -14,5 +14,12 @@
   <%= @trip.description %>
 </p>
 
-
+<h3>Photos</h3>
+<div>
+<% if @testimonies %>
+	<% @testimonies.each do |t| %>
+		<div><%= image_tag t.photo.url(:medium) %></div>
+	<% end %>	
+<% end %>
+</div>
 <%= link_to 'Edit', edit_trip_path(@trip) %>

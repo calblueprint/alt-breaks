@@ -30,7 +30,7 @@
               <% end %>
               Break Leaders: <br />
               <% inst.trip_permissions.all.each do |permission| %>
-                <% if permission[:permission] = 1 %>
+                <% if permission[:permission] == 1 %>
                   <% u = User.find_by_id(permission.user_id) %>
                   <%= link_to(u[:first_name]+" "+u[:last_name], user_path(u)) %> <br />
                 <% end %>
