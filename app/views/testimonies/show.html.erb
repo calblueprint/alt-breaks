@@ -1,12 +1,17 @@
+<!--Show Testimony-->
+
 <div class="row-fluid">
 	<p id="notice"><%= notice %></p>
 
-	<h2><%= User.find(@testimony.user_id).name %></h2>
+	<h4>Created by <%= @testimony.user.name %></h4>
+	<br><b>Trip: </b><%= @testimony.trip_instance.trip.name %> <%= @testimony.trip_instance.year %>
+	<br><br>
+	<p><b>Description: </b><%= @testimony.context %></p>
 
-	<p><%= @testimony.context %></p>
-
+	<br>
 	<div><%= image_tag @testimony.photo.url(:medium) %></div>
 
+	<br>
 	<%= link_to 'Edit', edit_testimony_path(@testimony) %> |
 	<%= link_to 'Back', testimonies_path %>
 </div>
