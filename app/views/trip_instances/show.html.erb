@@ -1,8 +1,12 @@
+<!--Show Trip Instance-->
+
 <div class="row-fluid">
 <div class="span8 offset1"><h1><%= @trip.name %> <%= @instance.year %></h1></div>
 <div class="row-fluid">
 
-<div class="span2 offset9"><%= link_to "Create Post", new_post_path(:type => 'instance', :trip_instance_id => @instance.id), :class=>"btn" %></div>
+<div class="span3 offset8"><%= link_to "Create Post", new_post_path(:type => 'instance', :trip_instance_id => @instance.id), :class=>"btn" %>
+<%= link_to "Create Testimony", new_testimony_path(:trip_instance_id => @instance.id), :class=>"btn" %></div>
+
 
 <div class="row-fluid">
 <div class="span1 offset11"></div>

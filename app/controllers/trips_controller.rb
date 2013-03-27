@@ -14,6 +14,15 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
+    @testimonies = []
+    @trip.trip_instances.each do |i|
+      if i.testimonies != nil
+        i.testimonies.each do |t|
+          puts t
+          @testimonies << t
+        end
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb
