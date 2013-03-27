@@ -1,7 +1,10 @@
 <%= form_for(@trip) do |f| %>
   <div class="modal-body">
     New Trip Name: <%= f.text_field :name %> <br />
-    Description <%= f.text_field :description %>
+    New Trip Subtitle: <%= f.text_field :subtitle %> <br />
+    Location: <%= f.text_field :location %> <br />
+    Description <%= f.text_field :description %> <br />
+    Upload Photo: <%= f.file_field :cover_photo %>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
