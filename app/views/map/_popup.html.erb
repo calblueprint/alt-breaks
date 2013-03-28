@@ -1,7 +1,7 @@
 <div class="name"><%= trip.name %></div>
 <div class="leaders">
-	<% leaders.slice(0, leaders.length-1).each do |leader| %>
-		<%= leader.first_name %> and
-	<% end %>
-	<%= leaders.last.first_name %>
+ <% leaders.slice(0, leaders.length-1).each do |leader| %>
+   <%= leader.first_name %> and
+ <% end %>
+ <%= leaders.last.first_name %>
 </div>
