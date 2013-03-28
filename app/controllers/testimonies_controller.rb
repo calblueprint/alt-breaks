@@ -26,6 +26,7 @@ class TestimoniesController < ApplicationController
   def new
     @testimony = Testimony.new
     @trip_instance_id = params[:trip_instance_id]
+    5.times {@testimony.photos.build}
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +37,7 @@ class TestimoniesController < ApplicationController
   # GET /testimonies/1/edit
   def edit
     @testimony = Testimony.find(params[:id])
+    5.times {@testimony.photos.build}
   end
 
   # POST /testimonies

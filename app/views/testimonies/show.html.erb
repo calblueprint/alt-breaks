@@ -9,9 +9,12 @@
 	<p><b>Description: </b><%= @testimony.context %></p>
 
 	<br>
-	<div><%= image_tag @testimony.photo.url(:medium) %></div>
+	<% @photos = @testimony.photos %>
+	<% @photos.each do |photo| %>
+		<div><%= image_tag photo.photo.url(:medium) %></div>
+	<% end %>
 
 	<br>
-	<%= link_to 'Edit', edit_testimony_path(@testimony) %> |
+	<%= link_to 'Edit', edit_testimony_path(@testimony, :trip_instance_id => @testimony.trip_instance_id) %> |
 	<%= link_to 'Back', testimonies_path %>
 </div>
