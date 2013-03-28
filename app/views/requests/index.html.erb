@@ -1,18 +1,39 @@
 <h1>Requests Page</h1>
 <div class="row-fluid">
 <div class="span10 offset1">
-<% if !@trip_instances_without_a_request_from_current_user.nil? %>
-  <%= form_for :requests, :url=>:requests, :method=>:post do |r| %>
+<h4>Active Trips</h4>
+  <% if !@trip_instances_without_a_request_from_current_user.nil? %>
+         <table class="table table-hover">
+         <%= form_for :requests, :url=>:requests, :method=>:post do |r| %>
     <% @trip_instances_without_a_request_from_current_user.each do |tr| %>
-      <%= tr.name %> <%=r.check_box tr.name %>
-      <br>
+      <tbody>
+      <td>
+      <%= tr.name %>
+      </td>
+      <td>
+      <%=r.check_box tr.name %>
+      </td>
+      </tbody>
     <% end %>
-    <br>
-    <br>
+    </table>
     <%= r.submit %>
-  <% end %>
+    <% end %>
+
 <% else %>
   <h4>No requests can possibly be made!</h4>
 <% end %>
+</br>
+</br>
+<h4>Pending Requests</h4>
+  <table class="table table-hover">
+    <% @trip_instances_current_user_has_already_requested.each do |tinstance| %>
+    <tbody>
+      <td><%= tinstance.name %></td>
+            <td><%= link_to "Delete", request_path(:id => tinstance.id), :method=>:delete, :class=>"btn btn-mini btn-danger" %></td>
+    </tbody>
+  <% end %>
+ </table>
+      </div>
 </div>
-</div>
+
+
