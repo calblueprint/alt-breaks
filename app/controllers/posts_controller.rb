@@ -46,10 +46,18 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user = current_user
-
+    
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Response was successfully created.' }
+        format.html {
+          if trip_id = params[:post][:trip_id]
+            @trip = Trip.find(trip_id)
+            redirect_to internal_trip_url(@trip), notice: 'Response was successfully created.'
+          elsif trip_instance_id = params[:post][:trip_instance_id]
+            @trip_instance = TripInstance.find(trip_instance_id)
+            redirect_to @trip_instance, notice: 'Response was successfully created.'
+          end
+        }
         format.json { render json: @response, status: :created, location: @response }
       else
         format.html { render action: "new" }
