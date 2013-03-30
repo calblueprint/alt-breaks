@@ -1,0 +1,11 @@
+<%= form_tag({:controller=>"trip_permissions", :action=>"create"}) do %>
+  <div class="modal-body">
+    First Name: <%= text_field_tag(:first_name) %> <br />
+    Last Name: <%= text_field_tag(:last_name) %>
+    <%= hidden_field_tag(:trip_instance_id, trip_instance_id) %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= button_tag "Add Break Leader", :class => 'btn btn-primary' %>
+  </div>
+<% end %>

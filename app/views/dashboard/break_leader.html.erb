@@ -1,6 +1,8 @@
 <h1>Break Leader Dashboard</h1>
+
 <div class="row-fluid">
 <div class="offset1">
+<h2><%= @trip_name %> <%= @trip_year %></h2>
 <h3>My Group Members<h3>
 </div>
 </div>
@@ -10,6 +12,8 @@
   <% @list_of_members.each do |member| %>
   </tbody>
     <td><%= member.name %></td>
+    <% @trip_instance_of_break_leader =%>
+    <td><%=link_to "X", delete_from_trip_path(@trip_instance_of_break_leader.id, member.id), :class=>"btn btn-mini btn-danger"%></td>
   </tbody>
   <% end %>
  </table>
@@ -22,7 +26,7 @@
   <% @requests_for_break_leader.each do |request| %>
   </tbody>
     <td><%= request.user.name %></td>
-    <td><%= link_to "Approve", approve_request_path(request.id), :class=>"btn btn-success" %></td>
+    <td><%= link_to "Approve", approve_request_path(request.id), :class=> "btn" %></td>
   </tbody>
   <% end %>
  </table>

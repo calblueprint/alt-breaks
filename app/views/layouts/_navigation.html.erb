@@ -20,7 +20,7 @@
             <% instance = p.trip_instance %>
             <% name = instance.trip.name %>
             <li>
-              <%= link_to(name, trip_instance_path(instance[:id])) %>
+              <%= link_to(name + " " + instance.year.to_s, trip_instance_path(instance[:id])) %>
             </li>
           <% end %>
         </ul>

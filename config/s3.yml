@@ -1,0 +1,8 @@
+development:
+  bucket: altbreak-dev
+  access_key_id: AKIAI3ERW53BB44TQDLQ
+  secret_access_key: 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
+production:
+  bucket: altbreak
+  access_key_id: AKIAI3ERW53BB44TQDLQ
+  secret_access_key: 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
