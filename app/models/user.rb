@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :responses
   has_many :posts
   has_many :trip_permissions
+  has_one :admin_permission
+  has_attached_file :avatar, :styles => { :medium => "400x>", :thumb => "50x50>"}, :storage => :s3, 
+  :s3_credentials => "#{Rails.root}/config/s3.yml", :path => "/:style/:id/:filename"
 
   validates :first_name, :last_name, :presence => :true
 

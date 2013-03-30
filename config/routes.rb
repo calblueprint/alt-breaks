@@ -1,18 +1,24 @@
 Altbreaks::Application.routes.draw do  
-  root :to => "home#index" #home page
+  root :to => "map#index" #home page
 
   resources :testimonies
 
   devise_for :users, :path => '',
   :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up' }
 
-  resources :users
+  resources :users do
+    collection do
+      get 'dashboard'
+    end
+  end
 
   resources :responses
 
   resources :posts
   
   resources :trip_instances
+
+  resources :trip_permissions
 
   resources :trips
   
@@ -23,6 +29,8 @@ Altbreaks::Application.routes.draw do
   match 'dashboard' => 'dashboard#index'
   resources :requests 
   match 'approve_request/:id' => 'requests#approve', :as => 'approve_request'
+
+  match 'delete_from_trip/:tripinstid/:id' => 'dashboard#delete_from_trip', :as =>'delete_from_trip'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

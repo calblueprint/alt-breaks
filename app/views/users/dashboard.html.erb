@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-transition.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-collapse.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
+</head>
+<body>
+  <% if current_user.admin_permission %>
+    <h2> Admin Dashboard </h2>
+    <h5>Trips</h5>
+    <div class="accordion" id="accordionOptions">
+      <% cindex = 0 %>
+      <% Trip.all.each do |trip| %>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <%= link_to(trip[:name], "#collapse#{cindex}", :class=>"accordion-toggle", "data-toggle"=>"collapse", "data-parent"=>"accordionOptions" )%>
+          </div>
+          <div id="collapse<%=cindex%>" class="accordion-body collapse">
+            <div class="accordion-inner">
+              Specific Trips: <br /> <br />
+              <% trip.trip_instances.all.each do |inst| %>
+                <% if trip.current_trip_instance_id == inst.id %>
+                  Current Trip: <%= link_to(inst[:year], trip_instance_path(inst[:id])) %>
+                  <br />
+                <% else %>
+                  <%= link_to(inst[:year], trip_instance_path(inst[:id])) %>
+                  <br />
+                <% end %>
+                Break Leaders: <br />
+                <% inst.trip_permissions.all.each do |permission| %>
+                  <% if permission[:permission] = 1 %>
+                    <% u = User.find_by_id(permission.user_id) %>
+                    <%= link_to(u[:first_name]+" "+u[:last_name], user_path(u)) %> <br />
+                  <% end %>
+                <% end %>
+                <a href="#leaderModal<%=inst.id%>" role="button" class="btn" data-toggle="modal">Add Break Leader</a>
+                <br /> <br />
+                <!-- Modal -->
+                <div id="leaderModal<%=inst.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Add Break Leader</h3>
+                  </div>
+                  <div class="modal-body">
+                    First Name: <input type="text" data-provide="typeahead" data-source=<%=User.select("first_name")%> id="addUser<%=inst.id%>">
+                    <br />
+                    Last Name: <input type="text">
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-primary">Add</button>
+                  </div>
+                </div>
+              <% end %>
+              <a href="#addInstance" role="button" class="btn" data-toggle="modal">Add Trip</a>
+              <!-- Modal -->
+              <div id="addInstance" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h3 id="myModalLabel">Add Trip Group</h3>
+                </div>
+                <div class="modal-body">
+                  Year: <input type="text" id="tripInstance">
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                  <button class="btn btn-primary">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% cindex += 1 %>
+      <% end %>
+    </div>
+    <a href="#addTrip" role="button" class="btn" data-toggle="modal">Add Trip</a>
+    <br />
+    <!-- Modal -->
+    <div id="addTrip" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Add Trip</h3>
+      </div>
+      <div class="modal-body">
+        New Trip Name: <input type="text" id="trip">
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  <% end %>
+</body>
