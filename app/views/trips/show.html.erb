@@ -18,7 +18,11 @@
 <div>
 <% if @testimonies %>
 	<% @testimonies.each do |t| %>
-		<div><%= image_tag t.photo.url(:medium) %></div>
+		<% if t.photos %>
+			<% t.photos.each do |p| %>
+				<div><%= image_tag p.photo.url(:medium) %></div>
+			<% end %>
+		<% end %>
 	<% end %>	
 <% end %>
 </div>
