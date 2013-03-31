@@ -37,6 +37,7 @@ class TestimoniesController < ApplicationController
   # GET /testimonies/1/edit
   def edit
     @testimony = Testimony.find(params[:id])
+    @trip_instance_id = params[:trip_instance_id] #new -MC 
     5.times {@testimony.photos.build}
   end
 
