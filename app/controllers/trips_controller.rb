@@ -15,11 +15,12 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
     @testimonies = []
-    @trip.trip_instances.each do |i|
-      if i.testimonies != nil
-        i.testimonies.each do |t|
-          puts t
-          @testimonies << t
+    @photos = []
+    @trip.trip_instances.to_a.each do |i|
+      i.testimonies.to_a.each do |t|
+        @testimonies << t
+        t.photos.to_a.each do |p|
+          @photos << p
         end
       end
     end

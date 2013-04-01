@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328040153) do
+ActiveRecord::Schema.define(:version => 20130401024722) do
 
   create_table "admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20130328040153) do
   create_table "testimonies", :force => true do |t|
     t.integer  "trip_instance_id"
     t.integer  "user_id"
-    t.text     "context"
+    t.text     "description"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -96,6 +96,10 @@ ActiveRecord::Schema.define(:version => 20130328040153) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
+    t.string   "cover_photo_file_name"
+    t.string   "cover_photo_content_type"
+    t.integer  "cover_photo_file_size"
+    t.datetime "cover_photo_updated_at"
   end
 
   create_table "users", :force => true do |t|
