@@ -6,7 +6,31 @@ class TripInstancesController < ApplicationController
   def show
     @instance = TripInstance.find(params[:id])
     @trip = @instance.trip
-    @posts = @instance.posts
+    @temp_posts = @instance.posts
+    @posts = []
+    temp_users = []
+    trip_permissions = @instance.trip_permissions
+    trip_permissions.shuffle.each do |tper|
+      if tper.permission == 1 || tper.permission == 2
+        temp_users << tper.user
+      end
+    end
+    if @temp_posts.length > 3
+      @temp_posts[0...3].each do |post|
+          @posts << post
+      end
+    else
+      @posts = @temp_posts
+    end
+    @users = []
+    if temp_users.length > 4
+      temp_users[0...4].each do |user|
+        @users << user
+      end
+    else
+      @users = temp_users
+    end
+
         
     respond_to do |format|
       format.html # show.html.erb

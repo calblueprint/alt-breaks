@@ -2,8 +2,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-
+    #Must compiled posts regarding trip
+    trip_instance_id = params[:trip_instance_id]
+    @instance = TripInstance.find_by_id(trip_instance_id)
+    @posts = @instance.posts
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -13,6 +15,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    trip_instance_id = params[:trip_instance_id]
+    @instance = TripInstance.find_by_id(trip_instance_id)
     @post = Post.find(params[:id])
     @response = Response.new
     @responses = Response.all
@@ -27,6 +31,8 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
+    trip_instance_id = params[:trip_instance_id]
+    @instance = TripInstance.find_by_id(trip_instance_id)
     @post = Post.new
 
     if params[:type] == 'trip'
@@ -46,28 +52,19 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user = current_user
-    
-    respond_to do |format|
-      if @post.save
-        format.html {
-          if trip_id = params[:post][:trip_id]
-            @trip = Trip.find(trip_id)
-            redirect_to internal_trip_url(@trip), notice: 'Response was successfully created.'
-          elsif trip_instance_id = params[:post][:trip_instance_id]
-            @trip_instance = TripInstance.find(trip_instance_id)
-            redirect_to @trip_instance, notice: 'Response was successfully created.'
-          end
-        }
-        format.json { render json: @response, status: :created, location: @response }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
-      end
+    trip_instance_id = params[:trip_instance_id]
+    @instance = TripInstance.find_by_id(trip_instance_id)
+
+    if @post.save
+      @instance.posts << @post
     end
+    redirect_to trip_instance_posts_path(@instance.id)
   end
 
   # GET /posts/1/edit
   def edit
+    trip_instance_id = params[:trip_instance_id]
+    @instance = TripInstance.find_by_id(trip_instance_id)
     @post = Post.find(params[:id])
   end
 
@@ -75,10 +72,10 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-
+    @instance = TripInstance.find_by_id(params[:trip_instance_id])
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to trip_instance_path(@instance.id), notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
