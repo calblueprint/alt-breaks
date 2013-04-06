@@ -1,7 +1,8 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :name, :subtitle, :description, :location, :current_trip_instance_id, :latitude, :longitude, :gmaps, :cover_photo
+  attr_accessible :name, :subtitle, :description, :location, :latitude, :longitude, :gmaps, :cover_photo
   has_many :trip_instances
   has_many :posts
+  has_one :current_trip_instance, :class_name => "TripInstance"
 
   # this lets the gmaps gem know that this model can be plotted on a map
   acts_as_gmappable

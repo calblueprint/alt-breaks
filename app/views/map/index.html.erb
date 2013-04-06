@@ -1,3 +1,38 @@
-<%= gmaps("map_options" => { :detect_location => true, :center_on_user => false, "zoom" => 6, :type => :TERRAIN},
-			"markers" => { "data" => @json }) %>
-<!-- i havre no idea if this will work -->
+<!-- this will populate the actual html of the map -->
+<%= gmaps("map_options" => {
+				:detect_location => true,
+				:center_on_user => false,
+				"zoom" => 6,
+				:type => :TERRAIN
+			},
+			"markers" => {
+				"data" => @json
+			}) %>
+
+<!-- initialize the infobubble popup -->
+<% content_for :scripts do %>
+    <script type="text/javascript">
+      var script = '<script type="text/javascript" src="http://google-maps-' +
+          'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble';
+      if (document.location.search.indexOf('compiled') !== -1) {
+        script += '-compiled';
+      }
+      script += '.js"><' + '/script>';
+      document.write(script);
+    </script>
+<% end %>
+
+<!-- populate all the rendered html popups into the window because shitty render function doesnt work in assets -->
+<% content_for :scripts do %>
+	<script type="text/javascript">
+		window.rendered_htmls = [];
+		console.log("FUCK ME");
+		<% Trip.all.each do |trip| %>
+			window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => []}%>");
+		<% end %>
+	</script>
+<% end %>
+
+<% content_for :scripts do %>
+	<%= javascript_include_tag "map_functionality" %>
+<% end %>
