@@ -11,25 +11,30 @@ class MapController < ApplicationController
     	###
 
     	# again, preventative measures
-    	if trip.current_trip_instance_id == nil then
+    	if !trip.current_trip_instance then
     		next
     	end
 
     	###
     	# comment out for new breakleader code:
-    	leaders = TripInstance.find(trip.current_trip_instance_id).trip_permissions.where(permission: 1).map do |permission|
+    	leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map do |permission|
     		permission.user
     	end
+    	puts "HELOO"
+    	puts leaders
+    	puts "FUCCCKKK"
+    	puts leaders.slice(0, leaders.length-1)
+    	puts "HELLOOOO"
     	###
     	print "the length of the leaders are:" + leaders.length.to_s
-    	print "current instance id is:" + trip.current_trip_instance_id.to_s
+    	print "current instance id is:" + trip.current_trip_instance.to_s
 
     	# render teh html that will be requested when the marker is clicked on
-    	#string_html = render_to_string :partial => "map/popup", :locals => {:trip => trip, :leaders => leaders}
+    	string_html = render_to_string :partial => "map/popup", :locals => {:trip => trip, :leaders => leaders}
     	#puts string_html
-    	#marker.infowindow string_html
+    	marker.infowindow string_html
     	# return teh json
-    	marker.json({:id => trip.id})
+    	marker.json(:id => trip.id)
     end
   end
 end

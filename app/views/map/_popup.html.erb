@@ -1,7 +1,9 @@
 <div class="name"><a href="/trips/<%= trip.id %>"><%= trip.name %></a></div>
 <div class="leaders">
- <% leaders.slice(0, leaders.length-1).each do |leader| %>
-   <%= leader.first_name %> and
- <% end %>
- <%= leaders.last.first_name %>
+	<% if leaders and leaders.length > 0 %>
+	<% leaders.slice(0, leaders.length-1).each do |leader| %>
+	<%= leader.first_name %> and
+	<% end %>
+	<%= leaders.last.first_name %>
+	<% end %>
 </div>
