@@ -17,9 +17,7 @@ class MapController < ApplicationController
 
     	###
     	# comment out for new breakleader code:
-    	leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map do |permission|
-    		permission.user
-    	end
+    	leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user}
     	puts "HELOO"
     	puts leaders
     	puts "FUCCCKKK"
@@ -30,8 +28,6 @@ class MapController < ApplicationController
     	print "current instance id is:" + trip.current_trip_instance.to_s
 
     	# render teh html that will be requested when the marker is clicked on
-    	string_html = render_to_string :partial => "map/popup", :locals => {:trip => trip, :leaders => leaders}
-    	marker.infowindow string_html
     	# return teh json
     	marker.json(:id => trip.id)
     end

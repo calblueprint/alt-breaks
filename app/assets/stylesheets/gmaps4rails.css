@@ -8,12 +8,13 @@
   box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
   width: 100%;
   max-width: 1100px;
+  height: 100%;
 }
 
 .gmaps4rails_map {
   width: 100%;
   max-width: 1100px;
-  height: 400px;
+  height: 100%
 }
 
 .bing_map {
