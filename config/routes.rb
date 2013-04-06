@@ -14,9 +14,10 @@ Altbreaks::Application.routes.draw do
 
   resources :responses
 
-  resources :posts
   
-  resources :trip_instances
+  resources :trip_instances do
+    resources :posts
+  end
 
   resources :trip_permissions
 

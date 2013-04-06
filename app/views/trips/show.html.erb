@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<div><%= image_tag @trip.cover_photo.url(:large) %></div>
+
 <h1><%= @trip.name %></h1>
 <h4><%= @trip.subtitle %></h4>
 
@@ -14,12 +16,18 @@
   <%= @trip.description %>
 </p>
 
+<h3>Testimonies</h3>
+<div>
+	<% @testimonies.each do |t| %>
+		<div><%= t.description %></div>
+	<% end %>
+</div>
+
 <h3>Photos</h3>
 <div>
-<% if @testimonies %>
-	<% @testimonies.each do |t| %>
-		<div><%= image_tag t.photo.url(:medium) %></div>
-	<% end %>	
-<% end %>
+	<% @photos.each do |p| %>
+		<div><%= image_tag p.photo.url(:medium) %></div>
+	<% end %>
 </div>
+
 <%= link_to 'Edit', edit_trip_path(@trip) %>

@@ -1,5 +1,5 @@
 class Testimony < ActiveRecord::Base
-  attr_accessible :context, :trip_instance_id, :user_id, :photos_attributes
+  attr_accessible :description, :trip_instance_id, :user_id, :photos_attributes
   belongs_to :trip_instance
   belongs_to :user
   has_many :photos, :dependent => :destroy
