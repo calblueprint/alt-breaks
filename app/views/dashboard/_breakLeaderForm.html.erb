@@ -1,7 +1,8 @@
 <%= form_for(@trip_permission) do |f| %>
   <div class="modal-body">
     <%= f.label :user_id, "Users" %> <br />
-    <%= f.collection_select :user_id, User.order(:first_name), :id, :first_name, {}, {:include_blanke => true} %>
+    <%= f.collection_select :user_id, User.order(:first_name), :id, :first_name, {},  {multiple: true}%>
+<!--{:include_blanke => true}-->
     <%= :user_id %>
     <%= f.hidden_field :trip_id, :value=>trip_instance_id %>
   </div>
