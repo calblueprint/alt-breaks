@@ -45,6 +45,10 @@ GEM
     bootstrap-sass (2.3.0.1)
       sass (~> 3.2)
     builder (3.0.4)
+    chosen-rails (0.9.12)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -167,6 +171,7 @@ DEPENDENCIES
   aws-s3
   aws-sdk
   bootstrap-sass (~> 2.3.0.1)
+  chosen-rails
   coffee-rails (~> 3.2.1)
   devise
   gmaps4rails
