@@ -97,6 +97,9 @@ leader2 = User.create(first_name: 'Samwise', last_name: 'Gamgee', email: 'frodo.
 
 trips_hash.each do |trip|
 	t = Trip.create(trip)
+	# new photo
+#	t.cover_photo = File.open('/cover_photos/large/where_the_wild_things_are.jpeg')
+
 	i1 = TripInstance.create(trip_id: t.id, year: 2013, description: "A really cool trip that's running this year.")
 	i2 = TripInstance.create(trip_id: t.id, year: 2012, description: "A great trip from last year.")
 	t.current_trip_instance_id = i1.id
