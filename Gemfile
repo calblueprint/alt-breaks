@@ -18,6 +18,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'chosen-rails'
 end
 
 gem 'jquery-rails'
@@ -51,3 +52,4 @@ gem 'asset_sync'
 
 gem 'aws-s3'
 gem 'aws-sdk'
+
