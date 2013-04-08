@@ -11,5 +11,6 @@
  *= require_self
  *= require bootstrap_and_overrides
  *= require map
+ *= require chosen
  *= require_tree .
  */
