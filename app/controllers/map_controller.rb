@@ -17,14 +17,15 @@ class MapController < ApplicationController
 
     	###
     	# comment out for new breakleader code:
-    	leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user}
+    	@leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user}
     	puts "HELOO"
-    	puts leaders
+    	puts @leaders
     	puts "FUCCCKKK"
-    	puts leaders.slice(0, leaders.length-1)
+    	puts @leaders.slice(0, @leaders.length-1)
     	puts "HELLOOOO"
+    	
     	###
-    	print "the length of the leaders are:" + leaders.length.to_s
+    	print "the length of the leaders are:" + @leaders.length.to_s
     	print "current instance id is:" + trip.current_trip_instance.to_s
 
     	# render teh html that will be requested when the marker is clicked on

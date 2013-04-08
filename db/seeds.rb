@@ -111,8 +111,9 @@ trips_hash.each do |trip|
 	# 	TripPermission.create!(trip_instance_id: i1.id, user_id: user.id, permission: 2)
 	# end
 
-  # TripPermission.create!(:trip_instance_id => i1.id, :user_id => leader1.id, :permission => 1) #breakleader
-  # TripPermission.create!(:trip_instance_id => i1.id, :user_id => leader2.id, :permission => 1) #breakleader
+  #Need this
+  TripPermission.create!(:trip_instance_id => i1.id, :user => leader1, :permission => 1) #breakleader
+  TripPermission.create!(:trip_instance_id => i1.id, :user => leader2, :permission => 1) #breakleader
   
   #	User.all.each do |user|
   #		TripPermission.create!(trip_instance_id: i1.id, user_id: user.id, permission: 2)
