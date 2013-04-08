@@ -6,6 +6,8 @@ class PostsController < ApplicationController
     trip_instance_id = params[:trip_instance_id]
     @instance = TripInstance.find_by_id(trip_instance_id)
     @posts = @instance.posts
+    @posts.sort_by!(&:updated_at)
+    @posts.reverse!
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
