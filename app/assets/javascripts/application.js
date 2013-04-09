@@ -16,3 +16,12 @@
 //= require bootstrap-transition
 //= require chosen-jquery
 //= require_tree .
+
+jQuery(function($){
+    $('.chzn-select').chosen();
+});
+
+//jQuery ->
+//	$('#trip_permission_user_id').chosen()
+	
+	
