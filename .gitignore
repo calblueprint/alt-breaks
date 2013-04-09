@@ -13,3 +13,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# ignore compiling stuff on dev
+/public/assets/*.css
+/public/assets/*.js
+/public/assets/*.gz
