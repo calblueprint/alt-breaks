@@ -1,4 +1,4 @@
-console.log "hello"
+console.log "hello, map_functionality called"
 
 create_new_infobubble = (content) ->
     bubble = new InfoBubble
@@ -19,8 +19,12 @@ create_and_bind_infobubble = (map, marker, html) ->
         else
             bubble.close()
             window.open_infobubble = null
-
+console.log "HERES THE GMAPS STUFF"
+console.log Gmaps
+console.log Gmaps.map
+console.log Gmaps.map.callback
 Gmaps.map.callback = ->
+    console.log "GMAPS$RAILS CALLBACK CALLED"
     # go through each trip and associate the info bubble with it
     # @markers is automatically populated by gmaps4rails. so is @map
 

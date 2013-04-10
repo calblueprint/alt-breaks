@@ -3,13 +3,16 @@
 <head>
   <title>Altbreaks</title>
 		<!--load jquery first-->
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag :jquery %>
+  <%= javascript_include_tag "gmaps4rails/gmaps4rails.base" %>
+  <%= javascript_include_tag "gmaps4rails/gmaps4rails.googlemaps" %>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-dropdown.js"></script>
-	<script type="text/javascript" src="https://raw.github.com/julesjanssen/chosen/master/Source/chosen.js"></script>
-	<link rel = "stylesheet" type = "text/css" href="https://raw.github.com/julesjanssen/chosen/master/Source/chosen.css">
-	 <%= javascript_include_tag :application %> <!--needs to be after you include chosen-->
+  <script type="text/javascript" src="https://raw.github.com/julesjanssen/chosen/master/Source/chosen.js"></script>
+  <link rel = "stylesheet" type = "text/css" href="https://raw.github.com/julesjanssen/chosen/master/Source/chosen.css">
+  <!-- for gmaps4rails -->
 </head>
 <body>
   <header class="navbar navbar-fixed-top">
@@ -22,13 +25,14 @@
   <div class="container-fluid">
     <%= yield %>
   </div>
-  <!-- for gmaps4rails -->
-  <%= yield :scripts %>
-	<script>
-		jQuery(function($){
-		    $('.chzn-select').chosen();
-		});
-	</script>
+  <script>
+    jQuery(function($){
+        $('.chzn-select').chosen();
+    });
+  </script>
   <!-- i have no idea what the previous line does, its magic -->
+  <%= yield :scripts %>
+  <%= stylesheet_link_tag "gmaps4rails" %>
+
 </body>
 </html>

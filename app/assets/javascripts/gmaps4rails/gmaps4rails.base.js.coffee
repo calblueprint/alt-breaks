@@ -1,4 +1,5 @@
 Gmaps = {}
+console.log "GMAPS$RAILS IS BEING LOADED OR SOME SHIT"
 
 Gmaps.triggerOldOnload = ->
   Gmaps.oldOnload() if typeof(Gmaps.oldOnload) == 'function'
