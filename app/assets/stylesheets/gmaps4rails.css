@@ -8,7 +8,7 @@
   box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
   width: 100%;
   max-width: 1100px;
-  height: 100%;
+  height: 100%
 }
 
 .gmaps4rails_map {
@@ -24,4 +24,9 @@
    width: 400px;
    height: 400px;
    border:#555555 2px solid;
+}
+
+body, html, .container-fluid {
+  display: block;
+  height: 100%;
 }

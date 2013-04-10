@@ -28,6 +28,7 @@
 		window.rendered_htmls = [];
 		console.log("FUCK ME");
 		<% Trip.all.each do |trip| %>
+
 			window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => []}%>");
 		<% end %>
 	</script>

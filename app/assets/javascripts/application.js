@@ -23,5 +23,3 @@ jQuery(function($){
 
 //jQuery ->
 //	$('#trip_permission_user_id').chosen()
-	
-	
