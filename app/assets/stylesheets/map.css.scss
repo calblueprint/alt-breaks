@@ -10,6 +10,23 @@
   width: auto; display:inline; 
 }
 
-.name {
-	color: yellow;
+$title-height: 30px;
+$subtitle-height: 15px;
+
+.popup {
+	.title {
+		display: block;
+		height: $title-height;
+		line-height: $title-height;
+		font-size: $title-height - 9px;
+	}
+	.subtitle {
+		display: block;
+		height: $subtitle-height;
+		line-height: $subtitle-height;
+		font-size: $subtitle-height - 3px;
+	}
+	.leaders {
+		color: #aaa
+	}
 }
