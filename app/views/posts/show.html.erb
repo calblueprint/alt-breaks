@@ -1,38 +1,29 @@
 <div class="row-fluid">
-	
-<p id="notice"><%= notice %></p>
-
-<h2><%= @post.title %></h2>
-
-<p>
-  <b>Posted by </b>
-  <%= User.find(@post.user_id).name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @post.description %>
-</p>
-
-<!--
-<p>
-  <b>Video link:</b>
-  <%= @post.video_link %>
-</p>
--->
-
-<br>
-<h3>Responses</h3>
-
-<%= render 'responseform' %>
-<div id="comment-table"><%= render :partial => 'posts/response_table', :locals => {:post => @post} %></div>
-<% if @post.user == current_user %>
-	<%= link_to 'Edit', edit_trip_instance_post_path(@instance.id, @post) %> |
-<% end %>
-<% if trip = @post.trip %>
-	<%= link_to 'Back', internal_trip_path(trip) %>
-<% elsif trip_instance = @post.trip_instance %>
-	<%= link_to 'Back', trip_instance_path(trip_instance) %>
-<% end %>
-
+  <div class="span8 offset1">
+    <h2><%= @post.title %></h2>
+  </div>
+  <div class="row-fluid">
+    <div class="span7 offset1">
+      <p><i>submitted <%= time_ago_in_words(@post.created_at) %> ago by </i><%= User.find(@post.user_id).name %></p>
+      <div class="row-fluid">
+        <div class="well">
+          <%= @post.description %>
+        </div>
+      </div>
+      <h3>Responses</h3>
+      <%= render 'responseform' %>
+      <div id="comment-table">
+        <%= render :partial => 'posts/response_table', :locals => {:post => @post} %>
+      </div>
+      <% if trip = @post.trip %>
+        <%= link_to 'Back', internal_trip_path(trip) %>
+      <% elsif trip_instance = @post.trip_instance %>
+        <%= link_to 'Back', trip_instance_path(trip_instance) %>
+      <% end %>
+    </div>
+    <div class="span3 offset1">
+      hi
+      <!--members-->
+    </div>
+  </div>
 </div>

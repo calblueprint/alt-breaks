@@ -45,7 +45,7 @@ class ResponsesController < ApplicationController
 
     respond_to do |format|
       if @response.save
-        format.html { redirect_to post, notice: 'Response was successfully created.' }
+        format.html { redirect_to "/trip_instances/#{post.trip_instance_id}/posts/#{post.id}", notice: 'Response was successfully created.' }
         format.json { render json: @response, status: :created, location: @response }
       else
         format.html { render action: "new" }
@@ -74,10 +74,11 @@ class ResponsesController < ApplicationController
   # DELETE /responses/1.json
   def destroy
     @response = Response.find(params[:id])
+    post = @response.post
     @response.destroy
 
     respond_to do |format|
-      format.html { redirect_to responses_url }
+      format.html { redirect_to "/trip_instances/#{post.trip_instance_id}/posts/#{post.id}" }
       format.json { head :no_content }
     end
   end
