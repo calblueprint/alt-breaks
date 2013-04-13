@@ -1,5 +1,5 @@
 <div class="popup">
-	<div class="title"><%= trip.name %></div>
+	<div class="title"><a href='/trips/<%= trip.id %>/'><%= trip.name %></a></div>
 	<div class="subtitle"><%= trip.subtitle %></div>
 	<div class="leaders">
 		<% if leaders and leaders.length > 0 %>
@@ -8,5 +8,14 @@
 			<% end %>
 			<a href='/users/<%= leaders.last.id %>/'><%= @leaders.last.first_name %></a>
 		<% end %>
+	</div>
+	<div class="description">
+		<%= trip.description.slice(0, 400) + '... ' %>
+		<a href='/trips/<%= trip.id %>/'>(read more)</a>
+	</div>
+
+	<!-- dummy pictures -->
+	<div class="photos">
+		<img class="popup-photo" src='/assets/dummy1.png'><img class="popup-photo" src='/assets/dummy2.png'>
 	</div>
 </div>
