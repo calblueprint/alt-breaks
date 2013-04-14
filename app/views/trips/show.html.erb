@@ -86,7 +86,9 @@
 						    <div class="active item cphoto"><img class="slide" src="/assets/IMG1.jpg" alt=""></div>
 						    <div class="item cphoto"><img class="slide" src="/assets/IMG4.jpg" alt=""></div>
 						    <div class="item cphoto"><img class="slide" src="/assets/IMG5.jpg" alt=""></div>
+						    <% if @photos != [] %>
 						    <div class="item"><%= image_tag @photos.first.photo.url(:medium) %></div>
+							<% end %>
 						  </div>
 						  <!-- Carousel nav -->
 						  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
