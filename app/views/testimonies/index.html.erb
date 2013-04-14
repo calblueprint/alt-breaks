@@ -14,10 +14,7 @@
   <tr>
     <td><%= testimony.trip_instance_id %></td>
     <td><%= testimony.user_id %></td>
-    <td><%= testimony.context %></td>
-    <td><%= link_to 'Show', trip_instance_testimony %></td>
-    <td><%= link_to 'Edit', edit_trip_instance_testimony_path(testimony) %></td>
-    <td><%= link_to 'Destroy', testimony, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= testimony.description %></td>
   </tr>
 <% end %>
 </table>

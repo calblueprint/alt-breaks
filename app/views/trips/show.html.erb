@@ -100,9 +100,11 @@
 						<table class="table table-hover table-bordered">
 							<% if @testimonies %>
 	  							<% @testimonies.each do |testimony| %>
-	  								</tbody>
-	    								<%= link_to(t.description, testimony_path(testimony.id)) %>
-		  							</tbody>
+	  								<tr>
+	    								<%= link_to(testimony.description, [@trip.current_trip_instance, testimony]) %>
+	    								by <%= testimony.user.name %>
+		  							</tr>
+		  							<br>
 	  							<% end %>
 							<% end %>
 						</table>
@@ -111,21 +113,9 @@
 			 	</div>
 
 
-				<div class="row-fluid">
-					<div class="span12">
-						<h3>Testimonies</h3>
-						<div>
-							<% @testimonies.each do |t| %>
-								<div><%= t.description %></div>
-								<div>by <%= t.user.name %></div>
-							<% end %>
-						</div>
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</div>
-
-	<%= link_to 'Edit', edit_trip_path(@trip) %>
+	<br><br>
+	<!--<%= link_to 'Edit', edit_trip_path(@trip) %>-->
 </div>
