@@ -1,3 +1,26 @@
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.banner {
+	width: 100%;
+	height: 350px;
+	overflow: hidden;
+}
+
+.bphoto {
+	width: 100%;
+	height: 350px;
+}
+
+.cphoto {
+	width: 100%;
+	height: 400px;
+	overflow: hidden;
+}
+
+.slide {
+	width: auto;
+	height: 100%;
+	text-align: center;
+}
