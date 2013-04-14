@@ -50,7 +50,7 @@ class RequestsController < ApplicationController
         req.save
       end
     end
-    redirect_to dashboard_path
+    redirect_to requests_path
   end
 
   def destroy
@@ -67,7 +67,7 @@ class RequestsController < ApplicationController
       req.delete
       req.save
     end
-    redirect_to dashboard_path
+    redirect_to requests_path
   end
 
   def approve
