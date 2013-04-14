@@ -10,6 +10,37 @@
   width: auto; display:inline; 
 }
 
+.trips {
+	display: inline-block;
+	
+	width: 22%;
+	text-align: center;
+
+	vertical-align: top;
+
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		li {
+			list-style-type: none;
+
+			display: block;
+			width: 100%;
+			margin: 10px 0;
+			padding: 10px 0;
+
+			background-color: #add77f;
+		}
+
+		li:hover {
+			width: 110%;
+			margin-right: -10%;
+		}
+	}
+}
+
 $title-height: 30px;
 $subtitle-height: 15px;
 
