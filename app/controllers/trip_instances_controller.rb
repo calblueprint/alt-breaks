@@ -6,15 +6,10 @@ class TripInstancesController < ApplicationController
   def show
     @instance = TripInstance.find(params[:id])
     @trip = @instance.trip
+
+    #posts to be displayed at bottom
     @temp_posts = @instance.posts
     @posts = []
-    temp_users = []
-    trip_permissions = @instance.trip_permissions
-    trip_permissions.shuffle.each do |tper|
-      if tper.permission == 1 || tper.permission == 2
-        temp_users << tper.user
-      end
-    end
     @temp_posts.sort_by!(&:updated_at)
     @temp_posts.reverse!
     if @temp_posts.length > 3
@@ -23,6 +18,15 @@ class TripInstancesController < ApplicationController
       end
     else
       @posts = @temp_posts
+    end
+
+    #users to be displayed in sidebar
+    temp_users = []
+    trip_permissions = @instance.trip_permissions
+    trip_permissions.shuffle.each do |tper|
+      if tper.permission == 1 || tper.permission == 2
+        temp_users << tper.user
+      end
     end
     @users = []
     if temp_users.length > 6
