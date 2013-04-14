@@ -21,6 +21,7 @@
 <div>
 	<% @testimonies.each do |t| %>
 		<div><%= t.description %></div>
+		<div><%= t.user.name %></div>
 	<% end %>
 </div>
 
