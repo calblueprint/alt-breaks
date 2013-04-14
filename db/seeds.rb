@@ -117,9 +117,9 @@ leader2 = User.create!(:first_name => 'Samwise', :last_name => 'Gamgee', :email 
 trips_hash.each do |trip|
 	print "iterating, leader 1 is " + leader1.id.to_s + "and leader 2 is " + leader2.id.to_s
 	t = Trip.create!(trip)
-	i1 = TripInstance.create! :trip => t, :year => 2013, :description => "A really cool trip that's running this year."
+	i1 = TripInstance.create!(:trip => t, :year => 2013, :description => "A really cool trip that's running this year.")
 	#i2 = TripInstance.create!(trip_id: t.id, year: 2012, description: "A great trip from last year.")
-	t.current_trip_instance = i1
+	t.current_trip_instance_id = i1.id
 	t.save
 
 	# User.all.each do |user|
