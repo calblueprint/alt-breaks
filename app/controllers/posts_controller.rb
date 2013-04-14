@@ -43,6 +43,22 @@ class PostsController < ApplicationController
     @response = Response.new
     @responses = Response.all
 
+    temp_users = []
+    trip_permissions = @instance.trip_permissions
+    trip_permissions.shuffle.each do |tper|
+      if tper.permission == 1 || tper.permission == 2
+        temp_users << tper.user
+      end
+    end
+    @users = []
+    if temp_users.length > 6
+      temp_users[0...6].each do |user|
+        @users << user
+      end
+    else
+      @users = temp_users
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
