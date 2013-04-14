@@ -1,0 +1,4 @@
+<!--<td><%= #link_to 'Show', '/#' %></td>
+    <td><%= #link_to 'Edit', edit_trip_instance_testimony_path(testimony) %></td>
+    <td><%= #link_to 'Destroy', testimony, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  -->
