@@ -1,12 +1,18 @@
 <table class="table table-hover table-bordered">
 	<tr class = "response">
 		<td>
-			<span class="response-author">
-				<b><%= User.find(response.user_id).name %></b> <i>submitted <%= time_ago_in_words(response.created_at) %> ago</i>
-			</span>
+
 
 			<div class="response-content">
-				<%= response.content %>
+				<div id = "wrapper">
+					<div id="left"><a href="#" class="thumbnail"><img src="/assets/panda.jpg" alt=""></a></div>
+					<div id="right">
+						<span class="response-author">
+							<b><%= response.user.name %></b> <i>submitted <%= time_ago_in_words(response.created_at) %> ago</i>
+						</span>
+						<%= response.content %>
+					</div>
+				</div>
 			</div>
 
 			<div id = "comment-wrapper">

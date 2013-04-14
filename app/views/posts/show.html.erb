@@ -4,7 +4,7 @@
   </div>
   <div class="row-fluid">
     <div class="span7 offset1">
-      <p><i>submitted <%= time_ago_in_words(@post.created_at) %> ago by </i><%= User.find(@post.user_id).name %></p>
+      <p><i>submitted <%= time_ago_in_words(@post.created_at) %> ago by </i><%= @post.user.name %></p>
       <div class="row-fluid">
         <div class="well">
           <%= @post.description %>
