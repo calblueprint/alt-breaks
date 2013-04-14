@@ -1,7 +1,6 @@
 Altbreaks::Application.routes.draw do  
   root :to => "map#index" #home page
 
-  resources :testimonies
 
   devise_for :users, :path => '',
   :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up' }
@@ -21,7 +20,9 @@ Altbreaks::Application.routes.draw do
 
   resources :trip_permissions
 
-  resources :trips
+  resources :trips do
+    resources :testimonies
+  end
   
   resources :internal_trips
 

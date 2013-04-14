@@ -4,7 +4,7 @@
 
 <div class="span3 offset8">
 	<%= link_to "Create Post", new_trip_instance_post_path(@instance.id), :class=>"btn" %>
-	<%= link_to "Create Testimony", new_testimony_path(:trip_instance_id => @instance.id), :class=>"btn" %>
+	<%= link_to "Create Testimony", new_trip_testimony_path(@instance.id), :class=>"btn" %>
 </div>
 
 
