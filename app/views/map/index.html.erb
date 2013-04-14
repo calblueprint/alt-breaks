@@ -1,5 +1,7 @@
-<!-- this will populate the actual html of the map -->
-<%= gmaps("map_options" => {
+<div class="trips">
+	<ul>
+	</ul>
+</div><%= gmaps("map_options" => {
 				:detect_location => true,
 				:center_on_user => false,
 				"zoom" => 6,
@@ -25,11 +27,13 @@
 <!-- populate all the rendered html popups into the window because shitty render function doesnt work in assets -->
 <% content_for :scripts do %>
 	<script type="text/javascript">
+		window.trip_names = [];
 		window.rendered_htmls = [];
 		console.log("FUCK ME");
 		<% Trip.all.each do |trip| %>
 			<% leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
 			window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders}%>");
+			window.trip_names.push("<%= trip.name %>");
 		<% end %>
 	</script>
 <% end %>

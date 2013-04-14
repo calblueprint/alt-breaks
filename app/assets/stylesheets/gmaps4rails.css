@@ -1,4 +1,5 @@
 .map_container {
+  display: inline-block;
   padding: 0;
   border-width: 1px;
   border-style: solid;
@@ -6,7 +7,7 @@
   -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
   -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
   box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
-  width: 100%;
+  width: 75%;
   max-width: 1100px;
   height: 100%
 }
@@ -29,4 +30,5 @@
 body, html, .container-fluid {
   display: block;
   height: 100%;
+  width: 100%;
 }
