@@ -8,6 +8,26 @@ class PostsController < ApplicationController
     @posts = @instance.posts
     @posts.sort_by!(&:updated_at)
     @posts.reverse!
+
+    #sidebar stuff will be hardcoded in because of some weird shit
+    temp_users = []
+    trip_permissions = @instance.trip_permissions
+    trip_permissions.shuffle.each do |tper|
+      if tper.permission == 1 || tper.permission == 2
+        temp_users << tper.user
+      end
+    end
+    @users = []
+    if temp_users.length > 6
+      temp_users[0...6].each do |user|
+        @users << user
+      end
+    else
+      @users = temp_users
+    end
+
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -22,6 +42,22 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @response = Response.new
     @responses = Response.all
+
+    temp_users = []
+    trip_permissions = @instance.trip_permissions
+    trip_permissions.shuffle.each do |tper|
+      if tper.permission == 1 || tper.permission == 2
+        temp_users << tper.user
+      end
+    end
+    @users = []
+    if temp_users.length > 6
+      temp_users[0...6].each do |user|
+        @users << user
+      end
+    else
+      @users = temp_users
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -60,7 +96,7 @@ class PostsController < ApplicationController
     if @post.save
       @instance.posts << @post
     end
-    redirect_to trip_instance_posts_path(@instance.id)
+    redirect_to trip_instance_path(@instance.id)
   end
 
   # GET /posts/1/edit

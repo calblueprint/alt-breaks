@@ -19,7 +19,9 @@ Altbreaks::Application.routes.draw do
 
   resources :trip_permissions
 
-  resources :trips
+  resources :trips do
+    resources :testimonies
+  end
   
   resources :internal_trips
 

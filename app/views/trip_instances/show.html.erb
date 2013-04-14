@@ -27,7 +27,11 @@
 					
 			 	</div>
 			</div>
-			<div class="span3 offset1"><h3>Members</h3>
+			<!--Sidebar: SHOULD BE CHANGED TO PARTIAL-->
+			<div class="span3 offset1">
+				<%= link_to "Create Post", new_trip_instance_post_path(@instance.id), :class=>"btn" %>
+				<%= link_to "Create Testimony", new_trip_testimony_path(@instance.id), :class=>"btn" %>
+				<h3>Members</h3>
 				<% @users.each_slice(2) do |user1, user2| %>
 					<ul class="thumbnails">
 						<div class="row-fluid">

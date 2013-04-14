@@ -9,6 +9,7 @@ class RequestsController < ApplicationController
       current_trip_id = trip.current_trip_instance_id
       temp_trip_instance = TripInstance.find_by_id(current_trip_id)
       @trip_instances << temp_trip_instance
+      
     end
     @trip_instances_without_current_user = []
     @trip_instances.each do |tinstance|
@@ -49,7 +50,7 @@ class RequestsController < ApplicationController
         req.save
       end
     end
-    redirect_to dashboard_path
+    redirect_to requests_path
   end
 
   def destroy
@@ -66,8 +67,7 @@ class RequestsController < ApplicationController
       req.delete
       req.save
     end
-    flash[:notice] = "hello"
-    redirect_to dashboard_path
+    redirect_to requests_path
   end
 
   def approve
