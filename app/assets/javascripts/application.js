@@ -14,12 +14,9 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-transition
-//= require chosen-jquery
 //= require_tree .
 
-jQuery(function($){
-    $('.chzn-select').chosen();
-});
+$('.chzn-select').chosen();
 
 //jQuery ->
 //	$('#trip_permission_user_id').chosen()
