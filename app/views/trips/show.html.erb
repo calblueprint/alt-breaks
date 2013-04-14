@@ -32,7 +32,7 @@
 					<% end %>
 				</div>
 			</div>
-			<div class="span9">
+			<div class="span10">
 				<div class="row-fluid">
 					<div class="banner">
 						<img class="bphoto" src="/assets/IMG6.jpg" alt="">
@@ -70,7 +70,6 @@
 						</p>
 					</div>
 				</div>
-				<br />
 
 				<div class="row-fluid">
 					<div class="span12">
@@ -109,14 +108,44 @@
 							<% if @testimonies %>
 	  							<% @testimonies.each do |testimony| %>
 	  								<tr>
+	  									<div class="well">
+	  										<ul class="thumbnails">
+	  											<li>
+	  												<div class="row-fluid">
+	  													<div class="span2">
+	  														<a href="#" class="thumbnail">
+																<!--
+									      						<%= image_tag testimony.user.avatar.url(:medium) %>
+									      						TEMPORARY PICTURES BELOW
+									      					-->
+									      						<img src="/assets/panda.jpg" alt="">
+									    					</a>
+									    				</div>
+									    				<div class="span10">
+									    					<div class="row-fluid">
+									    						<strong>Author: </strong><%= link_to(testimony.user.name, user_path(testimony.user.id)) %>
+									    					</div>
+									    					<div class="row-fluid">
+									    						<br />
+									    						<%= link_to(testimony.description, [@trip.current_trip_instance, testimony]) %>
+									    					</div>
+									    				</div>
+									    			</div>
+									    		</li>
+									    	</ul>
+									    </div>
+									    <!--
 	    								<%= link_to(testimony.description, [@trip.current_trip_instance, testimony]) %>
 	    								by <%= testimony.user.name %>
-		  							</tr>
+	    							-->
+		  							</tr>	
 		  							<br>
 	  							<% end %>
 							<% end %>
 						</table>
-						<%= link_to "See all", trip_instance_testimonies_path(@trip.current_trip_instance.id)%>
+						<!-- NEED TO FIX THIS
+						<%= link_to "See all", trip_testimonies_path(@trip.id)%>
+					-->
 					</div>
 			 	</div>
 
