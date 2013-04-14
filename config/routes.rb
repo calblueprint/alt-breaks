@@ -1,6 +1,7 @@
 Altbreaks::Application.routes.draw do  
   root :to => "map#index" #home page
 
+  resources :responses
 
   devise_for :users, :path => '',
   :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up' }
@@ -10,12 +11,10 @@ Altbreaks::Application.routes.draw do
       get 'dashboard'
     end
   end
-
-  resources :responses
-
   
   resources :trip_instances do
     resources :posts
+    resources :testimonies
   end
 
   resources :trip_permissions
