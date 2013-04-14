@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+
+<div><%= image_tag @user.avatar.url(:medium) %></div>
+
 <p>
   <b>Name:</b>
   <%= @user.name %>

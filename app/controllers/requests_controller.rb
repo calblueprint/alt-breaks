@@ -5,13 +5,18 @@ class RequestsController < ApplicationController
   def index
     @trips = Trip.all
     @trip_instances = []
+    puts "trip ids"
     @trips.each do |trip|
-      current_trip_id = trip.current_trip_instance_id
+      current_trip_id = trip.current_trip_instance.id
+      puts 'current trip id'
+      puts current_trip_id
       temp_trip_instance = TripInstance.find_by_id(current_trip_id)
       @trip_instances << temp_trip_instance
     end
     @trip_instances_without_current_user = []
+    puts "tinstance ids"
     @trip_instances.each do |tinstance|
+      puts tinstance.id
       boolean = false
       tinstance.trip_permissions.each do |tperm|
         if tperm.user == current_user
