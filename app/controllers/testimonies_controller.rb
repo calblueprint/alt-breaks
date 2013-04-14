@@ -24,14 +24,12 @@ class TestimoniesController < ApplicationController
   # GET /testimonies/new
   # GET /testimonies/new.json
   def new
+    @trip = Trip.find_by_id(params[:trip_id])
     @testimony = Testimony.new
-    @trip_instance_id = params[:trip_instance_id]
+    #@trip_instance_id = params[:trip_instance_id]
     5.times {@testimony.photos.build}
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @testimony }
-    end
+    
   end
 
   # GET /testimonies/1/edit
@@ -45,16 +43,13 @@ class TestimoniesController < ApplicationController
   # POST /testimonies.json
   def create
     @testimony = Testimony.new(params[:testimony])
-
-    respond_to do |format|
-      if @testimony.save
-        format.html { redirect_to @testimony, notice: 'Testimony was successfully created.' }
-        format.json { render json: @testimony, status: :created, location: @testimony }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @testimony.errors, status: :unprocessable_entity }
-      end
+    @trip = Trip.find_by_id(params[:trip_id])
+    @current_trip_instance =  TripInstance.find_by_id(@trip.current_trip_instance_id)
+    @testimony.user = current_user
+    if @testimony.save
+      @current_trip_instance.testimonies << @testimony
     end
+    redirect_to trip_instance_path(@current_trip_instance.id)
   end
 
   # PUT /testimonies/1
