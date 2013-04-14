@@ -3,10 +3,10 @@
 	<div class="subtitle"><%= trip.subtitle %></div>
 	<div class="leaders">
 		<% if leaders and leaders.length > 0 %>
-			<% @leaders.slice(0, @leaders.length-1).each do |leader| %>
+			<% leaders.slice(0, leaders.length-1).each do |leader| %>
 			  <a href='/users/<%= leader.id %>/'><%= leader.first_name %></a> and
 			<% end %>
-			<a href='/users/<%= leaders.last.id %>/'><%= @leaders.last.first_name %></a>
+			<a href='/users/<%= leaders.last.id %>/'><%= leaders.last.first_name %></a>
 		<% end %>
 	</div>
 	<div class="description">
