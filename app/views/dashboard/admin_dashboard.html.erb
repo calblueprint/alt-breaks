@@ -36,6 +36,8 @@
                   <%= link_to(u[:first_name]+" "+u[:last_name], user_path(u)) %> <br />
                 <% end %>
               <% end %>
+
+              <!-- Modal: Add Break Leader-->
               <a href="#leaderModal<%=inst.id%>" role="button" class="btn" data-toggle="modal">Add Break Leader</a>
               <br /> <br />
               <!-- Modal -->
@@ -45,19 +47,10 @@
                   <h3 id="myModalLabel">Add Break Leader</h3>
                 </div>
                 <%= render :partial=>'breakLeaderForm', :locals => {:trip_instance_id=>inst.id} %>
-                <!--
-                <div class="modal-body">
-                  First Name: <input type="text" data-provide="typeahead" data-source=<%=User.select("first_name")%> id="addUser<%=inst.id%>">
-                  <br />
-                  Last Name: <input type="text">
-                </div>
-                <div class="modal-footer">
-                  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                  <button class="btn btn-primary">Add</button>
-                </div>
-              -->
               </div>
             <% end %>
+
+            <!-- Modal: Add Trip Instance-->
             <a href="#addInstance" role="button" class="btn" data-toggle="modal">Add Trip Group</a>
             <!-- Modal -->
             <div id="addInstance" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -66,16 +59,19 @@
                 <h3 id="myModalLabel">Add Trip Group</h3>
               </div>
               <%= render :partial=>'tripInstanceForm', :locals => {:trip_id=>trip.id} %>
-              <!--
-              <div class="modal-body">
-                Year: <input type="text" id="tripInstance">
-              </div>
-              <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                <button class="btn btn-primary">Add</button>
-              </div>
-            -->
             </div>
+
+            <!-- Modal: Edit Trip-->
+            <a href="#editTrip" role="button" class="btn" data-toggle="modal">Edit Trip</a>
+            <!-- Modal -->
+            <div id="editTrip" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Edit Trip</h3>
+              </div>
+              <%= render :partial=>'tripForm', :locals => {:trip_id=>trip.id} %>
+            </div>
+
           </div>
         </div>
       </div>
@@ -91,14 +87,5 @@
       <h3 id="myModalLabel">Add Trip</h3>
     </div>
     <%= render :partial=>'tripForm'%>
-    <!--
-    <div class="modal-body">
-      New Trip Name: <input type="text" id="trip">
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button class="btn btn-primary">Add</button>
-    </div>
-  -->
   </div>
 </body>
