@@ -25,11 +25,19 @@
   <div class="container-fluid">
     <%= yield %>
   </div>
-  <script>
-    jQuery(function($){
-        $('.chzn-select').chosen();
-    });
-  </script>
+
+
+  <% TripInstance.all.each do |inst| %>
+  	<% class_id = inst.id.to_s %>
+	  <script>
+	    jQuery(function($){
+	    		$('.chosen' + <%= class_id %>).chosen();
+	    });
+      console.log(<%=class_id %>)
+	  </script>
+
+	<% end %>
+
   <!-- i have no idea what the previous line does, its magic -->
   <%= yield :scripts %>
   <%= stylesheet_link_tag "gmaps4rails" %>
