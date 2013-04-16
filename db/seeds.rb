@@ -115,7 +115,6 @@ leader1 = User.create!(:first_name => 'Frodo', :last_name => 'Baggins', :email =
 leader2 = User.create!(:first_name => 'Samwise', :last_name => 'Gamgee', :email => 'frodo.baggins@gmail.com', :password => 'password', :major => 'Courage', :grad_year => 2013) # Break Leader
 
 trips_hash.each do |trip|
-	print "iterating, leader 1 is " + leader1.id.to_s + "and leader 2 is " + leader2.id.to_s
 	t = Trip.create!(trip)
 	i1 = TripInstance.create!(:trip => t, :year => 2013, :description => "A really cool trip that's running this year.")
 	#i2 = TripInstance.create!(trip_id: t.id, year: 2012, description: "A great trip from last year.")
