@@ -2,6 +2,12 @@
 <ul class="nav">
     <!--Internal NavBar-->
   <% if user_signed_in? %>
+    <li>
+      <%= link_to('General', page_path(1)) %>
+    </li>
+
+    <!--Internal Trips Discusion-->
+    <!-- REMOVING
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
       <ul class="dropdown-menu">
@@ -12,6 +18,9 @@
         <% end %>
       </ul>
     </li>
+    -->
+    
+    <!--Trip Group Discussion-->
     <li class="dropdown">
       <% if permissions = current_user.trip_permissions %>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Trips <b class="caret"></b></a>
@@ -26,8 +35,8 @@
         </ul>
       <% end %>
     </li>
-    <!--External NavBar-->
-  <% else %>
+
+    <!--External Trip Pages-->
     <li class="dropdown">
       <a href="/posts" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
       <ul class="dropdown-menu">

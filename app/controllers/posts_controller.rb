@@ -26,8 +26,6 @@ class PostsController < ApplicationController
       @users = temp_users
     end
 
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -90,7 +88,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user = current_user
-    trip_instance_id = params[:trip_instance_id]
+    trip_instance_id = params[:post][:trip_instance_id]
     @instance = TripInstance.find_by_id(trip_instance_id)
 
     if @post.save
