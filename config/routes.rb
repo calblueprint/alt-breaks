@@ -1,6 +1,10 @@
 Altbreaks::Application.routes.draw do  
   root :to => "map#index" #home page
 
+  resources :pages do
+  	resources :posts
+	end
+
   resources :responses
 
   devise_for :users, :path => '',
@@ -17,13 +21,19 @@ Altbreaks::Application.routes.draw do
     resources :testimonies
   end
 
-  resources :trip_permissions
+  resources :pages do
+    resources :posts
+  end  
 
   resources :trips do
     resources :testimonies
   end
+
+  resources :posts
   
   resources :internal_trips
+
+  resources :trip_permissions
 
   match "/map" => "map#index"
 
