@@ -4,7 +4,13 @@ class PostsController < ApplicationController
   def index
     #Must compiled posts regarding trip
     trip_instance_id = params[:trip_instance_id]
+    @new_post = Post.new  #set up for modal
+    @testimony = Testimony.new  #set up for modal
+    5.times {@testimony.photos.build}
+
+
     @instance = TripInstance.find_by_id(trip_instance_id)
+    @instance_id = @instance.id
     @posts = @instance.posts
     @posts.sort_by!(&:updated_at)
     @posts.reverse!
@@ -35,11 +41,17 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    trip_instance_id = params[:trip_instance_id]
-    @instance = TripInstance.find_by_id(trip_instance_id)
+    @instance_id = params[:trip_instance_id]
+    @instance = TripInstance.find_by_id(@instance_id)
+ 
     @post = Post.find(params[:id])
     @response = Response.new
     @responses = Response.all
+
+    @new_post = Post.new  #set up for modal
+    @testimony = Testimony.new  #set up for modal
+    5.times {@testimony.photos.build}
+    
 
     temp_users = []
     trip_permissions = @instance.trip_permissions
@@ -70,12 +82,6 @@ class PostsController < ApplicationController
     trip_instance_id = params[:trip_instance_id]
     @instance = TripInstance.find_by_id(trip_instance_id)
     @post = Post.new
-
-    if params[:type] == 'trip'
-      @trip_id = params[:trip_id]   #need to set param in routing from view where button is
-    elsif params[:type] == 'instance'
-      @trip_instance_id = params[:trip_instance_id] #need to set param in routing from view where button is
-    end
     
     respond_to do |format|
       format.html # new.html.erb

@@ -1,0 +1,48 @@
+<!--Testimony Form-->
+
+<%= form_for @testimony, :html => { :multipart => true } do |f| %>
+  <div class="modal-body">
+    <% if @testimony.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@testimony.errors.count, "error") %> prohibited this testimony from being saved:</h2>
+        <ul>
+        <% @testimony.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :description, 'Description' %>
+      <%= f.text_area :description, rows: 6, :class=>"span12" %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :trip_instance_id, :value => instance_id %>
+    </div>
+    <div>
+      <%= f.label :photos, 'Upload a Photo' %>
+      <%= f.fields_for :photos do |photo| %>
+        <% if photo.object.new_record? %>
+          <div class="field">
+            <%= photo.file_field :photo %>
+          </div>
+        <% end %>
+  		<% end %>
+  	</div>
+    <div>
+      <%= f.fields_for :photos do |photo| %>
+        <% unless photo.object.new_record? %>
+          <%= link_to(image_tag(photo.object.photo.url(:thumb)), photo.object.photo.url(:original)) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+  
+<% end %>

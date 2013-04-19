@@ -26,7 +26,6 @@ class TestimoniesController < ApplicationController
   def new
     @trip = Trip.find_by_id(params[:trip_id])
     @testimony = Testimony.new
-    #@trip_instance_id = params[:trip_instance_id]
     5.times {@testimony.photos.build}
 
     
@@ -43,13 +42,17 @@ class TestimoniesController < ApplicationController
   # POST /testimonies.json
   def create
     @testimony = Testimony.new(params[:testimony])
-    @trip = Trip.find_by_id(params[:trip_id])
-    @current_trip_instance =  TripInstance.find_by_id(@trip.current_trip_instance_id)
+    trip_instance_id = params[:testimony][:trip_instance_id]
+    #@trip = Trip.find_by_id(params[:trip_id])
+=begin
+    @instance =  TripInstance.find_by_id(@trip.current_trip_instance_id)
     @testimony.user = current_user
     if @testimony.save
-      @current_trip_instance.testimonies << @testimony
+      @instance.testimonies << @testimony
     end
-    redirect_to trip_instance_path(@current_trip_instance.id)
+=end
+    @testimony.save
+    redirect_to trip_instance_path(trip_instance_id)
   end
 
   # PUT /testimonies/1
