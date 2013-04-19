@@ -35,50 +35,11 @@
 					</table>
 					<%= link_to "See all", trip_instance_posts_path(@instance_id)%>
 				</div>
-				
 		 	</div>
 		</div>
-		<!--Sidebar: SHOULD BE CHANGED TO PARTIAL-->
-		<div class="span3 offset1">
 
+		<%= render :partial=>'/trip_instances/internal_sidebar', :locals => {:instance_id => @instance_id} %>
 
-			<!--<%= link_to "Create Post", new_trip_instance_post_path(@instance_id), :class=>"btn" %>-->
-			
-
-	    <a href="#addPost" role="button" class="btn" data-toggle="modal">Create Post</a>
-      <div id="addPost" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">Create Post</h3>
-        </div>
-        <%= render :partial=>'/posts/instance_form', :locals => {:instance_id => @instance_id} %>
-      </div>
-
-      <%= link_to "Create Testimony", new_trip_testimony_path(@instance_id), :class=>"btn" %>
-
-
-			<h3>Members</h3>
-			<% @users.each_slice(2) do |user1, user2| %>
-				<ul class="thumbnails">
-					<div class="row-fluid">
-  						<li class="span4">
-    						<a href="#" class="thumbnail">
-      						<img src="/assets/cat.png" alt="">
-    						</a>
-    						<p><%= user1.name %></p>
-  						</li>
-  						<% if !user2.nil? %>
-  							<li class="span4">
-    							<a href="#" class="thumbnail">
-      							<img src="/assets/cat.png" alt="">
-    							</a>
-    							<p><%= user2.name %></p>
-  							</li>
-  					 	<% end %>
-  					</div>
-  				</ul>
-  			<% end %>
-		</div>
 	</div>
 </div>
 

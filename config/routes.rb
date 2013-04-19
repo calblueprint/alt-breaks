@@ -30,6 +30,7 @@ Altbreaks::Application.routes.draw do
   end
 
   resources :posts
+  resources :testimonies
   
   resources :internal_trips
 

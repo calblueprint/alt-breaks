@@ -14,7 +14,7 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     #posts to be displayed at bottom
-    @page = TripInstance.find(params[:id])
+    @page = Page.find(params[:id])
     @temp_posts = @page.posts
     @posts = []
     @temp_posts.sort_by!(&:updated_at)
@@ -27,9 +27,9 @@ class PagesController < ApplicationController
       @posts = @temp_posts
     end
 
-    temp_users = Users.all
+    temp_users = User.all
     @users = []
-    if Users.all.length > 6
+    if User.all.length > 6
       temp_users.shuffle[0...6].each do |user|
         @users << user
       end

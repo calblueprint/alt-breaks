@@ -1,0 +1,33 @@
+<!--, :url => trip_instance_post_path(instance_id, @post.id)-->
+
+<%= form_for(@new_post) do |f| %>
+  <div class="modal-body">
+    <% if @new_post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@new_post.errors.count, "error") %> prohibited this post from being saved:</h2>
+        <ul>
+        <% @new_post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title, :class=>"span12"  %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description, rows: 6, :class=>"span12"  %>
+    </div>
+    <%= f.hidden_field :trip_instance_id, :value => instance_id %>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+
+
+  <% end %>

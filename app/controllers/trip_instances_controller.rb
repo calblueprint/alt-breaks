@@ -4,11 +4,11 @@ class TripInstancesController < ApplicationController
   # GET /trips_instances/1
   # GET /trips_instances/1.json
   def show
-    @post = Post.new  #set up for modal
+    @new_post = Post.new  #set up for modal
+    @testimony = Testimony.new  #set up for modal
+    5.times {@testimony.photos.build}
 
     @instance_id = params[:id]
-
-puts @instance_id
     @instance = TripInstance.find(params[:id])
     @trip = @instance.trip
 
