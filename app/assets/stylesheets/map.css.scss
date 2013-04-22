@@ -65,6 +65,12 @@ $subtitle-height: 15px;
 	.description {
 		margin-bottom: 10px;
 	}
+	.description:first-line {
+		font-weight: bold;
+		font-size: 1.3em;
+		line-height: 1.3em;
+	}
+
 	.leaders {
 		color: #aaa;
 		margin-bottom: 10px;
