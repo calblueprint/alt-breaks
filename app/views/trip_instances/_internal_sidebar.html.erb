@@ -23,16 +23,24 @@
 				<ul class="thumbnails">
 					<div class="row-fluid">
   						<li class="span4">
-    						<a href="#" class="thumbnail">
-      						<img src="/assets/cat.png" alt="">
-    						</a>
+    						<div class="thumbnail">
+                  <% if user1.avatar.exists? %>
+                  <%= link_to(image_tag(user1.avatar.url(:small)), user_path(user1.id)) %>
+                  <% else %>
+      						<%= link_to(image_tag("/assets/cat.png"), user_path(user1.id)) %>
+                  <% end %>
+    						</div>
     						<p><%= user1.name %></p>
   						</li>
   						<% if !user2.nil? %>
   							<li class="span4">
-    							<a href="#" class="thumbnail">
-      							<img src="/assets/cat.png" alt="">
-    							</a>
+    							<div class="thumbnail">
+                    <% if user2.avatar.exists? %>
+                    <%= link_to(image_tag(user1.avatar.url(:small)), user_path(user2.id)) %>
+                    <% else %>
+                    <%= link_to(image_tag("/assets/cat.png"), user_path(user2.id)) %>
+                    <% end %>
+                  </div>
     							<p><%= user2.name %></p>
   							</li>
   					 	<% end %>
