@@ -7,15 +7,14 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar
-  attr_accessible :grad_year, :major, :first_name, :last_name
+  attr_accessible :grad_year, :major, :first_name, :last_name, :about_me
   has_many :testimonies
   has_many :responses
   has_many :posts
   has_many :trip_permissions
   has_one :admin_permission
-  has_attached_file :avatar, :styles => { :medium => "400x>", :thumb => "50x50>"}, :storage => :s3, 
+  has_attached_file :avatar, :styles => { :medium => "400x400>", :small => "140x140>", :thumb => "50x50>"}, :storage => :s3, 
   :s3_credentials => "#{Rails.root}/config/s3.yml", :path => "/:style/:id/:filename"
-
   validates :first_name, :last_name, :presence => :true
 
   def name
