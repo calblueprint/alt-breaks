@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422105809) do
+ActiveRecord::Schema.define(:version => 20130423021152) do
 
   create_table "admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20130422105809) do
     t.string   "cover_photo_content_type"
     t.integer  "cover_photo_file_size"
     t.datetime "cover_photo_updated_at"
+    t.integer  "zoom_level"
   end
 
   create_table "users", :force => true do |t|
