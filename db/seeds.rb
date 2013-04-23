@@ -105,7 +105,8 @@ trips_hash = [
 	:description => ej_desc,
 	:latitude => 37.7749295,
 	:longitude => -122.4194155,
-	:gmaps => true
+	:gmaps => true,
+	:zoom_level => 9
 },
 { 	:name => "Food for Thought", 
 	:subtitle => "Food Justice & Sustainability", 
@@ -113,7 +114,8 @@ trips_hash = [
 	:description => fft_desc,
 	:latitude => 37.7508977,
 	:longitude => -122.5081844,
-	:gmaps => true
+	:gmaps => true,
+	:zoom_level => 9
 },
 { 	:name => "Give Me Shelter", 
 	:subtitle => "An Exploration of Homelessness & Poverty", 
@@ -121,7 +123,8 @@ trips_hash = [
 	:description => gms_desc,
 	:latitude => 37.7749295,
 	:longitude => -122.4194155,
-	:gmaps => true
+	:gmaps => true,
+	:zoom_level => 9
 },
 { 	:name => "NOLA", 
 	:subtitle => "Hidden, Revealed, Forgotten", 
