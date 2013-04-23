@@ -28,12 +28,14 @@
 <% content_for :scripts do %>
 	<script type="text/javascript">
 		window.trip_names = [];
+		window.zoom_levels = [];
 		window.rendered_htmls = [];
 		console.log("FUCK ME");
 		<% Trip.all.each do |trip| %>
 			<% leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
 			window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders}%>");
 			window.trip_names.push("<%= trip.name %>");
+			window.zoom_levels.push(<%= trip.zoom_level %>);
 		<% end %>
 	</script>
 <% end %>
