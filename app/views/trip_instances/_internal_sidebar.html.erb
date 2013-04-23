@@ -36,7 +36,7 @@
   							<li class="span4">
     							<div class="thumbnail">
                     <% if user2.avatar.exists? %>
-                    <%= link_to(image_tag(user1.avatar.url(:small)), user_path(user2.id)) %>
+                    <%= link_to(image_tag(user2.avatar.url(:small)), user_path(user2.id)) %>
                     <% else %>
                     <%= link_to(image_tag("/assets/cat.png"), user_path(user2.id)) %>
                     <% end %>
