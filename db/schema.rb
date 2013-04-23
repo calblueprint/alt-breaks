@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417170427) do
+ActiveRecord::Schema.define(:version => 20130423050909) do
 
   create_table "admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130417170427) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.integer  "trip_id"
+    t.integer  "partner_id"
   end
 
   create_table "photos", :force => true do |t|
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20130417170427) do
     t.datetime "updated_at",       :null => false
     t.string   "title"
     t.integer  "trip_id"
+    t.integer  "page_id"
   end
 
   create_table "requests", :force => true do |t|

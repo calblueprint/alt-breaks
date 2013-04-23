@@ -36,6 +36,8 @@ Altbreaks::Application.routes.draw do
 
   resources :trip_permissions
 
+  resources :partners
+
   match "/map" => "map#index"
 
   match 'dashboard' => 'dashboard#index'
