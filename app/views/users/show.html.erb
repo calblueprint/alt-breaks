@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-transition.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-collapse.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
+  <%= javascript_include_tag 'chosen' %>
+</head>
+<body>
+
 <div class="row-fluid">
 	<div class="span2 offset1">
 		<div class="well">
@@ -12,6 +23,10 @@
 		<div class="well">
 			<h3><%= @user.name %></h3>
 			<h4>My groups and all that shit.</h4>
+			<!-- Button to trigger modal -->
+			<% if user_signed_in? && current_user.id == @user.id %>
+				<a href="#myModal" role="button" class="btn" data-toggle="modal" style="text-align:right">Edit My Profile</a>
+ 			<% end %>
 		</div>
 	</div>
 </div>
@@ -35,7 +50,20 @@
 </div>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
 </div>
 </div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Edit User</h3>
+  </div>
+  <div class="modal-body">
+    <%= render "form", :locals=>{:user => @user} %>
+  </div>
+</div>
+
+
+</body>
