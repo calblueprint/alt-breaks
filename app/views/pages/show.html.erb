@@ -33,14 +33,13 @@
 	  							<% end %>
 							<% end %>
 						</table>
-						<%= link_to "See all", page_posts_path(@page.id)%>
+						<!--<%= link_to "See all", page_posts_path(@page.id)%>-->
+						<%= link_to "See all", {:controller => "posts", :action => "pages_index", :page_id => @page.id }%> 
 					</div>
 			 	</div>
 			</div>
 
-			<!--some sidebar should go here-->
 			<%= render :partial=>'/pages/internal_sidebar', :locals => {:page_id => @page.id} %>
-
 
 		</div>
 	</div>
