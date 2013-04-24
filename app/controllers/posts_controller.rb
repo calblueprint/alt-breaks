@@ -7,7 +7,8 @@ class PostsController < ApplicationController
     @new_post = Post.new  #set up for modal
     @testimony = Testimony.new  #set up for modal
     5.times {@testimony.photos.build}
-
+    
+    if (trip_instance_id = params[:post][:trip_instance_id]) != nil
 
     @instance = TripInstance.find_by_id(trip_instance_id)
     @instance_id = @instance.id
@@ -23,6 +24,7 @@ class PostsController < ApplicationController
         temp_users << tper.user
       end
     end
+    
     @users = []
     if temp_users.length > 6
       temp_users[0...6].each do |user|
@@ -94,13 +96,23 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user = current_user
-    trip_instance_id = params[:post][:trip_instance_id]
-    @instance = TripInstance.find_by_id(trip_instance_id)
-
-    if @post.save
-      @instance.posts << @post
+    
+    if (trip_instance_id = params[:post][:trip_instance_id]) != nil
+      @instance = TripInstance.find_by_id(trip_instance_id)
+      if @post.save
+        @instance.posts << @post
+      end
+      redirect_to trip_instance_path(@instance)
+    elsif (page_id = params[:post][:page_id]) != nil
+      puts 'creating page post'
+      puts page_id
+      
+      @page = Page.find_by_id(page_id)
+      if @post.save
+        @page.posts << @post
+      end
+      redirect_to page_path(@page)
     end
-    redirect_to trip_instance_path(@instance.id)
   end
 
   # GET /posts/1/edit

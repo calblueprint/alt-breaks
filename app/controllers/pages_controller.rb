@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    @new_post = Post.new  #set up for modal
     #posts to be displayed at bottom
     @page = Page.find(params[:id])
     @temp_posts = @page.posts

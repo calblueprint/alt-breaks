@@ -1,14 +1,24 @@
-<!--Show Trip Instance-->
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-transition.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-collapse.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
+  <%= javascript_include_tag 'chosen' %>
+</head>
+<body>
 
+<!--Show Page-->
 <div class="row-fluid">
-	<div class="span8 offset1"><h1><%= page.name %> </h1></div>
+	<div class="span8 offset1"><h1><%= @page.name %></h1></div>
 		<div class="row-fluid">
 			<div class="span7 offset1">
 
-				<h3>Admin Welcome Message</h3>
+				<h3>Description</h3>
 				<div class="row-fluid">
 					<div class="well">
-						Sample message. I am so excited for this trip! 
+						<%= @page.description %>
 					</div>
 				</div>
 				<div class="row-fluid">
@@ -18,19 +28,18 @@
 							<% if @posts %>
 	  							<% @posts.each do |post| %>
 	  								</tbody>
-	    								<td><h4><%= link_to post.title, page_post_path(:trip_instance_id => @instance.id, :id =>post.id) %></h4> <br> Created by: <%= post.user.name %></td>
+	    								<td><h4><%= link_to post.title, page_post_path(:page_id => @page.id, :id =>post.id) %></h4> <br> Created by: <%= post.user.name %></td>
 		  							</tbody>
 	  							<% end %>
 							<% end %>
 						</table>
-						<%= link_to "See all", trip_instance_posts_path(@instance.id)%>
+						<%= link_to "See all", page_posts_path(@page.id)%>
 					</div>
-					
 			 	</div>
 			</div>
 
-
-			<%= render :partial=>'/trip_instances/internal_sidebar', :locals => {:instance_id => @instance_id} %>
+			<!--some sidebar should go here-->
+			<%= render :partial=>'/pages/internal_sidebar', :locals => {:page_id => @page.id} %>
 
 
 		</div>
