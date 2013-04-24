@@ -20,31 +20,53 @@
         </div>
         <div id="collapse<%=cindex%>" class="accordion-body collapse">
           <div class="accordion-inner">
-            Specific Trips: <br /> <br />
             <% trip.trip_instances.all.each do |inst| %>
-              <% if trip.current_trip_instance_id == inst.id %>
-                Current Trip: <%= link_to(inst[:year], trip_instance_path(inst[:id])) %>
-                <br />
-              <% else %>
-                <%= link_to(inst[:year], trip_instance_path(inst[:id])) %>
-                <br />
-              <% end %>
-              Break Leaders: <br />
-              <% inst.trip_permissions.all.each do |permission| %>
-                <% if permission[:permission] == 1 %>
-                  <% u = User.find_by_id(permission.user_id) %>
-                  <%= link_to(u[:first_name]+" "+u[:last_name], user_path(u)) %> <br />
-                <% end %>
-              <% end %>
-
-              <!-- Modal: Add Break Leader-->
-              <a href="#leaderModal<%=inst.id%>" role="button" class="btn" data-toggle="modal">Add Break Leader</a><br /> <br />
-              <div id="leaderModal<%=inst.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h3 id="myModalLabel">Add Break Leader</h3>
+              <div class="well">
+                <div class="row-fluid">
+                  <div class="span4">
+                    <h5>Trip Group</h5>
+                    <% if trip.current_trip_instance_id == inst.id %>
+                      Current Trip: <%= link_to(inst[:year], trip_instance_path(inst[:id])) %>
+                      <br />
+                    <% else %>
+                      <%= link_to(inst[:year], trip_instance_path(inst[:id])) %>
+                      <br />
+                    <% end %>
+                  </div>
+                  <div class="span4">
+                    <h5>Break Leaders</h5>
+                    <% inst.trip_permissions.all.each do |permission| %>
+                      <% if permission[:permission] == 1 %>
+                        <% u = User.find_by_id(permission.user_id) %>
+                        <%= link_to(u[:first_name]+" "+u[:last_name], user_path(u)) %> <br />
+                      <% end %>
+                    <% end %>
+                    <!-- Modal: Add Break Leader-->
+                    <a href="#leaderModal<%=inst.id%>" role="button" class="btn" data-toggle="modal">Add Break Leader</a><br />
+                    <div id="leaderModal<%=inst.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">Add Break Leader</h3>
+                      </div>
+                      <%= render :partial=>'breakLeaderForm', :locals => {:trip_instance_id=>inst.id} %>
+                    </div>
+                  </div>
+                  <div class="span4">
+                    <h5>Community Partners</h5>
+                    <% trip.partners.all.each do |cp| %>
+                      <%= link_to(cp.name, "http://"+cp.website) %> <br />
+                    <% end %>
+                    <!-- Modal: Add Community Partner -->
+                    <a href="#partnerModal<%=trip.id%>" role="button" class="btn" data-toggle="modal">Add Community Partner</a><br />
+                    <div id="partnerModal<%=trip.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">Add Community Partner</h3>
+                      </div>
+                      <%= render :partial=>'partnerForm', :locals => {:trip_id=>trip.id} %>
+                    </div>
+                  </div>
                 </div>
-                <%= render :partial=>'breakLeaderForm', :locals => {:trip_instance_id=>inst.id} %>
               </div>
             <% end %>
 

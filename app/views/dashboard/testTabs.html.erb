@@ -1,0 +1,29 @@
+<!-- IF ALLOWED TO HAVE MULTIPLE TRIPS PER PARTNER
+  <div class="modal-body">
+  	<ul class="nav nav-tabs" id="myTab">
+	  <li class="active"><a href="#existing">Add Existing Community Partner</a></li>
+	  <li><a href="#new">Add New Community Partner</a></li>
+	</ul>
+	 
+	<div class="tab-content">
+	  <div class="tab-pane active" id="existing">
+	  	<%= f.label :partner_id, "Name" %>
+	    <%= f.collection_select :partner_id, Partner.order(:name), :id, {}, {:class=>'chosen' + trip_id.to_s} %>
+	    <%= f.hidden_field :trip_id, :value=>trip_id %>
+	  </div>
+	  <div class="tab-pane" id="new">
+	  	Name: <%= f.text_field :name %> <br />
+	  	Description: <%= f.text_area :description, rows: 6, :class=>"span12" %> <br />
+	  	Website: <%= f.text_field :website %> <br />
+	  	Upload Logo: <%= f.file_field :logo %> <br />
+	  	<%= f.hidden_field :trip_id, :value=>trip_id %>
+	  </div>
+	</div>
+	 
+	<script>
+	  $(function () {
+	    $('#myTab a:last').tab('show');
+	  })
+	</script>
+  </div>
+-->
