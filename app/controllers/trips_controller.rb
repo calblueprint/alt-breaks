@@ -13,6 +13,7 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+    @new_post = Post.new  #set up for modal
     @trip = Trip.find(params[:id])
     @testimonies = []
     @photos = []
