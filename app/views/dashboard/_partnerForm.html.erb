@@ -1,0 +1,14 @@
+<%= form_for(@community_partner) do |f| %>
+  <div class="modal-body">
+  	Name: <%= f.text_field :name %> <br />
+  	Description: <%= f.text_area :description, rows: 6, :class=>"span12" %> <br />
+  	Website: <%= f.text_field :website %> <br />
+  	Upload Logo: <%= f.file_field :logo %> <br />
+  	<%= f.hidden_field :trip_id, :value=>trip_id %>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
