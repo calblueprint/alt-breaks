@@ -51,7 +51,7 @@ class TestimoniesController < ApplicationController
       @instance.testimonies << @testimony
     end
 =end
-    @testimony.save
+    @testimony.save!
     redirect_to trip_instance_path(trip_instance_id)
   end
 
