@@ -11,8 +11,9 @@ class TripInstancesController < ApplicationController
     @instance_id = params[:id]
     @instance = TripInstance.find(params[:id])
     @trip = @instance.trip
-
-    #posts to be displayed at bottom
+    
+    @posts = @instance.posts #don't need below code b/c doing pagination
+=begin
     @temp_posts = @instance.posts
     @posts = []
     @temp_posts.sort_by!(&:updated_at)
@@ -24,6 +25,7 @@ class TripInstancesController < ApplicationController
     else
       @posts = @temp_posts
     end
+=end
 
     #users to be displayed in sidebar
     temp_users = []
@@ -41,7 +43,6 @@ class TripInstancesController < ApplicationController
     else
       @users = temp_users
     end
-
         
     respond_to do |format|
       format.html # show.html.erb

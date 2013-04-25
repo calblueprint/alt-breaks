@@ -14,10 +14,11 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @new_post = Post.new  #set up for modal
-    #posts to be displayed at bottom
     @page = Page.find(params[:id])
+    @posts = @page.posts #don't need below code b/c doing pagination
+=begin
     @temp_posts = @page.posts
-    @posts = []
+    @posts = []    
     @temp_posts.sort_by!(&:updated_at)
     @temp_posts.reverse!
     if @temp_posts.length > 3
@@ -27,7 +28,7 @@ class PagesController < ApplicationController
     else
       @posts = @temp_posts
     end
-
+=end
     temp_users = User.all
     @users = []
     if User.all.length > 6

@@ -5,20 +5,12 @@
     <li>
       <%= link_to('General', page_path(1)) %>
     </li>
-
-    <!--Internal Trips Discusion-->
-    <!-- REMOVING
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <% Trip.all.each do |trip| %>
-          <li>
-            <%= link_to(trip[:name], internal_trip_path(trip[:id])) %>
-          </li>
-        <% end %>
-      </ul>
-    </li>
-    -->
+		
+		<% if is_internal? %>
+			<li>
+	      <%= link_to('Internal', page_path(2)) %>
+	    </li>
+		<% end %>
     
     <!--Trip Group Discussion-->
     <li class="dropdown">
