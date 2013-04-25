@@ -145,17 +145,9 @@ trips_hash.each do |trip|
 	t.current_trip_instance_id = i1.id
 	t.save
 
-	# User.all.each do |user|
-	# 	TripPermission.create!(trip_instance_id: i1.id, user_id: user.id, permission: 2)
-	# end
-
   #Need this
   TripPermission.create!(:trip_instance_id => i1.id, :user => leader1, :permission => 1) #breakleader
   TripPermission.create!(:trip_instance_id => i1.id, :user => leader2, :permission => 1) #breakleader
-  
-  #	User.all.each do |user|
-  #		TripPermission.create!(trip_instance_id: i1.id, user_id: user.id, permission: 2)
-  #	end
 end
 
 admin1 = User.create!({:first_name=> 'Kati', :last_name=> 'Hinman', :email=> 'kati.hinman@gmail.com', :password=> 'password', :major=> 'Unknown', :grad_year=> 2013}) # Admin/Director, :ID = 1
@@ -177,4 +169,5 @@ Post.create! :title => 'What are some pressing issues within the food system?', 
 than any other country in the world!', :user_id => 3, :trip_id => 1
 Post.create! :title => 'Items you should bring to the trip', :description => 'Sleeping bag, clothes, books, and AN OPEN MIND! :) :) :)', :user_id => 2, :trip_instance_id => 1  # Trip Instance Post create!d by Jay
 
-Page.create!(:name => 'General', :description => 'Announcements and general musings will be posted here', :permission => 2)
+Page.create!(:name => 'General', :description => 'Announcements and general discussion will be posted here', :permission => 2)
+Page.create!(:name => 'Internal', :description => 'Internal discussion for just break leaders and directors', :permission => 1)

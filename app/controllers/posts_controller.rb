@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+=begin
   # GET /posts
   # GET /posts.json
   def index
@@ -35,7 +36,9 @@ class PostsController < ApplicationController
       format.json { render json: @posts }
     end
   end
-  
+=end
+
+=begin  
   def pages_index
     #Must compiled posts regarding trip
     page_id = params[:page_id]
@@ -54,32 +57,35 @@ class PostsController < ApplicationController
     else
       @users = temp_users
     end
-    
   end
+=end
   
   
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @instance_id = params[:trip_instance_id]
-    @instance = TripInstance.find_by_id(@instance_id)
- 
     @post = Post.find(params[:id])
+    @responses = @post.responses
     @response = Response.new
-    @responses = Response.all
-
     @new_post = Post.new  #set up for modal
-    @testimony = Testimony.new  #set up for modal
-    5.times {@testimony.photos.build}
-    
 
-    temp_users = []
-    trip_permissions = @instance.trip_permissions
-    trip_permissions.shuffle.each do |tper|
-      if tper.permission == 1 || tper.permission == 2
-        temp_users << tper.user
+    if (@instance_id = params[:trip_instance_id]) != nil
+
+      @instance = TripInstance.find_by_id(@instance_id)    
+      @testimony = Testimony.new  #set up for modal
+      5.times {@testimony.photos.build}
+    
+      temp_users = []
+      trip_permissions = @instance.trip_permissions
+      trip_permissions.shuffle.each do |tper|
+        if tper.permission == 1 || tper.permission == 2
+          temp_users << tper.user
+        end
       end
+    elsif (@page_id = params[:page_id]) != nil
+      temp_users = User.all 
     end
+    
     @users = []
     if temp_users.length > 6
       temp_users[0...6].each do |user|
