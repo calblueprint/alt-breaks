@@ -10,7 +10,6 @@
 <body>
 
 <!--Show Trip Instance-->
-
 <div class="row-fluid">
 	<div class="span8 offset1"><h1><%= @trip.name %> <%= @instance.year %></h1></div>
 	<div class="row-fluid">
@@ -33,7 +32,8 @@
   							<% end %>
 						<% end %>
 					</table>
-					<%= link_to "See all", trip_instance_posts_path(@instance_id)%>
+					<i>Pagination to go here</i>
+					<!--<%= link_to "See all", trip_instance_posts_path(@instance_id)%>-->
 				</div>
 		 	</div>
 		</div>

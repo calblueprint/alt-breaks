@@ -45,11 +45,13 @@ class ResponsesController < ApplicationController
 
     respond_to do |format|
       if @response.save
-        format.html { redirect_to "/trip_instances/#{post.trip_instance_id}/posts/#{post.id}", notice: 'Response was successfully created.' }
-        format.json { render json: @response, status: :created, location: @response }
+        if post.trip_instance != nil
+          format.html { redirect_to "/trip_instances/#{post.trip_instance_id}/posts/#{post.id}", notice: 'Response was successfully created.' }
+        elsif post.page != nil
+           format.html { redirect_to "/pages/#{post.page_id}/posts/#{post.id}", notice: 'Response was successfully created.' }
+        end
       else
         format.html { render action: "new" }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
       end
     end
   end
