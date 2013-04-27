@@ -88,7 +88,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">Edit Trip</h3>
               </div>
-              <%= render :partial=>'tripForm', :locals => {:trip_id=>trip.id} %>
+              <%= render :partial=>'tripForm', :locals => {:trip=>trip} %>
             </div>
 
           </div>
@@ -105,6 +105,6 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h3 id="myModalLabel">Add Trip</h3>
     </div>
-    <%= render :partial=>'tripForm'%>
+    <%= render :partial=>'tripForm', :locals => {:trip => @new_trip}%>
   </div>
 </body>
