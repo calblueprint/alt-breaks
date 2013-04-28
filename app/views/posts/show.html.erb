@@ -18,7 +18,7 @@
       <p><i>submitted <%= time_ago_in_words(@post.created_at) %> ago by </i><%= @post.user.name %></p>
       <div class="row-fluid">
         <div class="well">
-          <%= @post.description %>
+          <%= simple_format(@post.description) %>
         </div>
       </div>
       <h3>Responses</h3>
