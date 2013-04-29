@@ -1,0 +1,11 @@
+<%= form_for(@new_admin) do |f| %>
+  <div class="modal-body">
+    <%= f.label :user_id, "Name" %>
+    <%= f.collection_select :user_id, User.order(:first_name), :id, :full_name, {} %>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

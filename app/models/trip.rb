@@ -4,7 +4,7 @@ class Trip < ActiveRecord::Base
   attr_accessible :name, :subtitle, :description, :location, :latitude, :longitude, :gmaps, :cover_photo, :current_trip_instance, :zoom_level
   has_many :trip_instances
   has_many :posts
-  has_many :partners
+  has_and_belongs_to_many :partners
   has_one :current_trip_instance, :class_name => "TripInstance"
   has_attached_file :cover_photo, :styles => { :large => "600x>"}, :storage => :s3, 
   :s3_credentials => "#{Rails.root}/config/s3.yml", :path => "/:style/:id/:filename"

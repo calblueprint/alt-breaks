@@ -5,11 +5,25 @@
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-collapse.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-tab.js"></script>
   <%= javascript_include_tag 'chosen' %>
 </head>
 <body>
 
   <h2> Admin Dashboard </h2>
+  <h5>Admins</h5>
+  <% AdminPermission.all.each do |admin| %>
+    <%= link_to(admin.user.name, user_path(admin.user.id)) %><br />
+  <% end %>
+  <a href="#addAdmin" role="button" class="btn" data-toggle="modal">Add Admin</a>
+  <!-- Modal -->
+  <div id="addAdmin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Add Trip</h3>
+    </div>
+    <%= render :partial=>'adminForm'%>
+  </div>
   <h5>Trips</h5>
   <div class="accordion" id="accordionOptions">
     <% cindex = 0 %>
