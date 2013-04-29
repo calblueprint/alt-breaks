@@ -9,6 +9,6 @@ class UserMailer < ActionMailer::Base
     mail(
       to: users,
       subject: "New post from #{poster}"
-    ) if users
+    ) unless users.blank?
   end
 end

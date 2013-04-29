@@ -118,6 +118,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    # all mail currently also gets sent to the poster as well as everyone else
     @post = Post.new(params[:post])
     @post.user = current_user
     
@@ -125,28 +126,28 @@ class PostsController < ApplicationController
       @instance = TripInstance.find_by_id(trip_instance_id)
       if @post.save
         @instance.posts << @post
-        # TODO: set recipients to be all users in the break group
-        #recipients = []
-        #UserMailer.post_created_email(recipients, @post).deliver
+        if current_user.is_break_leader
+          # send to all users in the break group
+          recipients = User.break_group(@instance)
+          UserMailer.post_created_email(recipients, @post).deliver
+        end
       end
       redirect_to trip_instance_path(@instance)
     elsif (page_id = params[:post][:page_id]) != nil
-      puts 'creating page post'
-      puts page_id
-      
       @page = Page.find_by_id(page_id)
       if @post.save
         @page.posts << @post
-        if page_id == "1"
-          # general, send mail to all users
-          recipients = User.all
-        elsif page_id == "2"
-          # internal, send mail to all admins and break leaders
-          # TODO: how do permissions work?
-          # setting this to @post.user temporarily
-          recipients = [@post.user]
+        # send mail
+        if current_user.is_admin or current_user.is_break_leader
+          if page_id == "1"
+            # general, send mail to all users
+            recipients = User.all
+          elsif page_id == "2"
+            # internal, send mail to all admins and break leaders
+            recipients = User.admins + User.break_leaders
+          end
+          UserMailer.post_created_email(recipients, @post).deliver
         end
-        UserMailer.post_created_email(recipients, @post).deliver
       end
       redirect_to page_path(@page)
     end
