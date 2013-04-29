@@ -18,7 +18,7 @@
       <p><i>submitted <%= time_ago_in_words(@post.created_at) %> ago by </i><%= @post.user.name %></p>
       <div class="row-fluid">
         <div class="well">
-          <%= @post.description %>
+          <%= simple_format(@post.description) %>
         </div>
       </div>
       <h3>Responses</h3>
@@ -26,14 +26,13 @@
       <div id="comment-table">
         <%= render :partial => 'posts/response_table', :locals => {:post => @post} %>
       </div>
-      <% if trip = @post.trip %>
-        <%= link_to 'Back', internal_trip_path(trip) %>
-      <% elsif trip_instance = @post.trip_instance %>
-        <%= link_to 'Back', trip_instance_path(trip_instance) %>
-      <% end %>
     </div>
-
-    <%= render :partial=>'/trip_instances/internal_sidebar', :locals => {:instance_id => @instance_id} %>
+		
+		<% if @instance_id != nil %>
+    	<%= render :partial=>'/trip_instances/internal_sidebar', :locals => {:instance_id => @instance_id} %>
+		<% elsif @page_id != nil %>
+			<%= render :partial=>'/pages/internal_sidebar', :locals => {:page_id => @page_id} %>
+		<% end %>
 
   </div>
 </div>

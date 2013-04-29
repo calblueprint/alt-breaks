@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424023305) do
+ActiveRecord::Schema.define(:version => 20130423050909) do
 
   create_table "admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -45,14 +45,6 @@ ActiveRecord::Schema.define(:version => 20130424023305) do
     t.integer  "trip_id"
     t.integer  "partner_id"
   end
-
-  create_table "partners_trips", :id => false, :force => true do |t|
-    t.integer "partner_id"
-    t.integer "trip_id"
-  end
-
-  add_index "partners_trips", ["partner_id", "trip_id"], :name => "index_partners_trips_on_partner_id_and_trip_id"
-  add_index "partners_trips", ["trip_id", "partner_id"], :name => "index_partners_trips_on_trip_id_and_partner_id"
 
   create_table "photos", :force => true do |t|
     t.integer  "testimony_id"

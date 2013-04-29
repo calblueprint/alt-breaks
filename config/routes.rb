@@ -29,7 +29,12 @@ Altbreaks::Application.routes.draw do
     resources :testimonies
   end
 
-  resources :posts
+  resources :posts do
+    member do
+      get 'pages_index'
+    end
+  end
+  
   resources :testimonies
   
   resources :internal_trips

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+=begin
   # GET /posts
   # GET /posts.json
   def index
@@ -7,22 +8,20 @@ class PostsController < ApplicationController
     @new_post = Post.new  #set up for modal
     @testimony = Testimony.new  #set up for modal
     5.times {@testimony.photos.build}
-
-
+    
     @instance = TripInstance.find_by_id(trip_instance_id)
     @instance_id = @instance.id
     @posts = @instance.posts
     @posts.sort_by!(&:updated_at)
     @posts.reverse!
-
-    #sidebar stuff will be hardcoded in because of some weird shit
+    
     temp_users = []
     trip_permissions = @instance.trip_permissions
     trip_permissions.shuffle.each do |tper|
       if tper.permission == 1 || tper.permission == 2
         temp_users << tper.user
       end
-    end
+    end    
     @users = []
     if temp_users.length > 6
       temp_users[0...6].each do |user|
@@ -37,29 +36,56 @@ class PostsController < ApplicationController
       format.json { render json: @posts }
     end
   end
+=end
 
+=begin  
+  def pages_index
+    #Must compiled posts regarding trip
+    page_id = params[:page_id]
+    @new_post = Post.new  #set up for modal    
+    @page = Page.find_by_id(page_id)
+    @posts = @page.posts
+    @posts.sort_by!(&:updated_at)
+    @posts.reverse!
+    
+    temp_users = User.all
+     @users = []
+    if temp_users.length > 6
+      temp_users[0...6].each do |user|
+        @users << user
+      end
+    else
+      @users = temp_users
+    end
+  end
+=end
+  
+  
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @instance_id = params[:trip_instance_id]
-    @instance = TripInstance.find_by_id(@instance_id)
- 
     @post = Post.find(params[:id])
+    @responses = @post.responses
     @response = Response.new
-    @responses = Response.all
-
     @new_post = Post.new  #set up for modal
-    @testimony = Testimony.new  #set up for modal
-    5.times {@testimony.photos.build}
-    
 
-    temp_users = []
-    trip_permissions = @instance.trip_permissions
-    trip_permissions.shuffle.each do |tper|
-      if tper.permission == 1 || tper.permission == 2
-        temp_users << tper.user
+    if (@instance_id = params[:trip_instance_id]) != nil
+
+      @instance = TripInstance.find_by_id(@instance_id)    
+      @testimony = Testimony.new  #set up for modal
+      5.times {@testimony.photos.build}
+    
+      temp_users = []
+      trip_permissions = @instance.trip_permissions
+      trip_permissions.shuffle.each do |tper|
+        if tper.permission == 1 || tper.permission == 2
+          temp_users << tper.user
+        end
       end
+    elsif (@page_id = params[:page_id]) != nil
+      temp_users = User.all 
     end
+    
     @users = []
     if temp_users.length > 6
       temp_users[0...6].each do |user|
@@ -94,13 +120,23 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user = current_user
-    trip_instance_id = params[:post][:trip_instance_id]
-    @instance = TripInstance.find_by_id(trip_instance_id)
-
-    if @post.save
-      @instance.posts << @post
+    
+    if (trip_instance_id = params[:post][:trip_instance_id]) != nil
+      @instance = TripInstance.find_by_id(trip_instance_id)
+      if @post.save
+        @instance.posts << @post
+      end
+      redirect_to trip_instance_path(@instance)
+    elsif (page_id = params[:post][:page_id]) != nil
+      puts 'creating page post'
+      puts page_id
+      
+      @page = Page.find_by_id(page_id)
+      if @post.save
+        @page.posts << @post
+      end
+      redirect_to page_path(@page)
     end
-    redirect_to trip_instance_path(@instance.id)
   end
 
   # GET /posts/1/edit

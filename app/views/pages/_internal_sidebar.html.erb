@@ -1,0 +1,41 @@
+<!--Sidebar: SHOULD BE CHANGED TO PARTIAL-->
+<div class="span3 offset1">
+   <a href="#createPost" role="button" class="btn" data-toggle="modal">Create Post</a>
+    <div id="createPost" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Create Post</h3>
+      </div>
+      <%= render :partial=>'/posts/page_modal_form', :locals => {:page_id => page_id} %>
+    </div>
+
+	<h3>Members</h3>
+	<% @users.each_slice(2) do |user1, user2| %>
+		<ul class="thumbnails">
+			<div class="row-fluid">
+						<li class="span4">
+  						<div class="thumbnail">
+                <% if user1.avatar.exists? %>
+                <%= link_to(image_tag(user1.avatar.url(:small)), user_path(user1.id)) %>
+                <% else %>
+    						<%= link_to(image_tag("/assets/cat.png"), user_path(user1.id)) %>
+                <% end %>
+  						</div>
+  						<p><%= user1.name %></p>
+						</li>
+						<% if !user2.nil? %>
+							<li class="span4">
+  							<div class="thumbnail">
+                  <% if user2.avatar.exists? %>
+                  <%= link_to(image_tag(user2.avatar.url(:small)), user_path(user2.id)) %>
+                  <% else %>
+                  <%= link_to(image_tag("/assets/cat.png"), user_path(user2.id)) %>
+                  <% end %>
+                </div>
+  							<p><%= user2.name %></p>
+							</li>
+					 	<% end %>
+					</div>
+				</ul>
+			<% end %>
+</div>

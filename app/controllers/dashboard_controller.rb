@@ -38,7 +38,7 @@ end
 def admin
   @trip_instance = TripInstance.new
   @trip_permission = TripPermission.new
-  @trip = Trip.new
+  @new_trip = Trip.new
   @community_partner = Partner.new
   @new_admin = AdminPermission.new
   render :action => :admin_dashboard
