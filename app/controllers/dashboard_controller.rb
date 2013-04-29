@@ -37,9 +37,20 @@ end
 
 def admin
   @trip_instance = TripInstance.new
-  @trip_permission = TripPermission.new
   @new_trip = Trip.new
   @community_partner = Partner.new
+
+  @trip_permission = TripPermission.new
+  @trip_permission2 = TripPermission.new
+  
+  
+  @trip_permissions = []
+
+  TripInstance.all.each do |inst|
+    class_id = inst.id.to_s
+  end
+  
+
   render :action => :admin_dashboard
 end
 

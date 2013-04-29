@@ -1,7 +1,13 @@
+<% content_for :head do %>
+	<%= javascript_include_tag "gmaps4rails/gmaps4rails.base" %>
+  <%= javascript_include_tag "gmaps4rails/gmaps4rails.googlemaps" %>
+<% end %>
+
 <div class="trips">
 	<ul>
 	</ul>
-</div><%= gmaps("map_options" => {
+</div>
+<%= gmaps("map_options" => {
 				:detect_location => true,
 				:center_on_user => false,
 				"zoom" => 6,
@@ -21,7 +27,7 @@
       }
       script += '.js"><' + '/script>';
       document.write(script);
-    </script>
+    </script> 
 <% end %>
 
 <!-- populate all the rendered html popups into the window because shitty render function doesnt work in assets -->
@@ -45,4 +51,5 @@
 <!-- include the actual logic and stuff -->
 <% content_for :scripts do %>
 	<%= javascript_include_tag "map_functionality" %>
+	<%= stylesheet_link_tag "gmaps4rails" %>
 <% end %>
