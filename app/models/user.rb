@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :trip_permissions
   has_one :admin_permission
   has_attached_file :avatar, :styles => { :medium => "400x400>", :small => "140x140>", :thumb => "50x50>"}, :storage => :s3, 
-  :s3_credentials => S3_CREDENTIALS, :path => "/:style/:id/:filename"
+    :s3_credentials => S3_CREDENTIALS, :path => "/:style/:id/:filename"
   validates :first_name, :last_name, :presence => :true
 
   def name
