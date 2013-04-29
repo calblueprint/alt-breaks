@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
+<% content_for :head do %>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-transition.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-collapse.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
   <%= javascript_include_tag 'chosen' %>
-</head>
-<body>
+<% end %>
 
 <div class="row-fluid">
   <div class="span8 offset1">
@@ -18,7 +15,7 @@
       <p><i>submitted <%= time_ago_in_words(@post.created_at) %> ago by </i><%= @post.user.name %></p>
       <div class="row-fluid">
         <div class="well">
-          <%= @post.description %>
+          <%= simple_format(@post.description) %>
         </div>
       </div>
       <h3>Responses</h3>
