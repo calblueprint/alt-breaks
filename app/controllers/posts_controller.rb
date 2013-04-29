@@ -125,6 +125,9 @@ class PostsController < ApplicationController
       @instance = TripInstance.find_by_id(trip_instance_id)
       if @post.save
         @instance.posts << @post
+        # TODO: set recipients to be all users in the break group
+        #recipients = []
+        #UserMailer.post_created_email(recipients, @post).deliver
       end
       redirect_to trip_instance_path(@instance)
     elsif (page_id = params[:post][:page_id]) != nil
@@ -134,6 +137,16 @@ class PostsController < ApplicationController
       @page = Page.find_by_id(page_id)
       if @post.save
         @page.posts << @post
+        if page_id == "1"
+          # general, send mail to all users
+          recipients = User.all
+        elsif page_id == "2"
+          # internal, send mail to all admins and break leaders
+          # TODO: how do permissions work?
+          # setting this to @post.user temporarily
+          recipients = [@post.user]
+        end
+        UserMailer.post_created_email(recipients, @post).deliver
       end
       redirect_to page_path(@page)
     end
