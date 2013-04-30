@@ -186,18 +186,12 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-<<<<<<< HEAD
-  asset_sync
-  aws-s3
-  aws-sdk
-=======
   actionmailer
   asset_sync
   aws-s3
   aws-sdk
   better_errors
   binding_of_caller
->>>>>>> 95ed0df780a290d0c9cc6aedeb0e86cd37205c90
   bootstrap-sass (~> 2.3.0.1)
   chosen-rails
   coffee-rails (~> 3.2.1)

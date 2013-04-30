@@ -28,11 +28,7 @@
       }
       script += '.js"><' + '/script>';
       document.write(script);
-<<<<<<< HEAD
-    </script> 
-=======
     </script>
->>>>>>> 95ed0df780a290d0c9cc6aedeb0e86cd37205c90
 <% end %>
 
 <!-- populate all the rendered html popups into the window because shitty render function doesnt work in assets -->
@@ -56,8 +52,5 @@
 <!-- include the actual logic and stuff -->
 <% content_for :scripts do %>
 	<%= javascript_include_tag "map_functionality" %>
-<<<<<<< HEAD
 	<%= stylesheet_link_tag "gmaps4rails" %>
-=======
->>>>>>> 95ed0df780a290d0c9cc6aedeb0e86cd37205c90
 <% end %>
