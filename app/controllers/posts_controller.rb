@@ -127,7 +127,7 @@ class PostsController < ApplicationController
 
       if @post.save
         @instance.posts << @post
-        if current_user.is_break_leader
+        if current_user.is_break_leader(@instance)
           # send to all users in the break group
           recipients = User.break_group(@instance)
           UserMailer.post_created_email(recipients, @post).deliver
