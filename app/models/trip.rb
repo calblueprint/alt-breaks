@@ -6,8 +6,8 @@ class Trip < ActiveRecord::Base
   has_many :posts
   has_many :partners
   has_one :current_trip_instance, :class_name => "TripInstance"
-  has_attached_file :cover_photo, :styles => { :large => "600x>"}, :storage => :s3, 
-  :s3_credentials => "#{Rails.root}/config/s3.yml", :path => "/:style/:id/:filename"
+  has_attached_file :cover_photo, :styles => { :large => "600x>"}, :storage => :s3,
+    :s3_credentials => S3_CREDENTIALS, :path => "/:style/:id/:filename"
 
   # this lets the gmaps gem know that this model can be plotted on a map
   acts_as_gmappable

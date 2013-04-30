@@ -10,7 +10,7 @@
 						<span class="response-author">
 							<b><%= response.user.name %></b> <i>submitted <%= time_ago_in_words(response.created_at) %> ago</i>
 						</span>
-						<div style="height:80px !important;overflow-x:hidden"><%= response.content %></div>
+						<div style="height:80px !important;overflow-x:hidden"><%= simple_format(response.content) %></div>
 					</div>
 				</div>
 			</div>

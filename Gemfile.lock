@@ -42,6 +42,10 @@ GEM
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
+    better_errors (0.3.2)
+      coderay (>= 1.0.0)
+      erubis (>= 2.7.0)
+    binding_of_caller (0.6.8)
     bootstrap-sass (2.3.0.1)
       sass (~> 3.2)
     builder (3.0.4)
@@ -49,10 +53,8 @@ GEM
       coffee-rails (>= 3.2)
       railties (>= 3.0)
       sass-rails (>= 3.2)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.1)
-      climate_control (>= 0.0.3, < 1.0)
+    cocaine (0.3.2)
+    coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -104,7 +106,6 @@ GEM
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
       mime-types
     polyglot (0.3.3)
     rack (1.4.5)
@@ -133,7 +134,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ruby-hmac (0.4.0)
-    sass (3.2.8)
+    sass (3.2.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -167,16 +168,20 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  actionmailer
   asset_sync
   aws-s3
   aws-sdk
+  better_errors
+  binding_of_caller
   bootstrap-sass (~> 2.3.0.1)
   chosen-rails
+  cocaine (~> 0.3.2)
   coffee-rails (~> 3.2.1)
   devise
   gmaps4rails
   jquery-rails
-  paperclip (~> 3.0)
+  paperclip (~> 3.4.1)
   rails (= 3.2.12)
   sass-rails (~> 3.2.3)
   simple_form

@@ -1,7 +1,7 @@
 <%= form_for(@trip_permission) do |f| %>
   <div class="modal-body">
     <%= f.label :user_id, "Name" %>
-    <%= f.collection_select :user_id, User.order(:first_name), :id, :full_name, {}, {:class=>'chosen' + trip_instance_id.to_s} %>
+    <%= f.collection_select :user_id, User.order(:first_name), :id, :full_name, {}, {:class=>'chzn-select', :id => nil} %>
     <%= f.hidden_field :trip_instance_id, :value=>trip_instance_id %>
   </div>
 
@@ -10,21 +10,3 @@
     <%= f.button :submit, :class => 'btn btn-primary' %>
   </div>
 <% end %>
-
-<%
-=begin %>
-<%= form_tag({:controller=>"trip_permissions", :action=>"create"}) do %>
-  <div class="modal-body">
-    Name: <br />
-    <%= select_tag :user_id, options_from_collection_for_select(User.all, "id", "first_name"), :include_blank => true %>
-    First Name: <%= text_field_tag(:first_name) %> <br />
-    Last Name: <%= text_field_tag(:last_name) %>
-    <%= hidden_field_tag(:trip_instance_id, trip_instance_id) %>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <%= button_tag "Add Break Leader", :class => 'btn btn-primary' %>
-  </div>
-<% end %>
-<% 
-=end %>
