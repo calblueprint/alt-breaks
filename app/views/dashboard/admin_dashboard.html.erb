@@ -4,9 +4,6 @@
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
 
-  <!--SELECT-->
-  <link href="https://raw.github.com/ivaynberg/select2/3.3.2/select2.css" rel="stylesheet"/>
-
   <%= javascript_include_tag 'chosen' %>
 
   <link rel="stylesheet" href="http://harvesthq.github.io/chosen/chosen/chosen.css" />
@@ -16,8 +13,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     
     <script src="http://harvesthq.github.io/chosen/chosen/chosen.jquery.js" type="text/javascript"></script>
-
-    <script type="text/javascript" src="https://raw.github.com/ivaynberg/select2/3.3.2/select2.js"></script>
 
     <script type="text/javascript">
       jQuery(function($){
@@ -83,6 +78,9 @@
                     </div>
                     <%= render :partial=>'partnerForm', :locals => {:trip_id=>trip.id} %>
                   </div>
+                </div>
+                <div class="span12">
+                  <%= render :partial => 'currentTripForm', :locals => {:trip_instance_id => inst.id} %>
                 </div>
               </div>
             </div>
