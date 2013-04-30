@@ -124,7 +124,6 @@ class PostsController < ApplicationController
     
     if (trip_instance_id = params[:post][:trip_instance_id]) != nil
       @instance = TripInstance.find_by_id(trip_instance_id)
-
       if @post.save
         @instance.posts << @post
         if current_user.is_break_leader(@instance)

@@ -29,8 +29,14 @@ class User < ActiveRecord::Base
     AdminPermission.where("user_id = #{self.id}").count > 0
   end
 
-  def is_break_leader(trip_instance)
-    TripPermission.where("user_id = #{self.id} AND trip_instance_id = #{trip_instance.id} AND permission = 1").count > 0
+  # returns if this user is a break leader of any trip instance
+  # or if they are a break leader of any one
+  def is_break_leader(trip_instance=nil)
+    if trip_instance.nil?
+      TripPermission.where("user_id = #{self.id} AND permission = 1").count > 0
+    else
+      TripPermission.where("user_id = #{self.id} AND trip_instance_id = #{trip_instance.id} AND permission = 1").count > 0
+    end
   end
 
   def self.admins
