@@ -1,15 +1,22 @@
+<% content_for :head do %>
+	<%= javascript_include_tag "gmaps4rails/gmaps4rails.base" %>
+  <%= javascript_include_tag "gmaps4rails/gmaps4rails.googlemaps" %>
+<% end %>
+
 <div class="trips">
 	<ul>
 	</ul>
-</div><%= gmaps("map_options" => {
-				:detect_location => true,
-				:center_on_user => false,
-				"zoom" => 6,
-				:type => :TERRAIN
-			},
-			"markers" => {
-				"data" => @json
-			}) %>
+</div>
+
+<%= gmaps("map_options" => {
+	:detect_location => true,
+	:center_on_user => false,
+	"zoom" => 6,
+	:type => :TERRAIN
+},
+"markers" => {
+	"data" => @json
+}) %>
 
 <!-- initialize the infobubble popup -->
 <% content_for :scripts do %>
@@ -32,10 +39,12 @@
 		window.rendered_htmls = [];
 		console.log("FUCK ME");
 		<% Trip.all.each do |trip| %>
-			<% leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
-			window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders}%>");
-			window.trip_names.push("<%= trip.name %>");
-			window.zoom_levels.push(<%= trip.zoom_level %>);
+			<% if trip.trip_instances.any? %>
+				<% leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
+				window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders}%>");
+				window.trip_names.push("<%= trip.name %>");
+				window.zoom_levels.push(<%= trip.zoom_level %>);
+			<% end %>
 		<% end %>
 	</script>
 <% end %>
@@ -43,4 +52,5 @@
 <!-- include the actual logic and stuff -->
 <% content_for :scripts do %>
 	<%= javascript_include_tag "map_functionality" %>
+	<%= stylesheet_link_tag "gmaps4rails" %>
 <% end %>

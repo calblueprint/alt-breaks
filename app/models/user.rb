@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :trip_permissions
   has_one :admin_permission
   has_attached_file :avatar, :styles => { :medium => "400x400>", :small => "140x140>", :thumb => "50x50>"}, :storage => :s3, 
-  :s3_credentials => "#{Rails.root}/config/s3.yml", :path => "/:style/:id/:filename"
+    :s3_credentials => S3_CREDENTIALS, :path => "/:style/:id/:filename"
   validates :first_name, :last_name, :presence => :true
 
   def name
@@ -23,5 +23,25 @@ class User < ActiveRecord::Base
   
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def is_admin
+    AdminPermission.where("user_id = #{self.id}").count > 0
+  end
+
+  def is_break_leader(trip_instance)
+    TripPermission.where("user_id = #{self.id} AND trip_instance_id = #{trip_instance.id} AND permission = 1").count > 0
+  end
+
+  def self.admins
+    User.where("id IN (SELECT user_id FROM admin_permissions)")
+  end
+
+  def self.break_leaders
+    User.where("id IN (SELECT user_id FROM trip_permissions WHERE permission = 1)")
+  end
+
+  def self.break_group(trip_instance)
+    User.where("id IN (SELECT user_id FROM trip_permissions WHERE trip_instance_id = #{trip_instance.id})")
   end
 end

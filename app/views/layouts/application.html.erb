@@ -6,12 +6,20 @@
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag :jquery %>
-  <%= javascript_include_tag "gmaps4rails/gmaps4rails.base" %>
-  <%= javascript_include_tag "gmaps4rails/gmaps4rails.googlemaps" %>
+
+  <!--<%= javascript_include_tag :jquery %>-->
+  
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+
+
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-dropdown.js"></script>
+  <!--
   <script type="text/javascript" src="https://raw.github.com/julesjanssen/chosen/master/Source/chosen.js"></script>
   <link rel = "stylesheet" type = "text/css" href="https://raw.github.com/julesjanssen/chosen/master/Source/chosen.css">
+-->
+
+  <%= yield(:head) %>
 
   <!-- for gmaps4rails -->
 </head>
@@ -27,21 +35,10 @@
     <%= yield %>
   </div>
 
-
-  <% TripInstance.all.each do |inst| %>
-  	<% class_id = inst.id.to_s %>
-	  <script>
-	    jQuery(function($){
-	    		$('.chosen' + <%= class_id %>).chosen();
-	    });
-      console.log(<%=class_id %>)
-	  </script>
-
-	<% end %>
-
-  <!-- i have no idea what the previous line does, its magic -->
+  <%= yield :footer %>
   <%= yield :scripts %>
-  <%= stylesheet_link_tag "gmaps4rails" %>
+  <!--<%= stylesheet_link_tag "gmaps4rails" %>-->
+
 
 </body>
 </html>
