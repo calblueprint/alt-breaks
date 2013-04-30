@@ -14,6 +14,9 @@
 /log/*.log
 /tmp
 
+# ignoring the environment variable initialization file
+/config/environment_variables.rb
+
 # ignore compiling stuff on dev
 /public/assets/*.css
 /public/assets/*.js

@@ -6,9 +6,8 @@
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <!--<%= javascript_include_tag :jquery %>-->
 
-
+  <%= javascript_include_tag :jquery %>
   <!--
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
@@ -37,9 +36,8 @@
   </div>
 
   <%= yield :footer %>
-
-  <!-- i have no idea what the previous line does, its magic -->
   <%= yield :scripts %>
+  <!--<%= stylesheet_link_tag "gmaps4rails" %>-->
 
 
 </body>
