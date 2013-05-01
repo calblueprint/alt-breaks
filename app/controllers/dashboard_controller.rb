@@ -88,5 +88,25 @@ def delete_from_trip
   redirect_to dashboard_path
 end
 
+def change_current
+  trip = Trip.find(params[:trip_id])
+  trip.current_trip_instance_id = params[:new_current_inst_id]
+  puts "BEFORE"
+  puts trip.current_trip_instance
+  puts trip.trip_instances.all
+  trip.current_trip_instance = TripInstance.find(params[:new_current_inst_id])
+  puts "AFTER"
+  puts trip.current_trip_instance
+  puts trip.trip_instances.all
+  respond_to do |format|
+    if trip.save
+      format.html { redirect_to dashboard_url, notice: 'Displayed Trip was updated.' }
+        format.json { render json: trip, status: :created, location: trip }
+      else
+        format.html { render action: "new" }
+        format.json { render json: trip.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
 end

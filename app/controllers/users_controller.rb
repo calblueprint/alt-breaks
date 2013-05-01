@@ -14,6 +14,20 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @user_trip = @user.trip_permissions
+    temp_user_posts = @user.posts
+    temp_user_posts.sort_by!(&:created_at)
+    @user_posts = []
+    if temp_user_posts.length > 4
+      temp_user_posts[0...4].each do |post|
+        @user_posts<< post
+      end
+    else
+      @user_posts = temp_user_posts
+    end
+
+
+
 
     respond_to do |format|
       format.html # show.html.erb

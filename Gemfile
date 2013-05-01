@@ -6,7 +6,7 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'actionmailer'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,6 +18,14 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development, :test do
+  # Ruby debugger
+  #gem 'ruby-debug19'
+  gem 'sqlite3'
+  gem 'binding_of_caller'
+  gem 'better_errors'
 end
 
 gem 'chosen-rails'
@@ -42,7 +50,7 @@ gem 'paperclip', '~> 3.0'
 
 # To use debugger
 # gem 'debugger'
-#gem "therubyracer", :platform => :ruby
+gem "therubyracer", :platform => :ruby
 #gem "less-rails"
 gem "bootstrap-sass", '~> 2.3.0.1'
 gem "simple_form"
@@ -54,3 +62,4 @@ gem 'asset_sync'
 gem 'aws-s3'
 gem 'aws-sdk'
 
+gem 'kaminari'

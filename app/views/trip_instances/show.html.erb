@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
+<% content_for :head do %>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-transition.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-collapse.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
   <%= javascript_include_tag 'chosen' %>
-</head>
-<body>
+<% end %>
 
 <!--Show Trip Instance-->
 <div class="row-fluid">
@@ -25,6 +22,7 @@
 				<div class="row-fluid">
 					<table class="table table-hover table-bordered">
 						<% if @posts %>
+							<%= paginate @posts %>
   							<% @posts.each do |post| %>
   								</tbody>
     								<td><h4><%= link_to post.title, trip_instance_post_path(:trip_instance_id => @instance.id, :id =>post.id) %></h4> <br> Created by: <%= post.user.name %></td>
@@ -32,7 +30,6 @@
   							<% end %>
 						<% end %>
 					</table>
-					<i>Pagination to go here</i>
 					<!--<%= link_to "See all", trip_instance_posts_path(@instance_id)%>-->
 				</div>
 		 	</div>
@@ -42,8 +39,6 @@
 
 	</div>
 </div>
-
-</body>
 
 
 

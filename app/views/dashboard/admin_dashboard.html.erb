@@ -1,124 +1,148 @@
-<!DOCTYPE html>
-<html>
-<head>
+<% content_for :head do %>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-transition.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-collapse.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-tab.js"></script>
-  <%= javascript_include_tag 'chosen' %>
-</head>
-<body>
 
-  <h2> Admin Dashboard </h2>
-  <h5>Admins</h5>
-  <% AdminPermission.all.each do |admin| %>
-    <%= link_to(admin.user.name, user_path(admin.user.id)) %><br />
-  <% end %>
-  <a href="#addAdmin" role="button" class="btn" data-toggle="modal">Add Admin</a>
-  <!-- Modal -->
-  <div id="addAdmin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Add Trip</h3>
-    </div>
-    <%= render :partial=>'adminForm'%>
+  <!--SELECT-->
+  <link href="https://raw.github.com/ivaynberg/select2/3.3.2/select2.css" rel="stylesheet"/>
+
+  <%= javascript_include_tag 'chosen' %>
+
+  <link rel="stylesheet" href="http://harvesthq.github.io/chosen/chosen/chosen.css" />
+<% end %>
+
+<% content_for :footer do %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    
+    <script src="http://harvesthq.github.io/chosen/chosen/chosen.jquery.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="https://raw.github.com/ivaynberg/select2/3.3.2/select2.js"></script>
+
+    <script type="text/javascript">
+      jQuery(function($){
+        $(".chzn-select").chosen();
+      });
+    </script>
+<% end %>
+
+<h2> Admin Dashboard </h2>
+<h5>Admins</h5>
+<% AdminPermission.all.each do |admin| %>
+  <%= link_to(admin.user.name, user_path(admin.user.id)) %><br />
+<% end %>
+<a href="#addAdmin" role="button" class="btn" data-toggle="modal">Add Admin</a>
+<!-- Modal -->
+<div id="addAdmin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add Trip</h3>
   </div>
-  <h5>Trips</h5>
-  <div class="accordion" id="accordionOptions">
-    <% cindex = 0 %>
-    <% Trip.all.each do |trip| %>
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <%= link_to(trip[:name], "#collapse#{cindex}", :class=>"accordion-toggle", "data-toggle"=>"collapse", "data-parent"=>"accordionOptions" )%>
-        </div>
-        <div id="collapse<%=cindex%>" class="accordion-body collapse">
-          <div class="accordion-inner">
-            <% trip.trip_instances.all.each do |inst| %>
-              <div class="well">
-                <div class="row-fluid">
-                  <div class="span4">
-                    <h5>Trip Group</h5>
-                    <% if trip.current_trip_instance_id == inst.id %>
-                      Current Trip: <%= link_to(inst[:year], trip_instance_path(inst[:id])) %>
-                      <br />
-                    <% else %>
-                      <%= link_to(inst[:year], trip_instance_path(inst[:id])) %>
-                      <br />
-                    <% end %>
-                  </div>
-                  <div class="span4">
-                    <h5>Break Leaders</h5>
-                    <% inst.trip_permissions.all.each do |permission| %>
-                      <% if permission[:permission] == 1 %>
-                        <% u = User.find_by_id(permission.user_id) %>
-                        <%= link_to(u[:first_name]+" "+u[:last_name], user_path(u)) %> <br />
+  <%= render :partial=>'adminForm'%>
+</div>
+<h5>Trips</h5>
+<div class="accordion" id="accordionOptions">
+  <% cindex = 0 %>
+  <% Trip.all.each do |trip| %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <%= link_to(trip[:name], "#collapse#{cindex}", :class=>"accordion-toggle", "data-toggle"=>"collapse", "data-parent"=>"accordionOptions" )%>
+      </div>
+      <div id="collapse<%=cindex%>" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <div class="row-fluid">
+            <div class="span8">
+              <% trip.trip_instances.all.each do |inst| %>
+                <div class="well">
+                  <div class="row-fluid">
+                    <div class="span6">
+                      <h5>Trip Group</h5>
+                      <% if trip.current_trip_instance_id == inst.id %>
+                        Current Trip: <%= link_to(inst[:season]+' '+inst[:year].to_s, trip_instance_path(inst[:id])) %>
+                        <br />
+                      <% else %>
+                        <%= link_to(inst[:season]+' '+inst[:year].to_s, trip_instance_path(inst[:id])) %>
+                        <br />
                       <% end %>
-                    <% end %>
-                    <!-- Modal: Add Break Leader-->
-                    <a href="#leaderModal<%=inst.id%>" role="button" class="btn" data-toggle="modal">Add Break Leader</a><br />
-                    <div id="leaderModal<%=inst.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">Add Break Leader</h3>
-                      </div>
-                      <%= render :partial=>'breakLeaderForm', :locals => {:trip_instance_id=>inst.id} %>
+                      <%=link_to "Display Instance On Trip Page", change_current_path(trip.id, inst.id), :class=>"btn btn-primary"%>
                     </div>
-                  </div>
-                  <div class="span4">
-                    <h5>Community Partners</h5>
-                    <% trip.partners.all.each do |cp| %>
-                      <%= link_to(cp.name, "http://"+cp.website) %> <br />
-                    <% end %>
-                    <!-- Modal: Add Community Partner -->
-                    <a href="#partnerModal<%=trip.id%>" role="button" class="btn" data-toggle="modal">Add Community Partner</a><br />
-                    <div id="partnerModal<%=trip.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">Add Community Partner</h3>
+                    <div class="span6">
+                      <h5>Break Leaders</h5>
+                      <% inst.trip_permissions.all.each do |permission| %>
+                        <% if permission[:permission] == 1 %>
+                          <% u = User.find_by_id(permission.user_id) %>
+                          <%= link_to(u[:first_name]+" "+u[:last_name], user_path(u)) %> <br />
+                        <% end %>
+                      <% end %>
+                      <!-- Modal: Add Break Leader-->
+                      <a href="#leaderModal<%=inst.id%>" role="button" class="btn" data-toggle="modal">Add Break Leader</a><br />
+
+                      <div id="leaderModal<%=inst.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Add Break Leader</h3>
+                        </div>
+                        <%= render :partial=>'breakLeaderForm', :locals => {:trip_instance_id=>inst.id} %>
                       </div>
-                      <%= render :partial=>'partnerForm', :locals => {:trip_id=>trip.id} %>
                     </div>
                   </div>
                 </div>
-              </div>
-            <% end %>
-
-            <!-- Modal: Add Trip Instance-->
-            <a href="#addInstance" role="button" class="btn" data-toggle="modal">Add Trip Group</a>
-            <div id="addInstance" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Add Trip Group</h3>
-              </div>
-              <%= render :partial=>'tripInstanceForm', :locals => {:trip_id=>trip.id} %>
+              <% end %>
             </div>
-            <br><br>
-
-            <!-- Modal: Edit Trip-->
-            <a href="#editTrip" role="button" class="btn" data-toggle="modal">Edit Trip</a>
-            <div id="editTrip" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Edit Trip</h3>
+            <div class="span4">
+              <div class="well">
+                <h5>Community Partners</h5>
+                <% trip.partners.all.each do |cp| %>
+                  <%= link_to(cp.name, "http://"+cp.website) %> <br />
+                <% end %>
+                <!-- Modal: Add Community Partner -->
+                <a href="#partnerModal<%=trip.id%>" role="button" class="btn" data-toggle="modal">Add Community Partner</a><br />
+                <div id="partnerModal<%=trip.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Add Community Partner</h3>
+                  </div>
+                  <%= render :partial=>'partnerForm', :locals => {:trip_id=>trip.id} %>
+                </div>
               </div>
-              <%= render :partial=>'tripForm', :locals => {:trip=>trip} %>
             </div>
-
           </div>
+
+          <!-- Modal: Add Trip Instance-->
+          <a href="#addInstance" role="button" class="btn" data-toggle="modal">Add Trip Group</a>
+          <div id="addInstance" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Add Trip Group</h3>
+            </div>
+            <%= render :partial=>'tripInstanceForm', :locals => {:trip_id=>trip.id} %>
+          </div>
+          <br><br>
+
+          <!-- Modal: Edit Trip-->
+          <a href="#editTrip" role="button" class="btn" data-toggle="modal">Edit Trip</a>
+          <div id="editTrip" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Edit Trip</h3>
+            </div>
+            <%= render :partial=>'tripForm', :locals => {:trip=>trip} %>
+          </div>
+
         </div>
       </div>
-    <% cindex += 1 %>
-    <% end %>
-  </div>
-  <a href="#addTrip" role="button" class="btn" data-toggle="modal">Add Trip</a>
-  <br />
-  <!-- Modal -->
-  <div id="addTrip" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Add Trip</h3>
     </div>
-    <%= render :partial=>'tripForm', :locals => {:trip => @new_trip}%>
+  <% cindex += 1 %>
+  <% end %>
+</div>
+<a href="#addTrip" role="button" class="btn" data-toggle="modal">Add Trip</a>
+<br />
+<!-- Modal -->
+<div id="addTrip" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add Trip</h3>
   </div>
-</body>
+  <%= render :partial=>'tripForm', :locals => {:trip => @new_trip}%>
+</div>

@@ -1,5 +1,5 @@
 class TripInstance < ActiveRecord::Base
-  attr_accessible :description, :year, :trip, :trip_id
+  attr_accessible :description, :year, :trip, :trip_id, :season
   belongs_to :trip
   has_many :posts
   has_many :trip_permissions

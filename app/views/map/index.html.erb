@@ -1,15 +1,22 @@
+<% content_for :head do %>
+	<%= javascript_include_tag "gmaps4rails/gmaps4rails.base" %>
+  <%= javascript_include_tag "gmaps4rails/gmaps4rails.googlemaps" %>
+<% end %>
+
 <div class="trips">
 	<ul>
 	</ul>
-</div><%= gmaps("map_options" => {
-				:detect_location => true,
-				:center_on_user => false,
-				"zoom" => 6,
-				:type => :TERRAIN
-			},
-			"markers" => {
-				"data" => @json
-			}) %>
+</div>
+
+<%= gmaps("map_options" => {
+	:detect_location => true,
+	:center_on_user => false,
+	"zoom" => 6,
+	:type => :TERRAIN
+},
+"markers" => {
+	"data" => @json
+}) %>
 
 <!-- initialize the infobubble popup -->
 <% content_for :scripts do %>
@@ -45,4 +52,5 @@
 <!-- include the actual logic and stuff -->
 <% content_for :scripts do %>
 	<%= javascript_include_tag "map_functionality" %>
+	<%= stylesheet_link_tag "gmaps4rails" %>
 <% end %>
