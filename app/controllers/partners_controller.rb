@@ -2,7 +2,7 @@ class PartnersController < ApplicationController
 
 	def create
 
-		if params[:partner][:partner_id] == nil
+		if params[:form_id].split('/').last.split('#').last.start_with?('new')
 			@community_partner = Partner.new(params[:partner])
 
 			respond_to do |format|
@@ -18,6 +18,7 @@ class PartnersController < ApplicationController
 		      end
 	    	end
 	    else
+	    	
 	    	@community_partner = Partner.find(params[:partner][:partner_id])
 	    	@trip = Trip.find(params[:partner][:trip_id])
 			@trip.partners << @community_partner
