@@ -1,8 +1,8 @@
 development:
-  bucket: altbreak-dev
-  access_key_id: AKIAI3ERW53BB44TQDLQ
-  secret_access_key: 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
+ bucket: <%= ENV['S3_BUCKET'] %>
+ access_key_id: <%= ENV['S3_KEY'] %>
+ secret_access_key: <%= ENV['S3_SECRET'] %>
 production:
-  bucket: altbreak
-  access_key_id: AKIAI3ERW53BB44TQDLQ
-  secret_access_key: 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
+ bucket: <%= ENV['S3_BUCKET'] %>
+ access_key_id: <%= ENV['S3_KEY'] %>
+ secret_access_key: <%= ENV['S3_SECRET'] %>

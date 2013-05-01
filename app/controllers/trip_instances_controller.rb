@@ -12,7 +12,7 @@ class TripInstancesController < ApplicationController
     @instance = TripInstance.find(params[:id])
     @trip = @instance.trip
     
-    @posts = @instance.posts #don't need below code b/c doing pagination
+    @posts = Kaminari.paginate_array(@instance.posts.sort_by!(&:created_at)).page(params[:page]).per(4) #don't need below code b/c doing pagination
 =begin
     @temp_posts = @instance.posts
     @posts = []

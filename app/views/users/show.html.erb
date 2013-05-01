@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
+<% content_for :head do %>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-transition.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-collapse.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
   <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
   <%= javascript_include_tag 'chosen' %>
-</head>
-<body>
+<% end %>
 
 <div class="row-fluid">
 	<div class="span2 offset1">
@@ -22,7 +19,9 @@
 	<div class="span8">
 		<div class="well">
 			<h3><%= @user.name %></h3>
-			<h4>My groups and all that shit.</h4>
+			<% @user_trip.each do |trip| %>
+			<h4><%= trip.trip_instance.name %> <%= trip.trip_instance.year %></h4>
+			<% end %>
 			<!-- Button to trigger modal -->
 			<% if user_signed_in? && current_user.id == @user.id %>
 				<a href="#myModal" role="button" class="btn" data-toggle="modal" style="text-align:right">Edit My Profile</a>
@@ -43,9 +42,12 @@
 <div class="row-fluid">
 	<div class="span10 offset1">
 		<h3>Recent Posts and Responses</h3>
-		<div class="well">
-			Insert a bunch of crap here.
-		</div>
+		<% @user_posts.each do |post| %>
+			<div class="well">
+				<h4><%= link_to post.title, trip_instance_post_path(:trip_instance_id => post.trip_instance.id, :id =>post.id) %></h4>
+				Posted in: <%= post.trip_instance.name %> <%= post.trip_instance.year%> 
+			</div>
+		<% end %>
 	</div>
 </div>
 
@@ -63,7 +65,8 @@
   <div class="modal-body">
     <%= render "form", :locals=>{:user => @user} %>
   </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
 </div>
-
-
-</body>

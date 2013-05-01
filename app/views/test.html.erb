@@ -1,0 +1,33 @@
+<% content_for :head do %>
+<!--  <%= javascript_include_tag 'chosen' %>-->
+<% end %>
+
+
+<!--
+<% content_for :footer do %>
+  <% TripInstance.all.each do |inst| %>
+    <% class_id = inst.id.to_s %>
+    <script>
+      jQuery(function($){
+          $('.chosen' + <%= class_id %>).chosen();
+      });
+      console.log(<%=class_id %>)
+    </script>
+  <% end %>
+<% end %>
+
+-->
+
+
+
+<%= form_for(@trip_permission) do |f| %>
+  <div class="modal-body">
+    <%= f.label :user_id, "Name" %>
+    <%= f.collection_select :user_id, User.order(:first_name), :id, :full_name, {}, {:class=>'chosen' + trip_instance_id.to_s} %>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
