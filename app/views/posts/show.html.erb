@@ -16,7 +16,11 @@
       <div class="row-fluid">
         <div class="well">
           <%= simple_format(@post.description) %>
+          <% if @post.video_link != "" %>
+            <div><%= raw(youtube_embed(@post.video_link)) %></div>
+          <% end %>
         </div>
+        
       </div>
       <h3>Responses</h3>
       <%= render 'responseform' %>
