@@ -47,6 +47,6 @@ Altbreaks::Application.configure do
   }
 
   # paperclip
-  puts "damn shit is going down"
   Paperclip.options[:command_path] = "/opt/ImageMagick/bin/"
+
 end

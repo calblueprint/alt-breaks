@@ -1,28 +1,36 @@
-<%= form_for(@community_partner) do |f| %>
+<%= form_for @community_partner, :html=> {:id => 'partners#{trip_id}'} do |f| %>
   <div class="modal-body">
-    <ul class="nav nav-tabs" id="myTab<%=trip_id%>">
-    <li class="active"><a href="#existing" data-toggle="tab">Add Existing Community Partner</a></li>
-    <li><a href="#new" data-toggle="tab">Add New Community Partner</a></li>
+    <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#existing<%=trip_id%>" data-toggle="tab">Add Existing Community Partner</a></li>
+    <li><a href="#new<%=trip_id%>" data-toggle="tab">Add New Community Partner</a></li>
   </ul>
    
   <div class="tab-content">
-    <div class="tab-pane active" id="existing">
+    <div class="tab-pane active" id="existing<%=trip_id%>">
       <%= f.label :partner_id, "Name" %>
-      <%= f.collection_select :partner_id, Partner.order(:name), :name, :id, {} %>
+      <%= f.collection_select :partner_id, Partner.order(:name), :id, :name, {}, {:class=>'chzn-select', :id => nil} %>
       <%= f.hidden_field :trip_id, :value=>trip_id %>
+      <%= hidden_field_tag "form_id" %>
     </div>
-    <div class="tab-pane" id="new">
+    <div class="tab-pane" id="new<%=trip_id%>">
       Name: <%= f.text_field :name %> <br />
       Description: <%= f.text_area :description, rows: 6, :class=>"span12" %> <br />
       Website: <%= f.text_field :website %> <br />
       Upload Logo: <%= f.file_field :logo %> <br />
       <%= f.hidden_field :trip_id, :value=>trip_id %>
+      <%= hidden_field_tag "form_id", :value=>"/existing" %>
     </div>
   </div>
    
   <script>
     $(function () {
-      $('#myTab<%=trip_id%> a:last').tab('show');
+      $('#myTab a:last').tab('show');
+    })
+
+    var activeTab = '/existing';
+    $('a[data-toggle="tab"]').on('shown', function (e) {
+      activeTab = e.target.href;
+      $('input#form_id').val(activeTab);
     })
   </script>
   </div>

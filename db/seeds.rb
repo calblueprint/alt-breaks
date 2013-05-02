@@ -140,7 +140,7 @@ leader2 = User.create!(:first_name => 'Samwise', :last_name => 'Gamgee', :email 
 
 trips_hash.each do |trip|
 	t = Trip.create!(trip)
-	i1 = TripInstance.create!(:trip => t, :year => 2013, :description => "A really cool trip that's running this year.")
+	i1 = TripInstance.create!(:trip => t, :year => 2013, :season => "Spring", :description => "A really cool trip that's running this year.")
 	#i2 = TripInstance.create!(trip_id: t.id, year: 2012, description: "A great trip from last year.")
 	t.current_trip_instance_id = i1.id
 	t.save
