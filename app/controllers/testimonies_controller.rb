@@ -41,7 +41,11 @@ class TestimoniesController < ApplicationController
   # POST /testimonies
   # POST /testimonies.json
   def create
-    @testimony = Testimony.new(params[:testimony])
+    puts "were creating a testimony, mother fucker"
+    puts params
+    puts params[:testimony]
+    puts params[:testimony][:trip_instance_id]
+    @testimony = Testimony.create!(params[:testimony])
     trip_instance_id = params[:testimony][:trip_instance_id]
     #@trip = Trip.find_by_id(params[:trip_id])
 =begin
@@ -51,7 +55,7 @@ class TestimoniesController < ApplicationController
       @instance.testimonies << @testimony
     end
 =end
-    @testimony.save!
+    # @testimony.save!
     redirect_to trip_instance_path(trip_instance_id)
   end
 

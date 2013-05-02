@@ -53,7 +53,10 @@ GEM
       coffee-rails (>= 3.2)
       railties (>= 3.0)
       sass-rails (>= 3.2)
-    cocaine (0.3.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -176,7 +179,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 2.3.0.1)
   chosen-rails
-  cocaine (~> 0.3.2)
+  cocaine (~> 0.5.1)
   coffee-rails (~> 3.2.1)
   devise
   gmaps4rails

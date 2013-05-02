@@ -1,7 +1,7 @@
 <div class="popup">
 	<div class="title"><a href='/trips/<%= trip.id %>/'><%= trip.name %></a></div>
 	<div class="subtitle"><%= trip.subtitle %></div>
-	<div class="leaders">
+	<div class="leaders">Lead by
 		<% if leaders and leaders.length > 0 %>
 			<% leaders.slice(0, leaders.length-1).each do |leader| %>
 			  <a href='/users/<%= leader.id %>/'><%= leader.first_name %></a> and
@@ -16,6 +16,9 @@
 
 	<!-- dummy pictures -->
 	<div class="photos">
-		<%= image_tag "dummy1.png", :class => "popup-photo" %><%= image_tag "dummy2.png", :class => "popup-photo" %>
+		<!-- it is important for the next part to be on one line because the images are inline-block -->
+		<% if photos and photos.length > 0 %>
+			<%- photos.each do |photo| -%><%= image_tag photo.photo.url(:medium), :class => "popup-photo" %><%- end -%>
+		<% end %>
 	</div>
 </div>
