@@ -40,8 +40,10 @@
 		console.log("FUCK ME");
 		<% Trip.all.each do |trip| %>
 			<% if trip.trip_instances.any? %>
-				<% leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
-				window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders}%>");
+				<% curr_inst = trip.current_trip_instance %>
+				<% leaders = curr_inst.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
+				<% photos = (curr_inst.testimonies.map {|t| t.photos}).flatten.sample(2) %>
+				window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders, :photos => photos}%>");
 				window.trip_names.push("<%= trip.name %>");
 				window.zoom_levels.push(<%= trip.zoom_level %>);
 			<% end %>
