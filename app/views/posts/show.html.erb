@@ -16,7 +16,7 @@
       <div class="row-fluid">
         <div class="well">
           <%= simple_format(@post.description) %>
-          <% if @post.video_link != "" %>
+          <% if @post.video_link != "" and @post.video_link != nil %>
             <div><%= raw(youtube_embed(@post.video_link)) %></div>
           <% end %>
         </div>
