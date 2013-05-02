@@ -48,5 +48,4 @@ Altbreaks::Application.configure do
 
   # paperclip
   Paperclip.options[:command_path] = "/opt/ImageMagick/bin/"
-
 end

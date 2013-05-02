@@ -80,5 +80,4 @@ Altbreaks::Application.configure do
   }
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
-
 end

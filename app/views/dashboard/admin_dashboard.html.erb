@@ -11,7 +11,6 @@
 
 <% content_for :footer do %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
     <script src="http://harvesthq.github.io/chosen/chosen/chosen.jquery.js" type="text/javascript"></script>
 
     <script type="text/javascript">
@@ -20,7 +19,6 @@
       });
     </script>
 <% end %>
-
 
 <h2> Admin Dashboard </h2>
 <h5>Admins</h5>
@@ -32,7 +30,8 @@
 <div id="addAdmin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Add Trip</h3>
+
+    <h3 id="myModalLabel">Add Admin</h3>
   </div>
   <%= render :partial=>'adminForm'%>
 </div>
@@ -60,7 +59,6 @@
                         <%= link_to(inst[:season]+' '+inst[:year].to_s, trip_instance_path(inst[:id])) %>
                         <br />
                       <% end %>
-
                       <%=link_to "Display Instance On Trip Page", change_current_path(trip.id, inst.id), :class=>"btn btn-primary"%>
                     </div>
                     <div class="span6">
@@ -81,12 +79,17 @@
                         </div>
                         <%= render :partial=>'breakLeaderForm', :locals => {:trip_instance_id=>inst.id} %>
                       </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5bdacc9c70d37c40fdb2bed47b1cbc88e61828fa
                     </div>
-                    <%= render :partial=>'partnerForm', :locals => {:trip_id=>trip.id} %>
                   </div>
                 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5bdacc9c70d37c40fdb2bed47b1cbc88e61828fa
               <% end %>
             </div>
             <div class="span4">
@@ -107,7 +110,10 @@
               </div>
             </div>
           </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5bdacc9c70d37c40fdb2bed47b1cbc88e61828fa
 
           <!-- Modal: Add Trip Instance-->
           <a href="#addInstance" role="button" class="btn" data-toggle="modal">Add Trip Group</a>
