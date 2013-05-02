@@ -78,4 +78,6 @@ Altbreaks::Application.configure do
     :user_name            => "alternativebreaks.mail@gmail.com",
     :password             => ENV["MAILER_PASSWORD"]
   }
+
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 end

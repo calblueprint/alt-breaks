@@ -22,7 +22,7 @@ end
 
 group :development, :test do
   # Ruby debugger
-  gem 'ruby-debug19'
+  # gem 'ruby-debug19'
   gem 'sqlite3'
   gem 'binding_of_caller'
   gem 'better_errors'
@@ -34,7 +34,8 @@ gem 'jquery-rails'
 
 gem 'devise'
 
-gem 'paperclip', '~> 3.0'
+gem 'paperclip', '~> 3.4.1'
+gem "cocaine", "~> 0.5.1"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -5,9 +5,31 @@ create_new_infobubble = (content) ->
         content: content
         hideCloseButton: true
         minWidth: 300
-        minHeight: 300
         disableAnimation: true
+
+    window.infobubbles = [] if not window.infobubbles?
+    window.infobubbles.push bubble
     return bubble
+
+are_infobubbles_open = (return_them, close_them, except_current) ->
+    if not window.infobubbles?
+        return false
+    rtn = []
+    for bubble in window.infobubbles
+        if bubble.isOpen()
+            if not return_them and not close_them
+                return true
+            if close_them
+                if not (except_current and bubble == window.open_infobubble)
+                    console.log "closing"
+                    console.log bubble
+                    console.log bubble == window.open_infobubble
+                    bubble.close()
+            else
+                rtn.push(bubble)
+    if return_them
+        return rtn
+    return false
 
 create_and_bind_infobubble = (map, marker, html, zoom_level) ->
     bubble = create_new_infobubble html
@@ -35,6 +57,7 @@ create_and_bind_hover_link = (map, marker, name, zoom_level) ->
         # console.log "well fuck, zooming to " + zoom_level
         if !marker.bubble?.isOpen()
             window.open_infobubble?.close()
+            are_infobubbles_open(true, true, true) #close all other infobubbles
             marker.bubble.open(map, marker.serviceObject)
             window.open_infobubble = marker.bubble
 

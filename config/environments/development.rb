@@ -45,4 +45,8 @@ Altbreaks::Application.configure do
     :user_name            => "alternativebreaks.dev@gmail.com",
     :password             => ENV["MAILER_PASSWORD"]
   }
+
+  # paperclip
+  puts "damn shit is going down"
+  Paperclip.options[:command_path] = "/opt/ImageMagick/bin/"
 end
