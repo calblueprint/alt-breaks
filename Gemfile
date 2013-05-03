@@ -22,7 +22,7 @@ end
 
 group :development, :test do
   # Ruby debugger
-  #gem 'ruby-debug19'
+  # gem 'ruby-debug19'
   gem 'sqlite3'
   gem 'binding_of_caller'
   gem 'better_errors'
