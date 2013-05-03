@@ -25,11 +25,35 @@
 <% end %>
 
 <h2> Admin Dashboard </h2>
-<h5>Admins</h5>
-<% AdminPermission.all.each do |admin| %>
-  <%= link_to(admin.user.name, user_path(admin.user.id)) %><br />
-<% end %>
-<a href="#addAdmin" role="button" class="btn" data-toggle="modal">Add Admin</a>
+<h5>Admins</h5> <a href="#addAdmin" role="button" class="btn" data-toggle="modal">Add Admin</a>
+<div class="well">
+  <div class = "row-fluid"
+    <% AdminPermission.all.each_slice(12) do |set| %>
+      <ul class="thumbnails">
+        <div class="row-fluid">
+          <% set.each do |adm| %>
+            <li class="span1">
+              <div class="thumbnail">
+                <% if AdminPermission.all.size > 1 %>
+                <%=link_to "x", delete_admin_path(adm.id, current_user.id), :class=>"btn btn-mini btn-danger"%>
+                <% else %>
+                <%=link_to "x", dashboard_url, :class=>"btn btn-mini btn-danger disabled" %>
+                <% end %>
+                <% if adm.user.avatar.exists? %>
+                <%= link_to(image_tag(adm.user.avatar.url(:small)), user_path(adm.user.id)) %>
+                <% else %>
+                <%= link_to(image_tag("/assets/cat.png"), user_path(adm.user.id)) %>
+                <% end %>
+              </div>
+              <%= link_to(adm.user.name, user_path(adm.user.id)) %>
+            </li>
+          <% end %>
+        </div>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
 <!-- Modal -->
 <div id="addAdmin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
