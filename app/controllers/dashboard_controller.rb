@@ -90,11 +90,7 @@ end
 
 def change_current
   trip = Trip.find(params[:trip_id])
-#  trip.current_trip_instance_id = params[:new_current_inst_id]
-  puts "BEFORE"
-  puts 'current trip instance'
   trip.current_trip_instance = TripInstance.find(params[:new_current_inst_id])
-  puts "AFTER"
 
 
   respond_to do |format|
