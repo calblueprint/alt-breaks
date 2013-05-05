@@ -85,7 +85,13 @@
                         <%= link_to(inst[:season]+' '+inst[:year].to_s, trip_instance_path(inst[:id])) %>
                         <br />
                       <% end %>
-                      <%=link_to "Display Instance On Trip Page", change_current_path(trip.id, inst.id), :class=>"btn btn-primary"%>
+                      <!--WIP-->
+                      <% if trip.current_trip_instance == inst %>
+                        <div class = "btn btn-danger">This is the displayed trip</div>
+                      <% else %>
+                        <%=link_to "Display Instance On Trip Page", change_current_path(trip.id, inst.id), :class=>"btn btn-primary"%>
+                      <% end %>
+
                     </div>
                     <div class="span6">
                       <h5>Break Leaders</h5>
