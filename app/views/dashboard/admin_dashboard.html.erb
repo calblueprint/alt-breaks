@@ -136,8 +136,9 @@
           </div>
 
           <!-- Modal: Add Trip Instance-->
-          <a href="#addInstance" role="button" class="btn" data-toggle="modal">Add Trip Group</a>
-          <div id="addInstance" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+          <a href="#addInstance<%=trip.id%>" role="button" class="btn" data-toggle="modal">Add Trip Group</a>
+          <div id="addInstance<%=trip.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               <h3 id="myModalLabel">Add Trip Group</h3>
@@ -147,8 +148,8 @@
           <br><br>
 
           <!-- Modal: Edit Trip-->
-          <a href="#editTrip" role="button" class="btn" data-toggle="modal">Edit Trip</a>
-          <div id="editTrip" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <a href="#editTrip<%=trip.id%>" role="button" class="btn" data-toggle="modal">Edit Trip</a>
+          <div id="editTrip<%=trip.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               <h3 id="myModalLabel">Edit Trip</h3>
