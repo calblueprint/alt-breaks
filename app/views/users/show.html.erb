@@ -19,8 +19,9 @@
 	<div class="span8">
 		<div class="well">
 			<h3><%= @user.name %></h3>
+			<h4><%= @user.major %> <%= @user.grad_year %></h4>
 			<% @user_trip.each do |trip| %>
-			<h4><%= trip.trip_instance.name %> <%= trip.trip_instance.year %></h4>
+			<h4><%= controller.pts(trip) %> | <%= trip.trip_instance.name %> <%= trip.trip_instance.year %></h4>
 			<% end %>
 			<!-- Button to trigger modal -->
 			<% if user_signed_in? && current_user.id == @user.id %>
@@ -42,11 +43,19 @@
 <div class="row-fluid">
 	<div class="span10 offset1">
 		<h3>Recent Posts and Responses</h3>
+		<% if @user_posts %>
 		<% @user_posts.each do |post| %>
-			<div class="well">
-				<h4><%= link_to post.title, trip_instance_post_path(:trip_instance_id => post.trip_instance.id, :id =>post.id) %></h4>
-				Posted in: <%= post.trip_instance.name %> <%= post.trip_instance.year%> 
-			</div>
+			<% if post.trip_instance != nil %>
+				<div class="well">
+					<h4><%= link_to post.title, trip_instance_post_path(:trip_instance_id => post.trip_instance.id, :id =>post.id) %></h4>
+					Posted in: <%= post.trip_instance.name %> <%= post.trip_instance.year %> 
+				</div>
+			<% else %>
+				<div class="well">
+				<h4><%= link_to post.title, page_post_path(:page_id => post.page.id, :id =>post.id) %></h4> <br> Posted in: General
+				</div>
+			<% end %>
+		<% end %>
 		<% end %>
 	</div>
 </div>
@@ -62,11 +71,5 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Edit User</h3>
   </div>
-  <div class="modal-body">
-    <%= render "form", :locals=>{:user => @user} %>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
+  <%= render 'form', :locals=>{:user => @user} %>
 </div>

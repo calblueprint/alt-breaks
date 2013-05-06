@@ -65,9 +65,10 @@ Gmaps.map.callback = ->
     console.log "GMAPS$RAILS CALLBACK CALLED"
     # go through each trip and associate the info bubble with it
     # @markers is automatically populated by gmaps4rails. so is @map
+    window.markers = @markers
 
     if window.rendered_htmls?.length != @markers.length
-        console.log "Something is going wrong with the rendered html and markers."
+        console.log "ERROR: Something is going wrong with the rendered html and markers."
         return
 
     for i in [0...@markers.length]

@@ -40,49 +40,53 @@
 			<div class="span10">
 				<div class="row-fluid">
 					<div class="banner">
-						<img class="bphoto" src="/assets/IMG6.jpg" alt="">
-						<!-- USE THIS <div><%= image_tag @trip.cover_photo.url(:large) %></div> -->
-						<!--<div><%= image_tag @trip.cover_photo %></div>-->
+						<div>
+							<% if @trip.cover_photo_file_name == nil %>
+								<img class="bphoto" src="/assets/IMG6.jpg" alt="">
+							<% else %>
+								<%= image_tag @trip.cover_photo.url(:large) %>
+							<% end %>
+						</div>
 					</div>
 					<div class="well">
 						<h1><%= @trip.name %></h1>
 						<h4><%= @trip.subtitle %></h4>
 						<p><%= @trip.location %></p>
 						<!-- Modal: Community Partners-->
-	                    <a href="#cpModal<%=@trip.id%>" role="button" class="btn" data-toggle="modal">Community Partners</a><br />
-	                    <div id="cpModal<%=@trip.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	                      <div class="modal-header">
-	                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	                        <h3 id="myModalLabel">Community Partners</h3>
-	                      </div>
-	                      <div class="modal-body">
-	                      	<% if @trip.partners.all.empty? %>
-	                      		No Community Partners
-	                      	<% else %>
-	                      		<div class="row-fluid">
-		                      		<% @trip.partners.all.each_slice(2) do |pset| %>
-			                      		<ul class="thumbnails">
-			                      			<div class="row-fluid">
-			                      				<% pset.each do |p| %>
-				                      				<li class="span6">
-				                      					<div class="thumbnail">
-				                      						<%if p.logo.exists?%>
-				                      						<%= link_to(image_tag(p.logo.url(:medium)), "http://"+p.website) %>
-				                      						<%= link_to p.name, "http://"+p.website %>
-				                      						<%else%>
-				                      						<%= link_to(image_tag("/assets/community.jpg"), "http://"+p.website) %>
-				                      						<%= link_to p.name, "http://"+p.website %>
-				                      						<% end %>
-				                      					</div>
-				                      				</li>
-			                      				<% end %>
-			                      			</div>
-			                      		</ul>
-			                      	<% end %>
-			                    </div>
-	                      	<% end %>
-	                      </div>
-	                      <div class="modal-footer">
+            <a href="#cpModal<%=@trip.id%>" role="button" class="btn" data-toggle="modal">Community Partners</a><br />
+            <div id="cpModal<%=@trip.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Community Partners</h3>
+              </div>
+              <div class="modal-body">
+              	<% if @trip.partners.all.empty? %>
+              		No Community Partners
+              	<% else %>
+              		<div class="row-fluid">
+                		<% @trip.partners.all.each_slice(2) do |pset| %>
+                  		<ul class="thumbnails">
+                  			<div class="row-fluid">
+                  				<% pset.each do |p| %>
+                    				<li class="span6">
+                    					<div class="thumbnail">
+                    						<%if p.logo.exists?%>
+                    						<%= link_to(image_tag(p.logo.url(:medium)), "http://"+p.website) %>
+                    						<%= link_to p.name, "http://"+p.website %>
+                    						<%else%>
+                    						<%= link_to(image_tag("/assets/community.jpg"), "http://"+p.website) %>
+                    						<%= link_to p.name, "http://"+p.website %>
+                    						<% end %>
+                    					</div>
+                    				</li>
+                  				<% end %>
+                  			</div>
+                  		</ul>
+                  	<% end %>
+                </div>
+              	<% end %>
+              </div>
+              <div class="modal-footer">
 						    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 						  </div>
 	                    </div>
@@ -126,12 +130,17 @@
 						  <!-- Carousel items -->
 						  <!-- Images for testing, Should include the photos carousel should hold a rotating amount of 5 randomly selected-->
 						  <div class="carousel-inner">
-						    <div class="active item cphoto"><img class="slide" src="/assets/IMG1.jpg" alt=""></div>
-						    <div class="item cphoto"><img class="slide" src="/assets/IMG4.jpg" alt=""></div>
-						    <div class="item cphoto"><img class="slide" src="/assets/IMG5.jpg" alt=""></div>
-						    <% if @photos != [] %>
-						    <div class="item cphoto"><%= image_tag @photos.first.photo.url(:medium), :class => "slide" %></div>
-							<% end %>
+						  	<% first = true %>
+						  	<% if @photos != [] %>
+							  	<% @photos.each_slice(5).first.each do |photo| %>
+							  		<% if first %>
+							    		<div class="active item cphoto"><%= image_tag photo.photo.url(:medium), :class => "slide" %> </div>
+							    		<% first = false %>
+							    	<% else %>
+							    		<div class="item cphoto"><%= image_tag photo.photo.url(:medium), :class => "slide" %></div>
+							    	<% end %>
+							    <% end %>
+							  <% end %>
 						  </div>
 						  <!-- Carousel nav -->
 						  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>

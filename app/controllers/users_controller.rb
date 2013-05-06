@@ -10,6 +10,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def pts(trip_permission)
+    if trip_permission.permission == 1
+      return 'Break Leader'
+    elsif trip_permission.permission == 2
+      return 'Member'
+    else
+      return 'Member'
+    end
+  end 
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -17,6 +27,7 @@ class UsersController < ApplicationController
     @user_trip = @user.trip_permissions
     temp_user_posts = @user.posts
     temp_user_posts.sort_by!(&:created_at)
+    temp_user_posts.reverse!
     @user_posts = []
     if temp_user_posts.length > 4
       temp_user_posts[0...4].each do |post|

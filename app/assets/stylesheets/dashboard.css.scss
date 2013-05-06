@@ -9,6 +9,10 @@
 	overflow: visible; // so the chosen dropdown doesn't get cut off.
 }
 
+.modal-body#chicken {
+	overflow: scroll;
+}
+
 .tab-content {
 	overflow: visible; // so the chosen dropdown doesn't get cut off.
 }

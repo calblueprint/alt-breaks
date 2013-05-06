@@ -2,9 +2,8 @@
   <div class="modal-body">
     New Trip Name: <%= f.text_field :name %> <br />
     New Trip Subtitle: <%= f.text_field :subtitle %> <br />
-    Location: <%= f.text_field :location %> <br />
-    Latitude: <%= f.text_field :latitude %> <br />
-    Longitude: <%= f.text_field :longitude %> <br />
+    Latitude: <%= f.text_field :latitude, :as => :float, :required => true %> <br />
+    Longitude: <%= f.text_field :longitude, :as => :float, :required => true %> <br />
     Description <%= f.text_area :description, rows: 6, :class => "span4" %> <br />
     Upload Photo: <%= f.file_field :cover_photo %>
   </div>
