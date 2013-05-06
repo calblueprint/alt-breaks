@@ -1,15 +1,15 @@
-<%= form_for @user, :html => {:multipart => :true} do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+<div class="modal-body" id="chicken">
+  <%= form_for @user, :html => {:multipart => :true} do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
 
   <div class="field">
     <%= f.label :name %><br />
@@ -34,4 +34,10 @@
     <%= f.label :avatar %><br />
     <%= f.file_field :avatar %>
   </div>
+</div>
+<div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+</div>
 <% end %>
+
