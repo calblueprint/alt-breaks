@@ -105,3 +105,12 @@ def change_current
   end
 
 end
+
+def delete_break_leader(permission_id)
+  trip_permission = TripPermission.find(permission_id)
+  trip_permission.permission = 0
+  trip_permission.save
+
+  redirect_to :back
+
+end

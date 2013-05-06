@@ -24,4 +24,5 @@ before_filter :require_login
       format.html { redirect_to dashboard_url, notice: 'Break Leader(s) successfully created.' }
     end
   end
+
 end
