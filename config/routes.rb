@@ -53,6 +53,10 @@ Altbreaks::Application.routes.draw do
 
   match 'delete_from_trip/:tripinstid/:id' => 'dashboard#delete_from_trip', :as =>'delete_from_trip'
 
+  match 'change_current/:trip_id/:new_current_inst_id' => 'dashboard#change_current', :as => 'change_current'
+
+  match 'delete_admin/:admin_id' => 'admin_permissions#delete_admin', :as => 'delete_admin'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

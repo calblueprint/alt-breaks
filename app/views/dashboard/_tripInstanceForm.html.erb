@@ -1,6 +1,7 @@
 <%= form_for(@trip_instance) do |f| %>
   <div class="modal-body">
     Year: <%= f.text_field :year %> <br />
+    Season: <%= f.select(:season, options_for_select([["Spring", "Spring"],["Summer", "Summer"], ["Winter", "Winter"]])) %>
     <%= f.hidden_field :trip_id, :value=>trip_id %>
   </div>
   <div class="modal-footer">

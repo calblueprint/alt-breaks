@@ -3,22 +3,7 @@
     New Trip Name: <%= f.text_field :name %> <br />
     New Trip Subtitle: <%= f.text_field :subtitle %> <br />
     Location: <%= f.text_field :location %> <br />
-    <%= f.hidden_field :latitude %><%= f.hidden_field :longitude %> <br />
-
-    <%= gmaps("map_options" => {
-      :detect_location => true,
-      :center_on_user => false,
-      "zoom" => 6,
-      :type => :TERRAIN
-    },
-    "markers" => {
-      "data" => {"lat" => 42, "lon" => 42},
-      "options" => {
-        "draggable" => true
-      }
-    }) %>
-
-    Description <%= f.text_field :description %> <br />
+    Description <%= f.text_area :description, rows: 6, :class => "span4" %> <br />
     Upload Photo: <%= f.file_field :cover_photo %>
   </div>
   <div class="modal-footer">

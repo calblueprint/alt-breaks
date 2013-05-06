@@ -9,27 +9,31 @@
 			<div class="span2">
 				<div class="well">
 					<h4>Break Leaders</h4>
-					<% leaders = @trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
-					<% leaders.each do |leader| %>
-						<ul class="thumbnails">
-							<li>
-								<div class="row-fluid">
-									<div class="span12">
-										<% if leader.avatar.exists? %>
-											<%= link_to(image_tag(leader.avatar.url(:medium)), user_path(leader.id)) %>
-										<% else %>
-      										<%= link_to(image_tag("/assets/cat.png"), user_path(leader.id)) %>
-                  						<% end %>
-				      					
+					<% if @trip.trip_instances.any? %>
+						<% leaders = @trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
+						<% leaders.each do |leader| %>
+							<ul class="thumbnails">
+								<li>
+									<div class="row-fluid">
+										<div class="span12">
+											<% if leader.avatar.exists? %>
+												<%= link_to(image_tag(leader.avatar.url(:medium)), user_path(leader.id)) %>
+											<% else %>
+	      										<%= link_to(image_tag("/assets/cat.png"), user_path(leader.id)) %>
+	                  						<% end %>
+
+					    				</div>
+					    			</div>
+					    			<div class="row-fluid">
+					    				<div class="span12">
+					    					<%= link_to(leader.first_name+" "+leader.last_name, user_path(leader.id)) %>
+				    					</div>
 				    				</div>
-				    			</div>
-				    			<div class="row-fluid">
-				    				<div class="span12">
-				    					<%= link_to(leader.first_name+" "+leader.last_name, user_path(leader.id)) %>
-			    					</div>
-			    				</div>
-							</li>
-						</ul>
+								</li>
+							</ul>
+						<% end %>
+					<% else %>
+						None yet!
 					<% end %>
 				</div>
 			</div>
@@ -55,13 +59,27 @@
 	                      	<% if @trip.partners.all.empty? %>
 	                      		No Community Partners
 	                      	<% else %>
-	                      		<% @trip.partners.all.each do |p| %>
-		                      		<div>
-		                      			<%= image_tag p.logo.url(:medium) %>
-		                      			<%= link_to p.name, p.website %>
-		                      			<br />
-		                      		</div>
-		                      	<% end %>
+	                      		<div class="row-fluid">
+		                      		<% @trip.partners.all.each_slice(2) do |pset| %>
+			                      		<ul class="thumbnails">
+			                      			<div class="row-fluid">
+			                      				<% pset.each do |p| %>
+				                      				<li class="span6">
+				                      					<div class="thumbnail">
+				                      						<%if p.logo.exists?%>
+				                      						<%= link_to(image_tag(p.logo.url(:medium)), "http://"+p.website) %>
+				                      						<%= link_to p.name, "http://"+p.website %>
+				                      						<%else%>
+				                      						<%= link_to(image_tag("/assets/community.jpg"), "http://"+p.website) %>
+				                      						<%= link_to p.name, "http://"+p.website %>
+				                      						<% end %>
+				                      					</div>
+				                      				</li>
+			                      				<% end %>
+			                      			</div>
+			                      		</ul>
+			                      	<% end %>
+			                    </div>
 	                      	<% end %>
 	                      </div>
 	                      <div class="modal-footer">
@@ -166,7 +184,7 @@
 	    								<%= link_to(testimony.description, [@trip.current_trip_instance, testimony]) %>
 	    								by <%= testimony.user.name %>
 	    							-->
-		  							</tr>	
+		  							</tr>
 		  							<br>
 	  							<% end %>
 							<% end %>

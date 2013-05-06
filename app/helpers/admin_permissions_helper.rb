@@ -1,0 +1,2 @@
+module AdminPermissionsHelper
+end

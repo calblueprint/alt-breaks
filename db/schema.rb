@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424023305) do
+ActiveRecord::Schema.define(:version => 20130505164537) do
 
   create_table "admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -103,9 +103,11 @@ ActiveRecord::Schema.define(:version => 20130424023305) do
   create_table "trip_instances", :force => true do |t|
     t.integer  "year"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "trip_id"
+    t.string   "season"
+    t.integer  "current_owner_id"
   end
 
   create_table "trip_permissions", :force => true do |t|
