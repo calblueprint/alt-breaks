@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130505164537) do
+ActiveRecord::Schema.define(:version => 20130506065606) do
 
   create_table "admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -75,6 +75,10 @@ ActiveRecord::Schema.define(:version => 20130505164537) do
     t.string   "title"
     t.integer  "trip_id"
     t.integer  "page_id"
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
   end
 
   create_table "requests", :force => true do |t|

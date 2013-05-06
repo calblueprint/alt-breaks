@@ -23,6 +23,10 @@
       <%= f.label :youtube_link %><br />
       <%= f.text_field :video_link, :class=>"span12"  %>
     </div>
+    <div class="field">
+      <%= f.label :pdf %><br />
+      <%= f.file_field :pdf, :class=>"span12"  %>
+    </div>
     <%= f.hidden_field :trip_instance_id, :value => instance_id %>
   </div>
 

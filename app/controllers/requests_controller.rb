@@ -6,10 +6,10 @@ class RequestsController < ApplicationController
     @trips = Trip.all
     @trip_instances = []
     @trips.each do |trip|
-      current_trip_id = trip.current_trip_instance_id
-      temp_trip_instance = TripInstance.find_by_id(current_trip_id)
-      @trip_instances << temp_trip_instance
-      
+      #current_trip_id = trip.current_trip_instance_id
+      #temp_trip_instance = TripInstance.find_by_id(current_trip_id)
+      #@trip_instances << temp_trip_instance
+      @trip_instances << trip.current_trip_instance
     end
     @trip_instances_without_current_user = []
     @trip_instances.each do |tinstance|
@@ -46,7 +46,7 @@ class RequestsController < ApplicationController
         a = Trip.find_by_name(key)
         req = Request.new
         req.user = current_user
-        req.trip_instance = TripInstance.find_by_id(a.current_trip_instance_id)
+        req.trip_instance = TripInstance.find_by_id(a.current_trip_instance)
         req.save
       end
     end

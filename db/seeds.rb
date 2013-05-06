@@ -160,12 +160,12 @@ trips_hash.each do |trip|
   TripPermission.create!(:trip_instance_id => i1.id, :user => leader2, :permission => 1) #breakleader
 end
 
-admin1 = User.create!({:first_name=> 'Kati', :last_name=> 'Hinman', :email=> 'kati.hinman@gmail.com', :password=> 'password', :major=> 'Unknown', :grad_year=> 2013}) # Admin/Director, :ID = 1
+admin1 = User.create!({:first_name=> 'Kati', :last_name=> 'Hinman', :email=> 'notkatihinman@gmail.com', :password=> 'password', :major=> 'Unknown', :grad_year=> 2013}) # Admin/Director, :ID = 1
 AdminPermission.create!({:user => admin1})
-jay = User.create! :first_name => 'Jay', :last_name => 'Ryoo', :email => 'jay.ryoo@gmail.com', :password => 'password', :password_confirmation => 'password', :major => 'CS/MCB', :grad_year => 2013
-jchan = User.create! :first_name => 'Justin', :last_name => 'Chan', :email => 'hellojustinchan@gmail.com', :password => 'password', :major => 'EECS', :grad_year => 2014
-harry = User.create! :first_name => 'Harrison', :last_name => 'Tsai', :email => 'harrisontsai0123@gmail.com', :password => 'password', :major => 'EECS', :grad_year => 2015
-matty = User.create! :first_name => 'Matt', :last_name => 'Leung', :email => 'mattgleung@gmail.com', :password => 'password', :major => 'EECS', :grad_year => 2013
+jay = User.create! :first_name => 'Jay', :last_name => 'Ryoo', :email => 'notjayryoo@gmail.com', :password => 'password', :password_confirmation => 'password', :major => 'CS/MCB', :grad_year => 2013
+jchan = User.create! :first_name => 'Justin', :last_name => 'Chan', :email => 'notjustinchan@gmail.com', :password => 'password', :major => 'EECS', :grad_year => 2014
+harry = User.create! :first_name => 'Harrison', :last_name => 'Tsai', :email => 'notharrisontsai@gmail.com', :password => 'password', :major => 'EECS', :grad_year => 2015
+matty = User.create! :first_name => 'Matt', :last_name => 'Leung', :email => 'notmattleung@gmail.com', :password => 'password', :major => 'EECS', :grad_year => 2013
 mc = User.create! :first_name => 'Michelle', :last_name => 'Chow', :email => 'callmemc@gmail.com', :password => 'password', :major => 'CS/Business', :grad_year => 2013 # Member, ID = 7
 
 # create! the trip permissions that SHOULD work
