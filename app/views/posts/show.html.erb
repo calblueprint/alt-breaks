@@ -17,10 +17,13 @@
         <div class="well">
           <%= simple_format(@post.description) %>
           <% if @post.video_link != "" and @post.video_link != nil %>
-            <div><%= raw(youtube_embed(@post.video_link)) %></div>
+            <br><div><b>Video Attachment</b><br><%= raw(youtube_embed(@post.video_link)) %></div>
+          <% end %>
+          <% if @post.pdf_file_name != nil %>
+            <br><div><b>PDF Attachment</b><br><%= link_to @post.pdf_file_name, @post.pdf.url, :target => "_blank" %></div>
           <% end %>
         </div>
-        
+
       </div>
       <h3>Responses</h3>
       <%= render 'responseform' %>
@@ -28,7 +31,7 @@
         <%= render :partial => 'posts/response_table', :locals => {:post => @post} %>
       </div>
     </div>
-		
+
 		<% if @instance_id != nil %>
     	<%= render :partial=>'/trip_instances/internal_sidebar', :locals => {:instance_id => @instance_id} %>
 		<% elsif @page_id != nil %>
