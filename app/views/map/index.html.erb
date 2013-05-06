@@ -40,7 +40,6 @@
 		console.log("FUCK ME");
 		<% Trip.all.each do |trip| %>
 			<% if trip.trip_instances.any? %>
-        console.log(trip.name);
 				<% curr_inst = trip.current_trip_instance %>
 				<% leaders = curr_inst.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
 				<% photos = (curr_inst.testimonies.map {|t| t.photos}).flatten.sample(2) %>

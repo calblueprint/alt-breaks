@@ -1,7 +1,7 @@
 class Trip < ActiveRecord::Base
   before_create :default_values
 
-  attr_accessible :name, :subtitle, :description, :location, :latitude, :longitude, :gmaps, :cover_photo, :current_trip_instance, :zoom_level
+  attr_accessible :name, :subtitle, :description, :location, :latitude, :longitude, :gmaps, :cover_photo, :current_trip_instance, :zoom_level, :cover_photo_file_name, :cover_photo_content_type
   has_many :posts
   has_and_belongs_to_many :partners
 

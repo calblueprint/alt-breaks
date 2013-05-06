@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :caption, :testimony_id, :photo
+  attr_accessible :caption, :testimony_id, :photo, :photo_file_name
   belongs_to :testimony
   has_attached_file :photo, :styles => { :medium => "400x>", :thumb => "50x50>"}, :storage => :s3,
     :s3_credentials => S3_CREDENTIALS, :path => "/:style/:id/:filename"
