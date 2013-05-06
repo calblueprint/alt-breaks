@@ -10,6 +10,12 @@ class MapController < ApplicationController
     	# end
     	###
 
+        Trip.all.each do |trip|
+            if trip.trip_instances.any?
+                puts trip.name
+            end
+        end
+
     	# again, preventative measures
     	if !trip.current_trip_instance then
     		next
@@ -18,15 +24,15 @@ class MapController < ApplicationController
     	###
     	# comment out for new breakleader code:
     	@leaders = trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user}
-    	puts "HELOO"
-    	puts @leaders
-    	puts "FUCCCKKK"
-    	puts @leaders.slice(0, @leaders.length-1)
-    	puts "HELLOOOO"
-    	
+#    	puts "HELOO"
+#    	puts @leaders
+#    	puts "FUCCCKKK"
+#    	puts @leaders.slice(0, @leaders.length-1)
+#    	puts "HELLOOOO"
+
     	###
-    	print "the length of the leaders are:" + @leaders.length.to_s
-    	print "current instance id is:" + trip.current_trip_instance.to_s
+ #   	print "the length of the leaders are:" + @leaders.length.to_s
+ #   	print "current instance id is:" + trip.current_trip_instance.to_s
 
     	# render teh html that will be requested when the marker is clicked on
     	# return teh json

@@ -11,21 +11,8 @@ class TripInstancesController < ApplicationController
     @instance_id = params[:id]
     @instance = TripInstance.find(params[:id])
     @trip = @instance.trip
-    
+
     @posts = Kaminari.paginate_array(@instance.posts.sort_by!(&:created_at)).page(params[:page]).per(4) #don't need below code b/c doing pagination
-=begin
-    @temp_posts = @instance.posts
-    @posts = []
-    @temp_posts.sort_by!(&:updated_at)
-    @temp_posts.reverse!
-    if @temp_posts.length > 3
-      @temp_posts[0...3].each do |post|
-          @posts << post
-      end
-    else
-      @posts = @temp_posts
-    end
-=end
 
     #users to be displayed in sidebar
     temp_users = []
@@ -43,7 +30,7 @@ class TripInstancesController < ApplicationController
     else
       @users = temp_users
     end
-        
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @instance }
@@ -52,6 +39,12 @@ class TripInstancesController < ApplicationController
 
   def create
     @trip_instance = TripInstance.new(params[:trip_instance])
+    puts params[:trip_instance][:trip_id]
+    trip = Trip.find(params[:trip_instance][:trip_id])
+
+    if trip.current_trip_instance == nil
+      trip.current_trip_instance = @trip_instance
+    end
 
     respond_to do |format|
       if @trip_instance.save

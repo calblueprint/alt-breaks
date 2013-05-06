@@ -10,21 +10,21 @@
 # Have you ever heard the wolf cry to the blue corn moon, or asked the grinning bobcat why he grins? From the squirrels that run about the trees and telephone wires of our own Berkeley campus to the untamed beasts of the unfamiliar wilderness, we're surrounded by creatures big and small. And there's something about us and these creatures – a fascination, a passion, a connection, an indescribably intense yearning to understand – and again and again, we give into our curiosities and instincts. Yet in our anthropocentric society, we often overlook pressing animal welfare issues and repeatedly turn a blind eye to even the most outrageous of unmasked truths. We live in a world of sensitive ecology, but all too often fail to consider the repercussions of our actions on our Earth's co-inhabitants in the hunt for our own convenience and benefit. In our DeCal, we'll familiarize ourselves with some of the nation's most pressing animal welfare issues, including past and current animal welfare legislation, lab testing, pet overpopulation, shelter policy, wildlife preservation, and domestic animal abuse, through classroom debate and discussion, guest lectures, and field trips to local facilities, such as animal shelters and wildlife hospitals. Having acquainted ourselves with the local air, we'll make our way up to southern Oregon where participants will have the opportunity to engage with, learn from, and contribute to the efforts of our community partners at animal shelters, preserves, and sanctuaries. As in the words of our past leaders, we hope that our trip participants will conclude their semester knowing that they can be an impenetrable voice for those who have no words, after having experienced firsthand the silent, living testaments to stories of mistreatment, neglect, but most strikingly and lastingly, of strength and resilience.')
 # DESC
 
-wtwta_desc = "Have you ever heard the wolf cry to the blue corn moon, or asked the grinning bobcat why he grins? 
+wtwta_desc = "Have you ever heard the wolf cry to the blue corn moon, or asked the grinning bobcat why he grins?
 From the squirrels that run about the trees and telephone wires of our own Berkeley campus to the untamed beasts of
- the unfamiliar wilderness we're surrounded by creatures big and small. And there's something about us and these creatures 
- -- a fascination, a passion, a connection, an indescribably intense yearning to understand -- and again and again, we give 
- into our curiosities and instincts. Yet in our anthropocentric society, we often overlook pressing animal welfare issues 
- and repeatedly turn a blind eye to even the most outrageous of unmasked truths. We live in a world of sensitive ecology, 
- but all too often fail to consider the repercussions of our actions on our Earth's co-inhabitants in the hunt for our own 
- convenience and benefit. In our DeCal, we'll familiarize ourselves with some of the nation's most pressing animal welfare 
- issues, including past and current animal welfare legislation, lab testing, pet overpopulation, shelter policy, wildlife 
- preservation, and domestic animal abuse, through classroom debate and discussion, guest lectures, and field trips to local 
- facilities, such as animal shelters and wildlife hospitals. Having acquainted ourselves with the local air, we'll make our 
- way up to southern Oregon where participants will have the opportunity to engage with, learn from, and contribute to the 
- efforts of our community partners at animal shelters, preserves, and sanctuaries. As in the words of our past leaders, we 
- hope that our trip participants will conclude their semester knowing that they can be an impenetrable voice for those who 
- have no words, after having experienced firsthand the silent, living testaments to stories of mistreatment, neglect, but most 
+ the unfamiliar wilderness we're surrounded by creatures big and small. And there's something about us and these creatures
+ -- a fascination, a passion, a connection, an indescribably intense yearning to understand -- and again and again, we give
+ into our curiosities and instincts. Yet in our anthropocentric society, we often overlook pressing animal welfare issues
+ and repeatedly turn a blind eye to even the most outrageous of unmasked truths. We live in a world of sensitive ecology,
+ but all too often fail to consider the repercussions of our actions on our Earth's co-inhabitants in the hunt for our own
+ convenience and benefit. In our DeCal, we'll familiarize ourselves with some of the nation's most pressing animal welfare
+ issues, including past and current animal welfare legislation, lab testing, pet overpopulation, shelter policy, wildlife
+ preservation, and domestic animal abuse, through classroom debate and discussion, guest lectures, and field trips to local
+ facilities, such as animal shelters and wildlife hospitals. Having acquainted ourselves with the local air, we'll make our
+ way up to southern Oregon where participants will have the opportunity to engage with, learn from, and contribute to the
+ efforts of our community partners at animal shelters, preserves, and sanctuaries. As in the words of our past leaders, we
+ hope that our trip participants will conclude their semester knowing that they can be an impenetrable voice for those who
+ have no words, after having experienced firsthand the silent, living testaments to stories of mistreatment, neglect, but most
  strikingly and lastingly, of strength and resilience."
 
 waaa_desc = "In the context of the ongoing national debate over immigration reform and Arizona's SB1070 legislation, we will examine the Grand Canyon State as an epicenter of cross-cultural dynamism and tension. We will explore the causes and impact of Latin American immigration through a discussion of politics, economics, and culture. We will also explore encompassing contemporary concerns that include the following but are not limited to: patterns of globalization, NAFTA, education, the drug war, nativism, ethnic politics, migrant labor, the social consequences associated with SB1070 and its effect on immigrants and communities of color as well as criminalization and imprisonment of these communities, and learn about the movements that support and resist the SB1070 bill to understand both sides of the story. In an effort to encounter a wide array of perspectives, past trips have spoken with politicians, activists, community organizers, border patrol officers, migrant workers, and civilians. We hope to immerse ourselves in the complex intersections between Arizona's communities, all cohabiting in a tumultuous environment which forces the signs of protesters to remind the world 'We Have Rights,' 'Do I Look Illegal?' and 'We Are Human.' In addition, we aim to increase political education, understand how differences and intersectionalities continue to draw attacks against communities and spark more conversation with folks on campus and surrounding communities about these issues. We are offering a space for people of all interests, backgrounds, and perspectives to learn how we all have a role in this complex and fascinating immigration debate. *DREAMers & AB540 students are welcomed to apply!"
@@ -49,85 +49,85 @@ sdt_desc = "In the United States discourse about immigration has always focused 
 phhp_desc = "Many people don't realize how dangerous life can be without health care. For most of us, we can take a trip to the doctor whenever we feel a bit down. However, for those without primary health care insurance, getting sick is a catastrophe, as the cost of care is enormous. So, people often end up postponing getting care if the condition is not immediately debilitating, which results in many more long-term problems. Another complication is that the ones without health care are often those in high stress and dangerous communities with poor nutrition and education, making them the most at risk for health problems. Through this trip we will explore inequalities in the US health care system, examine some consequences of this system, and analyze issues preventing universal health care. Participants will take a trip to LA during Spring Break and see the care given in LA clinics, homeless shelters, and hospitals. Participants will leave this experience armed with the knowledge, and hopefully the confidence, to affect change."
 
 trips_hash = [
-{ 	:name => "Where the Wild Things Are", 
-	:subtitle => "Rethinking Social Justice to Include our Furry Friends", 
-	:location => "Southern & Central Oregon", 
+{ 	:name => "Where the Wild Things Are",
+	:subtitle => "Rethinking Social Justice to Include our Furry Friends",
+	:location => "Southern & Central Oregon",
 	:description => wtwta_desc,
 	:latitude => 42.321468,
 	:longitude => -122.8673963,
 	:gmaps => true
 },
-{ 	:name => "We Are All Arizona", 
-	:subtitle => "Confronting the Attacks on Difference", 
-	:location => "Phoenix & Tucson, Arizona", 
+{ 	:name => "We Are All Arizona",
+	:subtitle => "Confronting the Attacks on Difference",
+	:location => "Phoenix & Tucson, Arizona",
 	:description => waaa_desc,
 	:latitude => 33.4483771,
 	:longitude => -112.0740373,
 	:gmaps => true
 },
-{ 	:name => "Voices of the Unheard", 
-	:subtitle => "The Struggle for Equality & Rights in Indian Country", 
-	:location => "Campo Kumeyaay Reservation, California", 
+{ 	:name => "Voices of the Unheard",
+	:subtitle => "The Struggle for Equality & Rights in Indian Country",
+	:location => "Campo Kumeyaay Reservation, California",
 	:description => votu_desc,
 	:latitude => 32.6495181,
 	:longitude => -116.3569927,
 	:gmaps => true
 },
-{ 	:name => "Home of Cesar Chavez", 
-	:subtitle => "Agriculture, Prisons, and the Communities of California's Core", 
-	:location => "Visalia & Bakersfield, California", 
+{ 	:name => "Home of Cesar Chavez",
+	:subtitle => "Agriculture, Prisons, and the Communities of California's Core",
+	:location => "Visalia & Bakersfield, California",
 	:description => hocc_desc,
 	:latitude => 36.3302284,
 	:longitude => -119.2920585,
 	:gmaps => true
 },
-{ 	:name => "Environmental Justice", 
-	:subtitle => "Examining Health, Building Community, Demanding Equity", 
-	:location => "Bay Area, California", 
+{ 	:name => "Environmental Justice",
+	:subtitle => "Examining Health, Building Community, Demanding Equity",
+	:location => "Bay Area, California",
 	:description => ej_desc,
 	:latitude => 37.7749295,
 	:longitude => -122.4194155,
 	:gmaps => true,
 	:zoom_level => 9
 },
-{ 	:name => "Food for Thought", 
-	:subtitle => "Food Justice & Sustainability", 
-	:location => "Greater Bay Area, California", 
+{ 	:name => "Food for Thought",
+	:subtitle => "Food Justice & Sustainability",
+	:location => "Greater Bay Area, California",
 	:description => fft_desc,
 	:latitude => 37.7508977,
 	:longitude => -122.5081844,
 	:gmaps => true,
 	:zoom_level => 9
 },
-{ 	:name => "Give Me Shelter", 
-	:subtitle => "An Exploration of Homelessness & Poverty", 
-	:location => "San Francisco and Sacramento, California", 
+{ 	:name => "Give Me Shelter",
+	:subtitle => "An Exploration of Homelessness & Poverty",
+	:location => "San Francisco and Sacramento, California",
 	:description => gms_desc,
 	:latitude => 37.7749295,
 	:longitude => -122.4194155,
 	:gmaps => true,
 	:zoom_level => 9
 },
-{ 	:name => "NOLA", 
-	:subtitle => "Hidden, Revealed, Forgotten", 
-	:location => "New Orleans, Louisiana", 
+{ 	:name => "NOLA",
+	:subtitle => "Hidden, Revealed, Forgotten",
+	:location => "New Orleans, Louisiana",
 	:description => nola_desc,
 	:latitude => 29.9510658,
 	:longitude => -90.0715323,
 	:gmaps => true
 },
-{ 	:name => "San Diego/Tijuana", 
-	:subtitle => "Too Many Walls, Not Enough Bridges", 
-	:location => "San Diego, California & Tijuana Mexico", 
+{ 	:name => "San Diego/Tijuana",
+	:subtitle => "Too Many Walls, Not Enough Bridges",
+	:location => "San Diego, California & Tijuana Mexico",
 	:description => sdt_desc,
 	:latitude => 32.5149469,
 	:longitude => -117.0382471,
 	:gmaps => true
 },
 {
-	:name => "Premium Health, High Premium", 
-	:subtitle => "Issues with US Health Care", 
-	:location => "Los Angeles, California", 
+	:name => "Premium Health, High Premium",
+	:subtitle => "Issues with US Health Care",
+	:location => "Los Angeles, California",
 	:description => phhp_desc,
 	:latitude => 34.0522342,
 	:longitude => -118.2436849,
@@ -142,7 +142,7 @@ trips_hash.each do |trip|
 	t = Trip.create!(trip)
 	i1 = TripInstance.create!(:trip => t, :year => 2013, :season => "Spring", :description => "A really cool trip that's running this year.")
 	#i2 = TripInstance.create!(trip_id: t.id, year: 2012, description: "A great trip from last year.")
-	t.current_trip_instance_id = i1.id
+	t.current_trip_instance = i1
 	t.save
 
   #Need this
@@ -165,7 +165,7 @@ TripPermission.create!(:trip_instance_id => 1, :user => harry, :permission => 2)
 TripPermission.create!(:trip_instance_id => 1, :user => matty, :permission => 2)
 TripPermission.create!(:trip_instance_id => 1, :user => mc, :permission => 1) #Break Leader
 
-Post.create! :title => 'What are some pressing issues within the food system?', :description => 'Americans spend 9.4% of their disposable income on food. That is less 
+Post.create! :title => 'What are some pressing issues within the food system?', :description => 'Americans spend 9.4% of their disposable income on food. That is less
 than any other country in the world!', :user_id => 3, :trip_id => 1
 Post.create! :title => 'Items you should bring to the trip', :description => 'Sleeping bag, clothes, books, and AN OPEN MIND! :) :) :)', :user_id => 2, :trip_instance_id => 1  # Trip Instance Post create!d by Jay
 

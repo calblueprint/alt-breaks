@@ -8,7 +8,7 @@ def index
 
   #empty array stores trip permissions a user has member status in
   @all_user_member_trips = []
-  
+
   if @admin_permission = current_user.admin_permission
     admin
     puts 'IS ADMIN!!'
@@ -24,7 +24,7 @@ def index
         @all_user_member_trips << trip_permission.trip_instance
       end
     end
-    
+
     if is_break_leader
       puts 'IS BREAK LEADER'
       break_leader(@trip_instance_of_break_leader)
@@ -90,14 +90,9 @@ end
 
 def change_current
   trip = Trip.find(params[:trip_id])
-  trip.current_trip_instance_id = params[:new_current_inst_id]
-  puts "BEFORE"
-  puts trip.current_trip_instance
-  puts trip.trip_instances.all
   trip.current_trip_instance = TripInstance.find(params[:new_current_inst_id])
-  puts "AFTER"
-  puts trip.current_trip_instance
-  puts trip.trip_instances.all
+
+
   respond_to do |format|
     if trip.save
       format.html { redirect_to dashboard_url, notice: 'Displayed Trip was updated.' }

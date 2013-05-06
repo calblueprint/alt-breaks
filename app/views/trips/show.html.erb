@@ -9,27 +9,31 @@
 			<div class="span2">
 				<div class="well">
 					<h4>Break Leaders</h4>
-					<% leaders = @trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
-					<% leaders.each do |leader| %>
-						<ul class="thumbnails">
-							<li>
-								<div class="row-fluid">
-									<div class="span12">
-										<% if leader.avatar.exists? %>
-											<%= link_to(image_tag(leader.avatar.url(:medium)), user_path(leader.id)) %>
-										<% else %>
-      										<%= link_to(image_tag("/assets/cat.png"), user_path(leader.id)) %>
-                  						<% end %>
+					<% if @trip.trip_instances.any? %>
+						<% leaders = @trip.current_trip_instance.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
+						<% leaders.each do |leader| %>
+							<ul class="thumbnails">
+								<li>
+									<div class="row-fluid">
+										<div class="span12">
+											<% if leader.avatar.exists? %>
+												<%= link_to(image_tag(leader.avatar.url(:medium)), user_path(leader.id)) %>
+											<% else %>
+	      										<%= link_to(image_tag("/assets/cat.png"), user_path(leader.id)) %>
+	                  						<% end %>
 
+					    				</div>
+					    			</div>
+					    			<div class="row-fluid">
+					    				<div class="span12">
+					    					<%= link_to(leader.first_name+" "+leader.last_name, user_path(leader.id)) %>
+				    					</div>
 				    				</div>
-				    			</div>
-				    			<div class="row-fluid">
-				    				<div class="span12">
-				    					<%= link_to(leader.first_name+" "+leader.last_name, user_path(leader.id)) %>
-			    					</div>
-			    				</div>
-							</li>
-						</ul>
+								</li>
+							</ul>
+						<% end %>
+					<% else %>
+						None yet!
 					<% end %>
 				</div>
 			</div>
@@ -180,7 +184,7 @@
 	    								<%= link_to(testimony.description, [@trip.current_trip_instance, testimony]) %>
 	    								by <%= testimony.user.name %>
 	    							-->
-		  							</tr>	
+		  							</tr>
 		  							<br>
 	  							<% end %>
 							<% end %>
