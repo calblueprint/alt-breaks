@@ -51,10 +51,18 @@ class TripsController < ApplicationController
   # POST /trips
   # POST /trips.json
   def create
+    # params[:trip][:latitude] = Float(params[:trip][:latitude])
+    # params[:trip][:longitude] = Float(params[:trip][:longitude])
+    puts "SHIT IS GOING DOWN OMG"
     @trip = Trip.new(params[:trip])
+    @trip.latitude = Float(@trip.latitude)
+    @trip.longitude = Float(@trip.longitude)
+    puts params[:trip]
+    puts @trip.latitude
+    puts @trip.longitude
 
     respond_to do |format|
-      if @trip.save
+      if @trip.save!
         format.html { redirect_to dashboard_url, notice: 'Trip was successfully created.' }
         format.json { render json: @trip, status: :created, location: @trip }
       else

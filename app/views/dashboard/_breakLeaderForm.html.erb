@@ -1,5 +1,5 @@
 <%= form_for(@trip_permission) do |f| %>
-  <div class="modal-body">
+  <div class="modal-body chosen-form">
     <%= f.label :user_id, "Name" %>
     <%= f.collection_select :user_id, User.order(:first_name), :id, :full_name, {}, {:class=>'chzn-select', :id => nil} %>
     <%= f.hidden_field :trip_instance_id, :value=>trip_instance_id %>

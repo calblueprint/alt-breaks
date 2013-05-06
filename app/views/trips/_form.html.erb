@@ -12,14 +12,31 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
+    <%= f.label :latitude %><br />
+    <%= f.text_field :latitude %>
+
+    <%= f.label :longitude %><br />
+    <%= f.text_field :longitude %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+    <%= gmaps("map_options" => {
+      :detect_location => true,
+      :center_on_user => false,
+      "zoom" => 6,
+      :type => :TERRAIN
+    },
+    "markers" => {
+      "data" => '[{"lat": 42, "lng": 42}]',
+      "options" => {
+        "draggable" => true
+      }
+    }) %>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<% content_for :head do %>
