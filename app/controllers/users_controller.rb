@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user_trip = @user.trip_permissions
     temp_user_posts = @user.posts
     temp_user_posts.sort_by!(&:created_at)
+    temp_user_posts.reverse!
     @user_posts = []
     if temp_user_posts.length > 4
       temp_user_posts[0...4].each do |post|

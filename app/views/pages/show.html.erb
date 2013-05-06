@@ -23,6 +23,7 @@
 					<div class="row-fluid">
 						<table class="table table-hover table-bordered">
 							<% if @posts %>
+								<%= paginate @posts %>
 	  							<% @posts.each do |post| %>
 	  								</tbody>
 	    								<td><h4><%= link_to post.title, page_post_path(:page_id => @page.id, :id =>post.id) %></h4> <br> Created by: <%= post.user.name %></td>
@@ -30,7 +31,6 @@
 	  							<% end %>
 							<% end %>
 						</table>
-						<i>Pagination to go here</i>
 						<!--<%= link_to "See all", {:controller => "posts", :action => "pages_index", :page_id => @page.id }%>-->
 					</div>
 			 	</div>
