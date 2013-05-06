@@ -15,7 +15,7 @@ class PagesController < ApplicationController
   def show
     @new_post = Post.new  #set up for modal
     @page = Page.find(params[:id])
-    @posts = @page.posts #don't need below code b/c doing pagination
+    @posts = @posts = Kaminari.paginate_array(@page.posts.sort_by!(&:created_at)).page(params[:page]).per(4) #don't need below code b/c doing pagination #don't need below code b/c doing pagination
 =begin
     @temp_posts = @page.posts
     @posts = []    
