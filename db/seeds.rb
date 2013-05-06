@@ -55,7 +55,8 @@ trips_hash = [
 	:description => wtwta_desc,
 	:latitude => 42.321468,
 	:longitude => -122.8673963,
-	:gmaps => true
+	:gmaps => true,
+  cover_photo_file_name: "where-the-wild-things-are_2.jpeg"
 },
 { 	:name => "We Are All Arizona",
 	:subtitle => "Confronting the Attacks on Difference",
@@ -63,7 +64,8 @@ trips_hash = [
 	:description => waaa_desc,
 	:latitude => 33.4483771,
 	:longitude => -112.0740373,
-	:gmaps => true
+	:gmaps => true,
+  cover_photo_file_name: "arizona-2500.jpg"
 },
 { 	:name => "Voices of the Unheard",
 	:subtitle => "The Struggle for Equality & Rights in Indian Country",
@@ -71,7 +73,8 @@ trips_hash = [
 	:description => votu_desc,
 	:latitude => 32.6495181,
 	:longitude => -116.3569927,
-	:gmaps => true
+	:gmaps => true,
+  cover_photo_file_name: "voices-of-the-unheard.jpg"
 },
 { 	:name => "Home of Cesar Chavez",
 	:subtitle => "Agriculture, Prisons, and the Communities of California's Core",
@@ -79,7 +82,8 @@ trips_hash = [
 	:description => hocc_desc,
 	:latitude => 36.3302284,
 	:longitude => -119.2920585,
-	:gmaps => true
+	:gmaps => true,
+  cover_photo_file_name: "home-of-cesar-chavez.jpg"
 },
 { 	:name => "Environmental Justice",
 	:subtitle => "Examining Health, Building Community, Demanding Equity",
@@ -88,7 +92,8 @@ trips_hash = [
 	:latitude => 37.7749295,
 	:longitude => -122.4194155,
 	:gmaps => true,
-	:zoom_level => 9
+	:zoom_level => 9,
+  cover_photo_file_name: "environmental-justice.jpg"
 },
 { 	:name => "Food for Thought",
 	:subtitle => "Food Justice & Sustainability",
@@ -97,7 +102,8 @@ trips_hash = [
 	:latitude => 37.7508977,
 	:longitude => -122.5081844,
 	:gmaps => true,
-	:zoom_level => 9
+	:zoom_level => 9,
+  cover_photo_file_name: "food-for-thought.jpg"
 },
 { 	:name => "Give Me Shelter",
 	:subtitle => "An Exploration of Homelessness & Poverty",
@@ -106,7 +112,8 @@ trips_hash = [
 	:latitude => 37.7749295,
 	:longitude => -122.4194155,
 	:gmaps => true,
-	:zoom_level => 9
+	:zoom_level => 9,
+  cover_photo_file_name: "give-me-shelter.jpg"
 },
 { 	:name => "NOLA",
 	:subtitle => "Hidden, Revealed, Forgotten",
@@ -114,7 +121,8 @@ trips_hash = [
 	:description => nola_desc,
 	:latitude => 29.9510658,
 	:longitude => -90.0715323,
-	:gmaps => true
+	:gmaps => true,
+  cover_photo_file_name: "nola.jpg"
 },
 { 	:name => "San Diego/Tijuana",
 	:subtitle => "Too Many Walls, Not Enough Bridges",
@@ -122,7 +130,8 @@ trips_hash = [
 	:description => sdt_desc,
 	:latitude => 32.5149469,
 	:longitude => -117.0382471,
-	:gmaps => true
+	:gmaps => true,
+  cover_photo_file_name: "san-diego-tijuana.jpg"
 },
 {
 	:name => "Premium Health, High Premium",
@@ -131,7 +140,8 @@ trips_hash = [
 	:description => phhp_desc,
 	:latitude => 34.0522342,
 	:longitude => -118.2436849,
-	:gmaps => true
+	:gmaps => true,
+  cover_photo_file_name: "premium-health-high-premium.jpg"
 }]
 
 # Dummy Break Leaders temporarily leading ALL trips
@@ -171,3 +181,32 @@ Post.create! :title => 'Items you should bring to the trip', :description => 'Sl
 
 Page.create!(:name => 'General', :description => 'Announcements and general discussion will be posted here', :permission => 2)
 Page.create!(:name => 'Internal', :description => 'Internal discussion for just break leaders and directors', :permission => 1)
+
+
+#Create Testimonies
+default_desc = "This trip was the most fun I ever had. This trip was the most fun I ever had. This trip was the most fun I ever had. This trip was the most fun I ever had. This trip was the most fun I ever had. This trip was the most fun I ever had."
+
+(1..10).each do |n|
+  t1 = Testimony.create!(description: default_desc)
+  t2 = Testimony.create!(description: default_desc)
+
+  t1.trip_instance = TripInstance.find(n)
+  t2.trip_instance = TripInstance.find(n)
+  t1.user = User.find(1)
+  t2.user = User.find(2)
+
+  t1.save
+  t2.save
+end
+
+p = Photo.create!(photo_file_name: "jay.jpg")
+Testimony.find(1).photos << p
+p.save
+
+(2..20).each do |n|
+  p = Photo.create!(photo_file_name: "jay#{n}.jpg")
+  Testimony.find(n).photos << p
+  p.save
+end
+
+
