@@ -102,11 +102,7 @@
                             <% set.each do |permission| %>
                               <li class="span3">
                                 <div class="thumbnail">
-                                  <% if inst.trip_permissions.where("permission = '1'").size > 1 %>
                                   <%=link_to "x", dashboard_url, :class=>"btn btn-mini btn-danger", :confirm => "Are you sure you want to delete this break leader?"%>
-                                  <% else %>
-                                  <%=link_to "x", dashboard_url, :class=>"btn btn-mini btn-danger disabled" %>
-                                  <% end %>
                                   <% if permission.user.avatar.exists? %>
                                   <%= link_to(image_tag(permission.user.avatar.url(:small)), user_path(permission.user.id)) %>
                                   <% else %>
@@ -137,9 +133,29 @@
             <div class="span4">
               <div class="well">
                 <h5>Community Partners</h5>
-                <% trip.partners.all.each do |cp| %>
-                  <%= link_to(cp.name, "http://"+cp.website) %> <br />
+                <% trip.partners.all.each_slice(2) do |pset| %>
+                  <ul class="thumbnails">
+                    <div class="row-fluid">
+                      <% pset.each do |p| %>
+                        <li class="span3">
+                          <div class="thumbnail">
+                            <%=link_to "x", dashboard_url, :class=>"btn btn-mini btn-danger", :confirm => "Are you sure you want to delete this community partner?"%>
+                            <%if p.logo.exists?%>
+                            <%= link_to(image_tag(p.logo.url(:small)), "http://"+p.website) %>
+                            <%= link_to p.name, "http://"+p.website %>
+                            <%else%>
+                            <%= link_to(image_tag("/assets/community.jpg"), "http://"+p.website) %>
+                            <%= link_to p.name, "http://"+p.website %>
+                            <% end %>
+                          </div>
+                        </li>
+                      <% end %>
+                    </div>
+                  </ul>
                 <% end %>
+                <!--<% trip.partners.all.each do |cp| %>
+                  <%= link_to(cp.name, "http://"+cp.website) %> <br />
+                <% end %>-->
                 <!-- Modal: Add Community Partner -->
                 <a href="#partnerModal<%=trip.id%>" role="button" class="btn" data-toggle="modal">Add Community Partner</a><br />
                 <div id="partnerModal<%=trip.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
