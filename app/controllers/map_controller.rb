@@ -12,7 +12,9 @@ class MapController < ApplicationController
 
     	# again, preventative measures
     	if !trip.current_trip_instance then
+            puts "ERROR, trip does not have trip instances. Attempting to skip."
     		next
+            puts "Skipping did not work! FAIL"
     	end
 
     	###

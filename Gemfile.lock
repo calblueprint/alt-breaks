@@ -96,7 +96,6 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    libv8 (3.11.8.17)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     mail (2.4.4)
@@ -202,8 +201,8 @@ DEPENDENCIES
   devise
   gmaps4rails
   jquery-rails
-  paperclip (~> 3.4.1)
   kaminari
+  paperclip (~> 3.4.1)
   rails (= 3.2.12)
   sass-rails (~> 3.2.3)
   simple_form

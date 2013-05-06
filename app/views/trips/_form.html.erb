@@ -19,6 +19,18 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+    <%= gmaps("map_options" => {
+      :detect_location => true,
+      :center_on_user => false,
+      "zoom" => 6,
+      :type => :TERRAIN
+    },
+    "markers" => {
+      "data" => '[{"lat": 42, "lng": 42}]',
+      "options" => {
+        "draggable" => true
+      }
+    }) %>
   <div class="actions">
     <%= f.submit %>
   </div>
