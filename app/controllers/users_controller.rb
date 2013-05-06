@@ -10,6 +10,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def pts(trip_permission)
+    if trip_permission.permission == 1
+      return 'Break Leader'
+    elsif trip_permission.permission == 2
+      return 'Member'
+    else
+      return 'Member'
+    end
+  end 
+
   # GET /users/1
   # GET /users/1.json
   def show

@@ -176,7 +176,7 @@ TripPermission.create!(:trip_instance_id => 1, :user => matty, :permission => 2)
 TripPermission.create!(:trip_instance_id => 1, :user => mc, :permission => 1) #Break Leader
 
 Post.create! :title => 'What are some pressing issues within the food system?', :description => 'Americans spend 9.4% of their disposable income on food. That is less
-than any other country in the world!', :user_id => 3, :trip_id => 1
+than any other country in the world!', :user_id => 3, :trip_instance_id => 1
 Post.create! :title => 'Items you should bring to the trip', :description => 'Sleeping bag, clothes, books, and AN OPEN MIND! :) :) :)', :user_id => 2, :trip_instance_id => 1  # Trip Instance Post create!d by Jay
 
 Page.create!(:name => 'General', :description => 'Announcements and general discussion will be posted here', :permission => 2)

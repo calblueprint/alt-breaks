@@ -19,8 +19,9 @@
 	<div class="span8">
 		<div class="well">
 			<h3><%= @user.name %></h3>
+			<h4><%= @user.major %> <%= @user.grad_year %></h4>
 			<% @user_trip.each do |trip| %>
-			<h4><%= trip.trip_instance.name %> <%= trip.trip_instance.year %></h4>
+			<h4><%= controller.pts(trip) %> | <%= trip.trip_instance.name %> <%= trip.trip_instance.year %></h4>
 			<% end %>
 			<!-- Button to trigger modal -->
 			<% if user_signed_in? && current_user.id == @user.id %>
