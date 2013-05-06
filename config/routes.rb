@@ -57,6 +57,8 @@ Altbreaks::Application.routes.draw do
 
   match 'delete_admin/:admin_id' => 'admin_permissions#delete_admin', :as => 'delete_admin'
 
+  match 'delete_break_leader/:permission_id' => 'dashboard#delete_break_leader', :as => 'delete_break_leader'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
