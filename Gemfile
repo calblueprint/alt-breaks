@@ -28,6 +28,10 @@ group :development, :test do
   gem 'better_errors'
 end
 
+group :production do
+  gem 'pg'
+end
+
 gem 'chosen-rails'
 
 gem 'jquery-rails'
