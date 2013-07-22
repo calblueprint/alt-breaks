@@ -1,8 +1,4 @@
 <% content_for :head do %>
-  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-transition.js"></script>
-  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-collapse.js"></script>
-  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
-  <script type="text/javascript" src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-typeahead.js"></script>
   <%= javascript_include_tag 'chosen' %>
 <% end %>
 
@@ -48,7 +44,7 @@
 			<% if post.trip_instance != nil %>
 				<div class="well">
 					<h4><%= link_to post.title, trip_instance_post_path(:trip_instance_id => post.trip_instance.id, :id =>post.id) %></h4>
-					Posted in: <%= post.trip_instance.name %> <%= post.trip_instance.year %> 
+					Posted in: <%= post.trip_instance.name %> <%= post.trip_instance.year %>
 				</div>
 			<% else %>
 				<div class="well">
