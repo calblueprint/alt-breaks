@@ -20,8 +20,7 @@ Altbreaks::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  config.assets.precompile << '*.js'
-  config.assets.precompile << ['*.coffee']
+  config.assets.precompile = ['*.coffee', '*.js', '*.css', '*.scss']
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
