@@ -23,15 +23,15 @@
 
 <!-- initialize the infobubble popup -->
 <% content_for :scripts do %>
-    <script type="text/javascript">
-      var script = '<script type="text/javascript" src="http://google-maps-' +
-          'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble';
-      if (document.location.search.indexOf('compiled') !== -1) {
-        script += '-compiled';
-      }
-      script += '.js"><' + '/script>';
-      document.write(script);
-    </script>
+  <script type="text/javascript">
+    var script = '<script type="text/javascript" src="http://google-maps-' +
+        'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble';
+    if (document.location.search.indexOf('compiled') !== -1) {
+      script += '-compiled';
+    }
+    script += '.js"><' + '/script>';
+    document.write(script);
+  </script>
 <% end %>
 
 <!-- populate all the rendered html popups into the window because shitty render function doesnt work in assets -->
@@ -40,7 +40,6 @@
 		window.trip_names = [];
 		window.zoom_levels = [];
 		window.rendered_htmls = [];
-		console.log("FUCK ME");
 		<% Trip.all.each do |trip| %>
 			<% if trip.trip_instances.any? %>
 				<% curr_inst = trip.current_trip_instance %>

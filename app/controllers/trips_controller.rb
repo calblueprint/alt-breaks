@@ -53,7 +53,6 @@ class TripsController < ApplicationController
   def create
     # params[:trip][:latitude] = Float(params[:trip][:latitude])
     # params[:trip][:longitude] = Float(params[:trip][:longitude])
-    puts "SHIT IS GOING DOWN OMG"
     @trip = Trip.new(params[:trip])
     @trip.latitude = Float(@trip.latitude)
     @trip.longitude = Float(@trip.longitude)

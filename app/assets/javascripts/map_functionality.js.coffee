@@ -21,9 +21,6 @@ are_infobubbles_open = (return_them, close_them, except_current) ->
                 return true
             if close_them
                 if not (except_current and bubble == window.open_infobubble)
-                    console.log "closing"
-                    console.log bubble
-                    console.log bubble == window.open_infobubble
                     bubble.close()
             else
                 rtn.push(bubble)
@@ -38,7 +35,6 @@ create_and_bind_infobubble = (map, marker, html, zoom_level) ->
     google.maps.event.addListener marker.serviceObject, 'click', ->
         if !bubble.isOpen()
             if map.getZoom() != zoom_level
-                # console.log "well fuck, better change the zoom level"
                 map.setZoom zoom_level
             window.open_infobubble?.close()
             bubble.open(map, marker.serviceObject)
@@ -53,13 +49,19 @@ create_and_bind_hover_link = (map, marker, name, zoom_level) ->
     html.mouseenter ->
         if map.getZoom() != zoom_level
             map.setZoom zoom_level
-        map.panTo marker.serviceObject.position
-        # console.log "well fuck, zooming to " + zoom_level
-        if !marker.bubble?.isOpen()
+
+        if marker != null
+            map.panTo marker.serviceObject.position
+            if !marker.bubble?.isOpen()
+                window.open_infobubble?.close()
+                are_infobubbles_open(true, true, true) #close all other infobubbles
+                marker.bubble.open(map, marker.serviceObject)
+                window.open_infobubble = marker.bubble
+        else
             window.open_infobubble?.close()
-            are_infobubbles_open(true, true, true) #close all other infobubbles
-            marker.bubble.open(map, marker.serviceObject)
-            window.open_infobubble = marker.bubble
+            map.panTo new google.maps.LatLng(36.35, -106.5, false) #hard coded--how do i zoom back to center of all markers?
+
+
 
 Gmaps.map.callback = ->
     console.log "GMAPS$RAILS CALLBACK CALLED"
@@ -71,6 +73,8 @@ Gmaps.map.callback = ->
         console.log "ERROR: Something is going wrong with the rendered html and markers."
         return
 
+    #About
+    create_and_bind_hover_link(@map, null, 'About Us', 5)
     for i in [0...@markers.length]
         create_and_bind_infobubble(@map, @markers[i], window.rendered_htmls[i], window.zoom_levels[i])
         create_and_bind_hover_link(@map, @markers[i], window.trip_names[i], window.zoom_levels[i])
