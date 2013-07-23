@@ -21,6 +21,7 @@ Altbreaks::Application.configure do
   config.assets.digest = true
 
   config.assets.precompile << '*.js'
+  config.assets.precompile << ['*.coffee']
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
