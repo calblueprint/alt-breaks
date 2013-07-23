@@ -60,8 +60,6 @@ gem "simple_form"
 
 gem 'gmaps4rails'
 
-gem 'asset_sync'
-
 gem 'aws-s3'
 gem 'aws-sdk'
 
