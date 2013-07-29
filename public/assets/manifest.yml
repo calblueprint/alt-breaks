@@ -49,8 +49,10 @@ admin_permission.css: admin_permission-1b13569e9620782f423d4cd3ce931750.css
 admin_permission/index.css: admin_permission-1b13569e9620782f423d4cd3ce931750.css
 admin_permissions.css: admin_permissions-1b13569e9620782f423d4cd3ce931750.css
 admin_permissions/index.css: admin_permissions-1b13569e9620782f423d4cd3ce931750.css
-application.css: application-714914525bfdc134b08a4d8e4a02c8c3.css
-application/index.css: application-714914525bfdc134b08a4d8e4a02c8c3.css
+application.css: application-629dfa3b10ceb28f764ada8fee11bf4c.css
+application/index.css: application-629dfa3b10ceb28f764ada8fee11bf4c.css
+bootstrap.css: bootstrap-5c316f07db4950d8d7083d47fe770738.css
+bootstrap/index.css: bootstrap-5c316f07db4950d8d7083d47fe770738.css
 bootstrap_and_overrides.css: bootstrap_and_overrides-e5d821a837ea16203470e001734be514.css
 bootstrap_and_overrides/index.css: bootstrap_and_overrides-e5d821a837ea16203470e001734be514.css
 dashboard.css: dashboard-8e69a7c595a512860462527e1d805ebe.css
