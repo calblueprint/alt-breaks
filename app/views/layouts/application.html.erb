@@ -7,11 +7,14 @@
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag "application", :media => "all" %>
 
+  <script>
+    $(document).ready(function() {
+      $('#carousel-title').carousel({interval: 8000});
+      console.log('test');
+    });
+  </script>
+
   <%= javascript_include_tag :testimonies %>
-
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
-
 
   <%= yield(:head) %>
 

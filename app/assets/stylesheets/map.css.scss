@@ -2,17 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$grayLight  :   #D4D4D4;
+
+#info-box {
+	.heading {
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	padding: 10px;
+	height: 200px;
+	width: 400px;
+	position: absolute;
+	z-index: 10;
+	top: 60px;
+	right: 50px;
+	background: $grayLight;
+	opacity:0.8;
+  filter:alpha(opacity=80);
+  border: green solid 1px;
+}
 .gmaps4rails_map img {
 	max-width: none; //override for stupid bootstrap styles
 }
 
-.gmaps4rails_map label { 
-  width: auto; display:inline; 
+.gmaps4rails_map label {
+  width: auto; display:inline;
 }
 
 .trips {
 	display: inline-block;
-	
+
 	width: 22%;
 	text-align: center;
 
