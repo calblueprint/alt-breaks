@@ -2,8 +2,26 @@ $grayLight  :   #EEF3F8;
 $gray       :   #B4B4B4;
 $grayDark   :   #969B9B;
 $grayBlue   :   #8392A0;
+$blue       :   #3a87ad;
 
 /* general styling */
+
+h1 {
+  font-weight: 300;
+}
+h2 {
+  font-weight: 400;
+}
+h3 {
+  font-weight: 400;
+}
+.blue {
+  color: $blue;
+}
+.gray-blue {
+  color: $grayBlue;
+}
+
 .heading {
   font-size: 24px;
   color: #3a87ad;

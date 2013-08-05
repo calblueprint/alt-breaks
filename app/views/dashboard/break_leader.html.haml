@@ -1,0 +1,20 @@
+.container
+  %h1.blue Break Leader Dashboard
+  .row-fluid
+    %h2
+      = @trip_name
+      = @trip_year
+    %h3.blue My Group Members
+  .row-fluid
+    %table.table.table-hover
+      - @list_of_members.each do |member|
+        %tbody
+          %td= member.name
+          - @trip_instance_of_break_leader
+          %td= link_to "X", delete_from_trip_path(@trip_instance_of_break_leader.id, member.id), :class=>"btn btn-mini btn-danger"
+  .row-fluid
+    %h3.blue Pending Requests
+    %table.table.table-hover
+      - @requests_for_break_leader.each do |request|
+        %td= request.user.name
+        %td= link_to "Approve", approve_request_path(request.id), :class=> "btn"
