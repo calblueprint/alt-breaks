@@ -12,3 +12,9 @@
  *= require chosen
  *= require_tree .
  */
+
+@import "about";
+
+.body {
+  overflow-x: hidden;
+}

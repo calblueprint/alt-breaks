@@ -1,0 +1,48 @@
+.row.video
+  #carousel-title.carousel.slide
+    / Wrapper for slides
+    .carousel-inner
+      .item.active
+        .carousel-item
+          %iframe{:width => "640", :height => "360", :src => "http://www.youtube.com/embed/FlC8fXHQbsc?rel=0", :frameborder => "0"}
+      .item
+        .carousel-item
+          .slideshow
+            <embed allowfullscreen="true" allowscriptaccess="always" height="370" id="soundslider" menu="false" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="http://www.berkeley.edu/news2/2012/04/altbreaks/soundslider.swf?size=2&amp;format=xml" type="application/x-shockwave-flash" width="470" top = "-25px"></embed>
+        / .carousel-caption
+        /   hey
+
+    / Controls
+    %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-title"}
+      %span.icon-prev
+    %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-title"}
+      %span.icon-next
+
+    %ol.carousel-indicators.about
+      %li.active{"data-slide-to" => "0", "data-target" => "#carousel-title"}
+      %li{"data-slide-to" => "1", "data-target" => "#carousel-title"}
+    /Indicators
+
+
+
+
+
+
+.container
+  .row
+    .heading
+      What is Alternative Breaks?
+    .text
+      %p
+        <b>Alternative Breaks</b> is a service-learning program for students to explore social issues through meaningful service, education, and reflection during their academic breaks. This year, Alternative Breaks offers ten week-long trips coupled with a semester long academic course on issues such as environmental justice, health care, immigration, and homelessness. Students serve throughout California, and in Oregon, Arizona and Louisiana.
+
+      %p
+        Since 2001, Alternative Breaks has offered students opportunities to connect to the greater community through meaningful service, education, and reflection during their academic breaks coupled with a semester-long course. Participants return from their experiences with greater insight on a particular social justice issue and a deeper understanding on what it means to get involved in the community.
+
+      %p
+        Alternative Breaks introduces students to issues in a particular community, provides them with the knowledge and ability to make an informed impact on their own communities, and creates a memorable and fun experience in a team environment. This year, Alternative Breaks offers trips to ten different locations during the academic spring break.
+
+:javascript
+  $('#mydiv').show();
+#mydiv{:style => "display:none"}
+  TEST

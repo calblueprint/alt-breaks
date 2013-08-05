@@ -66,3 +66,5 @@ gem 'aws-sdk'
 gem 'kaminari'
 
 gem 'compass-rails'
+
+gem 'haml'
