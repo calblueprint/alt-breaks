@@ -1,1 +1,23 @@
-Team
+.container
+  / .row
+  /   .heading
+  /     Our Team
+
+  .row
+    .heading
+      Staff
+  .row
+    .heading
+      Directors
+    .section
+      - @directors.each do |m|
+        = render 'page/director', :member => m
+  .row
+    .heading
+      Break Leaders
+    .section
+      - @break_leaders.each do |m|
+        = render 'page/break_leader', :member => m
+  .row
+
+

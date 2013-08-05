@@ -1,0 +1,10 @@
+.member
+  .avatar
+    - if member.avatar.exists?
+      = image_tag member.avatar.url(:small)
+    - else
+      = image_tag("/assets/cat.png")
+  .name
+    = member.name
+  .title
+    = member.title
