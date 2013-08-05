@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   }
 
   scope :break_leaders, lambda {
-    joins(:trip_permissions).where("trip_permissions.permission = ?", TripPermission::BREAK_LEADER).group("id")
+    joins(:trip_permissions).where("trip_permissions.permission = ?", TripPermission::BREAK_LEADER).group("user_id")
   }
 
   def name
