@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805083738) do
+ActiveRecord::Schema.define(:version => 20130814092421) do
 
   create_table "admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(:version => 20130805083738) do
     t.datetime "logo_updated_at"
     t.integer  "trip_id"
     t.integer  "partner_id"
+    t.float    "longitude"
+    t.float    "latitude"
   end
 
   create_table "partners_trips", :id => false, :force => true do |t|

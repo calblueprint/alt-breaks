@@ -10,11 +10,11 @@ class MapController < ApplicationController
     	# end
     	###
 
-        Trip.all.each do |trip|
-            if trip.trip_instances.any?
-                puts trip.name
-            end
-        end
+        # Trip.all.each do |trip|
+        #     if trip.trip_instances.any?
+        #         puts trip.name
+        #     end
+        # end
 
     	# again, preventative measures
     	if !trip.current_trip_instance then
