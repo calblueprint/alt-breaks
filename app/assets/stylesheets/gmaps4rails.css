@@ -27,7 +27,7 @@
    border:#555555 2px solid;
 }
 
-body, html, .container-fluid {
+.map-container{
   display: block;
   height: 100%;
   width: 100%;

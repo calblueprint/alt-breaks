@@ -1,23 +1,19 @@
 .container
-  / .row
-  /   .heading
-  /     Our Team
-
-  .row
+  .row-fluid
     .heading
       Staff
-  .row
+  .row-fluid
     .heading
       Directors
     .section
       - @directors.each do |m|
         = render 'page/director', :member => m
-  .row
+  .row-fluid
     .heading
       Break Leaders
     .section
       - @break_leaders.each do |m|
         = render 'page/break_leader', :member => m
-  .row
+  .row-fluid
 
 

@@ -43,22 +43,31 @@ h3 {
 .carousel-row {
   padding: 20px 0px;
   text-align: center;
-  background: $grayLight;
+  background: #FFFFFF;
 
   #carousel-title {
     .carousel-item {
     }
     .carousel-indicators {
-      position: relative;
-      left: 48%;  //need to work on this
+      position: absolute;
+      width: 30px;
+      top: 375px;
+      left: 0;
+      right: 0;
+      width: 30px;
+      margin: auto;
+
       z-index: 10;
     }
     .carousel-indicators li {
       background-color: #fff;
     }
 
-    .carousel-indicators .active {
-      background-color: $grayDark;
+    .carousel-indicators li  {
+      background-color: $grayLight;
+      &.active {
+        background-color: $grayDark;
+      }
     }
     .slideshow {
       margin-top: -30px;
@@ -85,4 +94,29 @@ h3 {
     font-size: 14px;
     color: $grayBlue;
   }
+}
+
+.arrow {
+
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 0;
+    height: 0;
+  &.left {
+    right: 5px;
+    border-right:14px solid #FFFFFF;
+  }
+  &.right {
+    left: 5px;
+    border-left:14px solid #FFFFFF;
+  }
+
 }

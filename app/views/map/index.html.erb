@@ -1,60 +1,62 @@
-<% content_for :head do %>
-	<%= javascript_include_tag "gmaps4rails/gmaps4rails.base" %>
-  <%= javascript_include_tag "gmaps4rails/gmaps4rails.googlemaps" %>
-<% end %>
+<div class="map-container">
+  <% content_for :head do %>
+  	<%= javascript_include_tag "gmaps4rails/gmaps4rails.base" %>
+    <%= javascript_include_tag "gmaps4rails/gmaps4rails.googlemaps" %>
+  <% end %>
 
-<div class="trips">
-	<ul>
-	</ul>
+  <div class="trips">
+  	<ul>
+  	</ul>
+  </div>
+
+  <%= gmaps("map_options" => {
+  	:detect_location => true,
+  	:center_on_user => false,
+  	"zoom" => 6,
+  	:type => :TERRAIN
+  },
+  "markers" => {
+  	"data" => @json,
+  	"options" => {
+  		"draggable" => true
+  	}
+  }) %>
+
+  <!-- initialize the infobubble popup -->
+  <% content_for :scripts do %>
+    <script type="text/javascript">
+      var script = '<script type="text/javascript" src="http://google-maps-' +
+          'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble';
+      if (document.location.search.indexOf('compiled') !== -1) {
+        script += '-compiled';
+      }
+      script += '.js"><' + '/script>';
+      document.write(script);
+    </script>
+  <% end %>
+
+  <!-- populate all the rendered html popups into the window because shitty render function doesnt work in assets -->
+  <% content_for :scripts do %>
+  	<script type="text/javascript">
+  		window.trip_names = [];
+  		window.zoom_levels = [];
+  		window.rendered_htmls = [];
+  		<% Trip.all.each do |trip| %>
+  			<% if trip.trip_instances.any? %>
+  				<% curr_inst = trip.current_trip_instance %>
+  				<% leaders = curr_inst.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
+  				<% photos = (curr_inst.testimonies.map {|t| t.photos}).flatten.sample(2) %>
+  				window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders, :photos => photos}%>");
+  				window.trip_names.push("<%= trip.name %>");
+  				window.zoom_levels.push(<%= trip.zoom_level %>);
+  			<% end %>
+  		<% end %>
+  	</script>
+  <% end %>
+
+  <!-- include the actual logic and stuff -->
+  <% content_for :scripts do %>
+  	<%= javascript_include_tag "map_functionality" %>
+  	<%= stylesheet_link_tag "gmaps4rails" %>
+  <% end %>
 </div>
-
-<%= gmaps("map_options" => {
-	:detect_location => true,
-	:center_on_user => false,
-	"zoom" => 6,
-	:type => :TERRAIN
-},
-"markers" => {
-	"data" => @json,
-	"options" => {
-		"draggable" => true
-	}
-}) %>
-
-<!-- initialize the infobubble popup -->
-<% content_for :scripts do %>
-  <script type="text/javascript">
-    var script = '<script type="text/javascript" src="http://google-maps-' +
-        'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble';
-    if (document.location.search.indexOf('compiled') !== -1) {
-      script += '-compiled';
-    }
-    script += '.js"><' + '/script>';
-    document.write(script);
-  </script>
-<% end %>
-
-<!-- populate all the rendered html popups into the window because shitty render function doesnt work in assets -->
-<% content_for :scripts do %>
-	<script type="text/javascript">
-		window.trip_names = [];
-		window.zoom_levels = [];
-		window.rendered_htmls = [];
-		<% Trip.all.each do |trip| %>
-			<% if trip.trip_instances.any? %>
-				<% curr_inst = trip.current_trip_instance %>
-				<% leaders = curr_inst.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
-				<% photos = (curr_inst.testimonies.map {|t| t.photos}).flatten.sample(2) %>
-				window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders, :photos => photos}%>");
-				window.trip_names.push("<%= trip.name %>");
-				window.zoom_levels.push(<%= trip.zoom_level %>);
-			<% end %>
-		<% end %>
-	</script>
-<% end %>
-
-<!-- include the actual logic and stuff -->
-<% content_for :scripts do %>
-	<%= javascript_include_tag "map_functionality" %>
-	<%= stylesheet_link_tag "gmaps4rails" %>
-<% end %>
