@@ -1,0 +1,118 @@
+%p#notice= notice
+
+.cover-wrapper
+  .cover-photo{:style => "background-image: url(#{@trip.cover_photo.url(:large)})" }
+  .title-container
+    .title
+      = @trip.name
+    .subtitle
+      = '...' + @trip.subtitle.downcase
+    .location
+      = @trip.location
+
+
+.container
+  .row-fluid
+
+
+    / .span12
+    /   .row-fluid
+    /     .well
+    /       / Modal: Community Partners
+    /       %a.btn{"data-toggle" => "modal", :href => "#cpModal#{@trip.id}", :role => "button"} Community Partners
+    /       %br/
+    /       .modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :id => "cpModal#{@trip.id}", :role => "dialog", :tabindex => "-1"}
+    /         .modal-header
+    /           %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    /           %h3#myModalLabel Community Partners
+    /         .modal-body
+    /           - if @trip.partners.all.empty?
+    /             No Community Partners
+    /           - else
+    /             .row-fluid
+    /               - @trip.partners.all.each_slice(2) do |pset|
+    /                 %ul.thumbnails
+    /                 .row-fluid
+    /                   - pset.each do |p|
+    /                     %li.span6
+    /                       .thumbnail
+    /                         - if p.logo.exists?
+    /                           = link_to(image_tag(p.logo.url(:medium)), "http://"+p.website)
+    /                           = link_to p.name, "http://"+p.website
+    /                         - else
+    /                           = link_to(image_tag("/assets/community.jpg"), "http://"+p.website)
+    /                           = link_to p.name, "http://"+p.website
+    /         .modal-footer
+    /           %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+
+    .row-fluid
+      .span12
+        .heading.center ABOUT THIS TRIP
+        .text
+          = @trip.description
+
+    .row-fluid
+      .span12
+        / .heading.center PHOTOS
+        #myCarousel.carousel.slide
+          %ol.carousel-indicators
+            %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+            %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+            %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+
+          .carousel-inner
+            - first = true
+            - if @photos != []
+              - @photos.each_slice(10).first.each do |photo|
+                - if first
+                  .active.item.cphoto
+                    = image_tag photo.photo.url(:medium), :class => "slide"
+                  - first = false
+                - else
+                  .item.cphoto= image_tag photo.photo.url(:medium), :class => "slide"
+          %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+          %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+
+    .row-fluid
+      .span12
+        .heading.center MEET THE BREAK LEADERS
+        - @trip.break_leaders.each do |leader|
+          .leader
+            .avatar
+              - if leader.avatar.exists?
+                = link_to(image_tag(leader.avatar.url(:medium)), user_path(leader.id))
+              - else
+                = link_to(image_tag("/assets/cat.png"), user_path(leader.id))
+            .description
+              .name
+                = link_to(leader.name, user_path(leader.id))
+              .bio
+                = leader.about_me
+
+
+    .row-fluid
+      .span12
+        .heading.center TESTIMONIES
+    .row-fluid
+      %table.table.table-hover.table-bordered
+        - if @testimonies
+          - @testimonies.each do |testimony|
+            %tr
+            .well
+              %ul.thumbnails
+                %li
+                  .row-fluid
+                    .span2
+                      %a.thumbnail{:href => "#"}
+                        %img{:alt => "", :src => "/assets/panda.jpg"}/
+                    .span10
+                      .row-fluid
+                        %strong Author:
+                        = link_to(testimony.user.name, user_path(testimony.user.id))
+                      .row-fluid
+                        %br/
+                        = link_to(testimony.description, [@trip.current_trip_instance, testimony])
+
+
+        /
+          link_to &quot;See all&quot;, trip_testimonies_path(@trip.id)

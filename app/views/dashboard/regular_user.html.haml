@@ -1,0 +1,12 @@
+.container
+  %h2 Member Dashboard
+  .row-fluid
+    %h3 My Break Groups
+  .row-fluid
+    %table.table.table-hover
+      - @all_user_member_trips.each do |trip_instance|
+        %td
+          %h4= link_to "#{trip_instance.trip.name}  #{trip_instance.year}", trip_instance_path(trip_instance.id)
+  .row-fluid
+    .span12
+      = link_to "Request to join a break group", requests_path, :class=>"btn"

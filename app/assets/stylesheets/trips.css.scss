@@ -1,6 +1,4 @@
-// Place all the styles related to the Trips controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$blue   :   #3a87ad;
 
 .banner {
 	width: 100%;
@@ -25,4 +23,108 @@
 	height: 100%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.cover-wrapper {
+	height: 200px;
+	position: relative;
+	margin-bottom: 20px;
+	.cover-photo {
+		height: 200px;
+/*		background-repeat: no-repeat;*/
+		background-position: center;
+		margin: auto;
+	}
+	.cover-photo:before {
+		content: " ";
+	  width: 100%;
+	  height: 100%;
+	  position: absolute;
+	  z-index: 1;
+	  top: 0;
+	  left: 0;
+	  background-image: -webkit-linear-gradient(left, rgba(70,70,70,1) 0%, rgba(90,90,90,0.95) 20%, rgba(90,90,90,0.6) 40%,  rgba(90,90,90,0.6) 60%, rgba(90,90,90,0.95) 80%, rgba(70,70,70,1) 100%);
+/*	  background: -webkit-radial-gradient(top center, ellipse cover, rgba(255,255,255,0.8) 0%,rgba(0,0,0,1) 100%);*/
+	}
+	.title-container {
+		color: white;
+		text-shadow: 1px 1px black;
+		position: absolute;
+		z-index: 5;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		width: 940px;
+		margin: auto;
+		height: 100%;
+		.title {
+			margin-top: 40px;
+			margin-bottom: 25px;
+			font-size: 45px;
+			font-weight: 600;
+			display: block;
+		}
+		.subtitle {
+			font-weight: 500;
+			font-size: 21px;
+			display: block;
+			padding-left: 5px;
+		}
+		.location {
+			font-weight: 500;
+			position: absolute;
+			bottom: 20px;
+			right: 5px;
+			font-size: 18px;
+		}
+	}
+}
+
+.leader {
+	margin-bottom: 15px;
+	.avatar {
+		width: 120px;
+		float: left;
+	}
+	.description {
+		vertical-align: top;
+		padding-left: 15px;
+		margin-left: 120px;
+		.name {
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+		.bio {
+
+		}
+	}
+}
+
+.action {
+	color: $blue;
+	height: 25px;
+	position: relative;
+	margin-top: 8px;
+	.glyphicon-wrapper {
+		display: inline-block;
+		position: absolute;
+		bottom: 0px;
+		.glyphicon {
+			font-size: 22px;
+			padding-bottom: 3px;
+		}
+	}
+	.link {
+		color: $blue;
+		display: inline-block;
+		padding-left: 32px;
+		font-size: 17px;
+/*		font-weight: bold;*/
+	}
+	&.green {
+		color: green;
+		.link {
+			color: green;
+		}
+	}
 }

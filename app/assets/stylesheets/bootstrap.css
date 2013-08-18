@@ -282,7 +282,7 @@ a:focus {
 [class*="span"] {
   float: left;
   min-height: 1px;
-  margin-left: 20px;
+/*  margin-left: 20px;*/
 }
 
 .container,
@@ -618,6 +618,7 @@ a:focus {
   margin-right: auto;
   margin-left: auto;
   *zoom: 1;
+  margin-bottom: 40px; /*new*/
 }
 
 .container:before,
@@ -2282,7 +2283,7 @@ table th[class*="span"],
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url("assets/images/img/glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat;
 }

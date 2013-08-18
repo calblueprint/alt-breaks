@@ -1,0 +1,22 @@
+
+.container
+  .row-fluid
+    .span8
+      .row-fluid
+        %h1
+          = @trip.name.to_s + " " + @instance.year.to_s
+      .row-fluid
+        .well
+          Sample message. I am so excited for this trip!
+
+        %table.table.table-hover.table-bordered
+          - if @posts
+            = paginate @posts
+            - @posts.each do |post|
+              %tr
+                %td
+                  %h4= link_to post.title, trip_instance_post_path(:trip_instance_id => @instance.id, :id =>post.id)
+                  %br
+                  Created by: #{post.user.name}
+
+    = render :partial=>'/trip_instances/internal_sidebar', :locals => {:instance_id => @instance_id}

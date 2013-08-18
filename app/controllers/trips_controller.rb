@@ -1,58 +1,47 @@
 class TripsController < ApplicationController
-  # GET /trips
-  # GET /trips.json
   def index
     @trips = Trip.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @trips }
     end
   end
 
-  # GET /trips/1
-  # GET /trips/1.json
   def show
-    @new_post = Post.new  #set up for modal
+    @new_post = Post.new
     @trip = Trip.find(params[:id])
     @testimonies = []
     @photos = []
-    @trip.trip_instances.to_a.each do |i|
-      i.testimonies.to_a.each do |t|
+    @trip.trip_instances.to_a.each do |instance|
+      instance.testimonies.to_a.each do |t|
         @testimonies << t
-        t.photos.to_a.each do |p|
-          @photos << p
-        end
+      end
+      instance.photos.to_a.each do |p|
+        @photos << p
       end
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @trip }
     end
   end
 
-  # GET /trips/new
-  # GET /trips/new.json
   def new
     @trip = Trip.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @trip }
     end
   end
 
-  # GET /trips/1/edit
   def edit
     @trip = Trip.find(params[:id])
   end
 
-  # POST /trips
-  # POST /trips.json
   def create
-    # params[:trip][:latitude] = Float(params[:trip][:latitude])
-    # params[:trip][:longitude] = Float(params[:trip][:longitude])
     @trip = Trip.new(params[:trip])
     @trip.latitude = Float(@trip.latitude)
     @trip.longitude = Float(@trip.longitude)
@@ -71,8 +60,6 @@ class TripsController < ApplicationController
     end
   end
 
-  # PUT /trips/1
-  # PUT /trips/1.json
   def update
     @trip = Trip.find(params[:id])
 
@@ -87,8 +74,6 @@ class TripsController < ApplicationController
     end
   end
 
-  # DELETE /trips/1
-  # DELETE /trips/1.json
   def destroy
     @trip = Trip.find(params[:id])
     @trip.destroy

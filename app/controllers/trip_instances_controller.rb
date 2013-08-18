@@ -1,20 +1,15 @@
-require 'pp'
-
 class TripInstancesController < ApplicationController
-  # GET /trips_instances/1
-  # GET /trips_instances/1.json
   def show
-    @new_post = Post.new  #set up for modal
-    @testimony = Testimony.new  #set up for modal
-    5.times {@testimony.photos.build}
+    @new_post = Post.new
+    @testimony = Testimony.new
+    @photo = Photo.new
 
     @instance_id = params[:id]
     @instance = TripInstance.find(params[:id])
     @trip = @instance.trip
 
-    @posts = Kaminari.paginate_array(@instance.posts.sort_by!(&:created_at)).page(params[:page]).per(4) #don't need below code b/c doing pagination
+    @posts = Kaminari.paginate_array(@instance.posts.sort_by!(&:created_at)).page(params[:page]).per(4)
 
-    #users to be displayed in sidebar
     temp_users = []
     trip_permissions = @instance.trip_permissions
     trip_permissions.shuffle.each do |tper|
@@ -32,7 +27,7 @@ class TripInstancesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @instance }
     end
   end

@@ -9,29 +9,12 @@
                 %span.powered_by_text Powered by
                 %img.blueprint-logo{:src => "/assets/PAW_30x30.png"}
 
-      .span2.white-text
+      .span3.white-text
         %h5.footer-header TRIPS
         %ul.link-list
-          %li
-            %a{:href => ""} Food Justice
-          %li
-            %a{:href => ""} Environmental Justice
-          %li
-            %a{:href => ""} Homelessness
-          %li
-            %a{:href => ""} Central Valley
-          %li
-            %a{:href => ""} Campo
-          %li
-            %a{:href => ""} Urban Health
-          %li
-            %a{:href => ""} SD/TJ
-          %li
-            %a{:href => ""} NOLA
-          %li
-            %a{:href => ""} Arizona
-          %li
-            %a{:href => ""} Animal Welfare
+          - Trip.all.each do |trip|
+            %li
+              = link_to trip.name, trip_path(trip.id)
       .span2.white-text
         %h5.footer-header ORGANIZATION
         %ul.link-list
@@ -41,22 +24,10 @@
             =link_to('Team', team_path)
           %li
             %a{:href => ""} Contact
-      .span5
+      .span2
+      .span4
         .right-footer
           %img.cal-logo{:src => "http://sa.berkeley.edu/sites/default/files/UC-Berkeley-Logo-White.png"}
             %img.cc-logo{:src => "/assets/CalCorpsSmall.gif", :href => "http://publicservice.berkeley.edu"}
           .address
             102 Sproul Hall  |  M-F: 9-5  |   510-642-3916  | publicservice@berkeley.edu
-      / .span2.white-text
-      /   %h5.footer-header RESOURCES
-      /   %ul.link-list
-      /     %li
-      /       %a{:href => ""} Rock
-      /     %li
-      /       %a{:href => ""} Sheep
-      /     %li
-      /       %a{:href => ""} Wood
-      /     %li
-      /       %a{:href => ""} Wheat
-      /     %li
-      /       %a{:href => ""} Brick

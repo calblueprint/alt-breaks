@@ -1,0 +1,54 @@
+.span3.offset1
+  .action
+    .glyphicon-wrapper
+      .glyphicon.glyphicon-comment
+    %a.link{"data-toggle" => "modal", :href => "#createPost", :role => "button"} Create Post
+  #createPost.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h3#myModalLabel Create Post
+    = render :partial=>'/posts/instance_modal_form', :locals => {:instance_id => instance_id}
+
+  .action
+    .glyphicon-wrapper
+      .glyphicon.glyphicon-pencil
+    %a.link{"data-toggle" => "modal", :href => "#createTestimony", :role => "button"} Write Testimony
+  #createTestimony.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h3#myModalLabel Create Testimony
+    = render :partial=>'/testimonies/modal_form', :locals => {:instance_id => instance_id}
+
+  .action
+    .glyphicon-wrapper
+      .glyphicon.glyphicon-camera
+    %a.link{"data-toggle" => "modal", :href => "#uploadPhoto", :role => "button"} Upload Photo
+
+  #uploadPhoto.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h3#myModalLabel Upload Photo
+    = render :partial=>'/photos/modal_form', :locals => {:instance_id => instance_id}
+
+
+
+
+  / %h3 Members
+  - @users.each_slice(2) do |user1, user2|
+    %ul.thumbnails
+    .row-fluid
+    %li.span4
+      .thumbnail
+        - if user1.avatar.exists?
+          = link_to(image_tag(user1.avatar.url(:small)), user_path(user1.id))
+        - else
+          = link_to(image_tag("/assets/cat.png"), user_path(user1.id))
+      %p= user1.name
+    - if !user2.nil?
+      %li.span4
+        .thumbnail
+          - if user2.avatar.exists?
+            = link_to(image_tag(user2.avatar.url(:small)), user_path(user2.id))
+          - else
+            = link_to(image_tag("/assets/cat.png"), user_path(user2.id))
+        %p= user2.name

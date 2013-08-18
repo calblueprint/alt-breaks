@@ -20,4 +20,12 @@ class Trip < ActiveRecord::Base
     self.zoom_level = 5 if self.zoom_level.nil?
   end
 
+  def break_leaders
+    if current_trip_instance
+      current_trip_instance.trip_permissions.where(:permission => TripPermission::BREAK_LEADER).map {|permission| permission.user}
+    else
+      []
+    end
+  end
+
 end

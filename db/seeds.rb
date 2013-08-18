@@ -1,15 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or create!d alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create!([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create!(name: 'Emanuel', city: cities.first)
-
-# test_desc = <<DESC
-# Have you ever heard the wolf cry to the blue corn moon, or asked the grinning bobcat why he grins? From the squirrels that run about the trees and telephone wires of our own Berkeley campus to the untamed beasts of the unfamiliar wilderness, we're surrounded by creatures big and small. And there's something about us and these creatures – a fascination, a passion, a connection, an indescribably intense yearning to understand – and again and again, we give into our curiosities and instincts. Yet in our anthropocentric society, we often overlook pressing animal welfare issues and repeatedly turn a blind eye to even the most outrageous of unmasked truths. We live in a world of sensitive ecology, but all too often fail to consider the repercussions of our actions on our Earth's co-inhabitants in the hunt for our own convenience and benefit. In our DeCal, we'll familiarize ourselves with some of the nation's most pressing animal welfare issues, including past and current animal welfare legislation, lab testing, pet overpopulation, shelter policy, wildlife preservation, and domestic animal abuse, through classroom debate and discussion, guest lectures, and field trips to local facilities, such as animal shelters and wildlife hospitals. Having acquainted ourselves with the local air, we'll make our way up to southern Oregon where participants will have the opportunity to engage with, learn from, and contribute to the efforts of our community partners at animal shelters, preserves, and sanctuaries. As in the words of our past leaders, we hope that our trip participants will conclude their semester knowing that they can be an impenetrable voice for those who have no words, after having experienced firsthand the silent, living testaments to stories of mistreatment, neglect, but most strikingly and lastingly, of strength and resilience.')
-# DESC
-
 wtwta_desc = "Have you ever heard the wolf cry to the blue corn moon, or asked the grinning bobcat why he grins?
 From the squirrels that run about the trees and telephone wires of our own Berkeley campus to the untamed beasts of
  the unfamiliar wilderness we're surrounded by creatures big and small. And there's something about us and these creatures
@@ -183,32 +171,3 @@ Post.create! :title => 'Items you should bring to the trip', :description => 'Sl
 
 Page.create!(:name => 'General', :description => 'Announcements and general discussion will be posted here', :permission => 2)
 Page.create!(:name => 'Internal', :description => 'Internal discussion for just break leaders and directors', :permission => 1)
-
-
-#Create Testimonies
-default_desc = "This trip was the most fun I ever had. This trip was the most fun I ever had. This trip was the most fun I ever had. This trip was the most fun I ever had. This trip was the most fun I ever had. This trip was the most fun I ever had."
-
-(1..10).each do |n|
-  t1 = Testimony.create!(description: default_desc)
-  t2 = Testimony.create!(description: default_desc)
-
-  t1.trip_instance = TripInstance.find(n)
-  t2.trip_instance = TripInstance.find(n)
-  t1.user = User.find(1)
-  t2.user = User.find(2)
-
-  t1.save
-  t2.save
-end
-
-p = Photo.create!(photo_file_name: "jay.jpg")
-Testimony.find(1).photos << p
-p.save
-
-(2..20).each do |n|
-  p = Photo.create!(photo_file_name: "jay#{n}.jpg")
-  Testimony.find(n).photos << p
-  p.save
-end
-
-

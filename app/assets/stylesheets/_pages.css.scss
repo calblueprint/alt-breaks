@@ -3,11 +3,14 @@ $gray       :   #B4B4B4;
 $grayDark   :   #969B9B;
 $grayBlue   :   #8392A0;
 $blue       :   #3a87ad;
+$darkGrayBlue : rgb(67,80,94);
+/*
+            : rgb(67,80,94, 1);*/
 
 /* general styling */
 
 h1 {
-  font-weight: 300;
+  font-weight: 400;
 }
 h2 {
   font-weight: 400;
@@ -15,6 +18,7 @@ h2 {
 h3 {
   font-weight: 400;
 }
+
 .blue {
   color: $blue;
 }
@@ -23,10 +27,11 @@ h3 {
 }
 
 .heading {
-  font-size: 24px;
-  color: #3a87ad;
-  font-weight: 300;
+  font-size: 20px;
+  color: $darkGrayBlue;
+  font-weight: 600;
   margin: 20px 0px;
+  letter-spacing: 3px;
 }
 .center {
   text-align: center;
@@ -34,8 +39,8 @@ h3 {
 
 .text {
   margin: 20px 0px;
-  font-size: 17px;
-  color: #777;
+  font-size: 15px;
+/*  color: #777;*/
   font-weight: 300;
 }
 
