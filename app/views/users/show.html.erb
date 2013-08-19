@@ -1,15 +1,11 @@
-<% content_for :head do %>
-  <%= javascript_include_tag 'chosen' %>
-<% end %>
-
 <div class="row-fluid">
 	<div class="span2 offset1">
 		<div class="well">
-            <% if @user.avatar.exists? %>
-                <%= image_tag @user.avatar.url(:medium) %>
-            <% else %>
-      			<%= image_tag("/assets/cat.png") %>
-            <% end %>
+      <% if @user.avatar.exists? %>
+          <%= image_tag @user.avatar.url(:medium) %>
+      <% else %>
+			<%= image_tag("/assets/cat.png") %>
+      <% end %>
 		</div>
 	</div>
 	<div class="span8">
@@ -56,9 +52,6 @@
 	</div>
 </div>
 
-
-</div>
-</div>
 
 
 <!-- Modal -->

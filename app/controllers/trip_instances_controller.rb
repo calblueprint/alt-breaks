@@ -1,5 +1,6 @@
 class TripInstancesController < ApplicationController
   def show
+    @is_trip = true
     @new_post = Post.new
     @testimony = Testimony.new
     @photo = Photo.new
@@ -26,10 +27,7 @@ class TripInstancesController < ApplicationController
       @users = temp_users
     end
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @instance }
-    end
+    render "posts/index"
   end
 
   def create

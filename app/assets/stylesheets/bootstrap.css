@@ -618,7 +618,8 @@ a:focus {
   margin-right: auto;
   margin-left: auto;
   *zoom: 1;
-  margin-bottom: 40px; /*new*/
+/*  min-height: 100%;
+  margin-bottom: -300px;*/
 }
 
 .container:before,

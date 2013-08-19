@@ -44,7 +44,6 @@ $blue   :   #3a87ad;
 	  top: 0;
 	  left: 0;
 	  background-image: -webkit-linear-gradient(left, rgba(70,70,70,1) 0%, rgba(90,90,90,0.95) 20%, rgba(90,90,90,0.6) 40%,  rgba(90,90,90,0.6) 60%, rgba(90,90,90,0.95) 80%, rgba(70,70,70,1) 100%);
-/*	  background: -webkit-radial-gradient(top center, ellipse cover, rgba(255,255,255,0.8) 0%,rgba(0,0,0,1) 100%);*/
 	}
 	.title-container {
 		color: white;
@@ -119,7 +118,6 @@ $blue   :   #3a87ad;
 		display: inline-block;
 		padding-left: 32px;
 		font-size: 17px;
-/*		font-weight: bold;*/
 	}
 	&.green {
 		color: green;

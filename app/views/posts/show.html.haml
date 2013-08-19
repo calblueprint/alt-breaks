@@ -1,0 +1,32 @@
+.container
+  .row-fluid
+    .span7
+      .row-fluid
+        %h3= @post.title
+        %p
+          %i
+            submitted #{time_ago_in_words(@post.created_at)} ago by
+          = @post.user.name
+      .row-fluid
+        .well
+          = simple_format(@post.description)
+          - if @post.video_link != "" and @post.video_link != nil
+            %br/
+            %div
+              %b Video Attachment
+              %br/
+              = raw(youtube_embed(@post.video_link))
+          - if @post.pdf_file_name != nil
+            %br/
+            %div
+              %b PDF Attachment
+              %br/
+              = link_to @post.pdf_file_name, @post.pdf.url, :target => "_blank"
+      %h3 Responses
+      = render 'responseform'
+      #comment-table
+        = render :partial => 'posts/response_table', :locals => {:post => @post}
+    - if @instance_id != nil
+      = render :partial=>'/posts/internal_sidebar', :locals => {:instance_id => @instance_id}
+    - elsif @page_id != nil
+      = render :partial=>'/posts/internal_sidebar', :locals => {:page_id => @page_id}

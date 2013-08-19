@@ -8,20 +8,20 @@ class PostsController < ApplicationController
     @new_post = Post.new  #set up for modal
     @testimony = Testimony.new  #set up for modal
     5.times {@testimony.photos.build}
-    
+
     @instance = TripInstance.find_by_id(trip_instance_id)
     @instance_id = @instance.id
     @posts = @instance.posts
     @posts.sort_by!(&:updated_at)
     @posts.reverse!
-    
+
     temp_users = []
     trip_permissions = @instance.trip_permissions
     trip_permissions.shuffle.each do |tper|
       if tper.permission == 1 || tper.permission == 2
         temp_users << tper.user
       end
-    end    
+    end
     @users = []
     if temp_users.length > 6
       temp_users[0...6].each do |user|
@@ -38,16 +38,16 @@ class PostsController < ApplicationController
   end
 =end
 
-=begin  
+=begin
   def pages_index
     #Must compiled posts regarding trip
     page_id = params[:page_id]
-    @new_post = Post.new  #set up for modal    
+    @new_post = Post.new  #set up for modal
     @page = Page.find_by_id(page_id)
     @posts = @page.posts
     @posts.sort_by!(&:updated_at)
     @posts.reverse!
-    
+
     temp_users = User.all
      @users = []
     if temp_users.length > 6
@@ -59,22 +59,23 @@ class PostsController < ApplicationController
     end
   end
 =end
-  
-  
-  # GET /posts/1
-  # GET /posts/1.json
+
+
   def show
     @post = Post.find(params[:id])
     @responses = @post.responses
     @response = Response.new
-    @new_post = Post.new  #set up for modal
+    @new_post = Post.new
+    @photo = Photo.new
 
-    if (@instance_id = params[:trip_instance_id]) != nil
+    @instance_id = params[:trip_instance_id]
+    @page_id = params[:page_id]
 
-      @instance = TripInstance.find_by_id(@instance_id)    
-      @testimony = Testimony.new  #set up for modal
-      5.times {@testimony.photos.build}
-    
+    #trip instance post
+    if @instance_id
+      @instance = TripInstance.find_by_id(@instance_id)
+      @testimony = Testimony.new
+
       temp_users = []
       trip_permissions = @instance.trip_permissions
       trip_permissions.shuffle.each do |tper|
@@ -82,10 +83,11 @@ class PostsController < ApplicationController
           temp_users << tper.user
         end
       end
+    #page post
     elsif (@page_id = params[:page_id]) != nil
-      temp_users = User.all 
+      temp_users = User.all
     end
-    
+
     @users = []
     if temp_users.length > 6
       temp_users[0...6].each do |user|
@@ -96,32 +98,28 @@ class PostsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @post }
       format.json { render json: @responses }
     end
   end
 
-  # GET /posts/new
-  # GET /posts/new.json
   def new
     trip_instance_id = params[:trip_instance_id]
     @instance = TripInstance.find_by_id(trip_instance_id)
     @post = Post.new
-    
+
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @post }
     end
   end
 
-  # POST /posts
-  # POST /posts.json
   def create
     # all mail currently also gets sent to the poster as well as everyone else
     @post = Post.new(params[:post])
     @post.user = current_user
-    
+
     if (trip_instance_id = params[:post][:trip_instance_id]) != nil
       @instance = TripInstance.find_by_id(trip_instance_id)
       if @post.save
@@ -153,15 +151,12 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1/edit
   def edit
     trip_instance_id = params[:trip_instance_id]
     @instance = TripInstance.find_by_id(trip_instance_id)
     @post = Post.find(params[:id])
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
     @instance = TripInstance.find_by_id(params[:trip_instance_id])
@@ -176,8 +171,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
     @post.destroy

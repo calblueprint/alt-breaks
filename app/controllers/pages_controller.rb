@@ -1,34 +1,19 @@
 class PagesController < ApplicationController
-  # GET /pages
-  # GET /pages.json
   def index
     @pages = Page.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @pages }
     end
   end
 
-  # GET /pages/1
-  # GET /pages/1.json
+
   def show
-    @new_post = Post.new  #set up for modal
+    @is_page = true
+    @new_post = Post.new
     @page = Page.find(params[:id])
-    @posts = @posts = Kaminari.paginate_array(@page.posts.sort_by!(&:created_at)).page(params[:page]).per(4) #don't need below code b/c doing pagination #don't need below code b/c doing pagination
-=begin
-    @temp_posts = @page.posts
-    @posts = []    
-    @temp_posts.sort_by!(&:updated_at)
-    @temp_posts.reverse!
-    if @temp_posts.length > 3
-      @temp_posts[0...3].each do |post|
-          @posts << post
-      end
-    else
-      @posts = @temp_posts
-    end
-=end
+    @posts = @posts = Kaminari.paginate_array(@page.posts.sort_by!(&:created_at)).page(params[:page]).per(4)
     temp_users = User.all
     @users = []
     if User.all.length > 6
@@ -39,30 +24,22 @@ class PagesController < ApplicationController
       @users = temp_users
     end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @page }
-    end
+    render "posts/index"
   end
 
-  # GET /pages/new
-  # GET /pages/new.json
   def new
     @page = Page.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @page }
     end
   end
 
-  # GET /pages/1/edit
   def edit
     @page = Page.find(params[:id])
   end
 
-  # POST /pages
-  # POST /pages.json
   def create
     @page = Page.new(params[:page])
 
@@ -77,8 +54,6 @@ class PagesController < ApplicationController
     end
   end
 
-  # PUT /pages/1
-  # PUT /pages/1.json
   def update
     @page = Page.find(params[:id])
 
@@ -93,8 +68,6 @@ class PagesController < ApplicationController
     end
   end
 
-  # DELETE /pages/1
-  # DELETE /pages/1.json
   def destroy
     @page = Page.find(params[:id])
     @page.destroy

@@ -3,5 +3,5 @@ class Photo < ActiveRecord::Base
   belongs_to :trip_instance
   belongs_to :user
   has_attached_file :photo, :styles => { :medium => "400x>", :thumb => "50x50>"}, :storage => :s3,
-    :s3_credentials => S3_CREDENTIALS, :path => "/:style/:id/:filename"
+    :s3_credentials => S3_CREDENTIALS, :path => "/testimonies/:style/:id/:filename"
 end

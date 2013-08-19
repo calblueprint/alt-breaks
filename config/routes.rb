@@ -43,6 +43,7 @@ Altbreaks::Application.routes.draw do
   resources :testimonies
 
   resources :photos
+  resources :cover_photos
 
   resources :internal_trips
 

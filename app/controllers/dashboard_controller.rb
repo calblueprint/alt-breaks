@@ -2,7 +2,6 @@ class DashboardController < ApplicationController
 before_filter :require_login
 
 def index
-  #boolean to see if someone's a break leader
   is_break_leader = false
   is_admin = false
 
@@ -11,7 +10,6 @@ def index
 
   if @admin_permission = current_user.admin_permission
     admin
-    puts 'IS ADMIN!!'
   else
     @trip_permissions = current_user.trip_permissions
     @trip_permissions.each do |trip_permission|
@@ -26,10 +24,8 @@ def index
     end
 
     if is_break_leader
-      puts 'IS BREAK LEADER'
       break_leader(@trip_instance_of_break_leader)
     else
-      puts 'IS REGULAR USER'
       regular_user
     end
   end
@@ -41,6 +37,8 @@ def admin
   @new_trip = Trip.new
   @community_partner = Partner.new
   @new_admin = AdminPermission.new
+  @cover_photos = CoverPhoto.all
+
   render :action => :admin_dashboard
 end
 

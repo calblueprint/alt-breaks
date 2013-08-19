@@ -1,5 +1,13 @@
 .container
   %h2 Admin Dashboard
+  %h5 Cover Photos
+  - @cover_photos.each do |photo|
+    = form_for(photo) do |f|
+      = f.label :photo, photo.page + ' Page'
+      = f.file_field :photo
+      = f.button :submit, :class => 'btn btn-primary'
+
+
   %h5 Admins
   %a.btn{"data-toggle" => "modal", :href => "#addAdmin", :role => "button"} Add Admin
   .well

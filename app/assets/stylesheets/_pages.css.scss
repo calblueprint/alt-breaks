@@ -4,10 +4,6 @@ $grayDark   :   #969B9B;
 $grayBlue   :   #8392A0;
 $blue       :   #3a87ad;
 $darkGrayBlue : rgb(67,80,94);
-/*
-            : rgb(67,80,94, 1);*/
-
-/* general styling */
 
 h1 {
   font-weight: 400;
@@ -40,13 +36,13 @@ h3 {
 .text {
   margin: 20px 0px;
   font-size: 15px;
-/*  color: #777;*/
   font-weight: 300;
 }
 
 /* about */
 .carousel-row {
-  padding: 20px 0px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
   text-align: center;
   background: #FFFFFF;
 
