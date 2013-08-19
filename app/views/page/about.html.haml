@@ -16,20 +16,21 @@
         Alternative Breaks introduces students to issues in a particular community, provides them with the knowledge and ability to make an informed impact on their own communities, and creates a memorable and fun experience in a team environment. This year, Alternative Breaks offers trips to ten different locations during the academic spring break.
 
 
-.row.carousel-row
-  #carousel-title.carousel.slide
-    .carousel-inner
-      .item.active
-        .carousel-item
-          %iframe{:width => "640", :height => "360", :src => "http://www.youtube.com/embed/FlC8fXHQbsc?rel=0", :frameborder => "0"}
-      .item
-        .carousel-item
-          .slideshow
-            <embed allowfullscreen="true" allowscriptaccess="always" height="370" id="soundslider" menu="false" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="http://www.berkeley.edu/news2/2012/04/altbreaks/soundslider.swf?size=2&amp;format=xml" type="application/x-shockwave-flash" width="470" top = "-25px"></embed>
-    %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-title"}
-      .arrow.left
-    %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-title"}
-      .arrow.right
-    %ol.carousel-indicators.about
-      %li.active{"data-slide-to" => "0", "data-target" => "#carousel-title"}
-      %li{"data-slide-to" => "1", "data-target" => "#carousel-title"}
+.row.carousel-row.gray
+  .container
+    #carousel-title.carousel.slide
+      .carousel-inner
+        .item.active
+          .carousel-item
+            %iframe{:width => "640", :height => "360", :src => "http://www.youtube.com/embed/FlC8fXHQbsc?rel=0", :frameborder => "0"}
+        .item
+          .carousel-item
+            .slideshow
+              <embed allowfullscreen="true" allowscriptaccess="always" height="370" id="soundslider" menu="false" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="http://www.berkeley.edu/news2/2012/04/altbreaks/soundslider.swf?size=2&amp;format=xml" type="application/x-shockwave-flash" width="470" top = "-25px"></embed>
+      %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-title"}
+        .arrow.left
+      %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-title"}
+        .arrow.right
+      %ol.carousel-indicators.about
+        %li.active{"data-slide-to" => "0", "data-target" => "#carousel-title"}
+        %li{"data-slide-to" => "1", "data-target" => "#carousel-title"}

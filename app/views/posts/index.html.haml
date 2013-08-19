@@ -12,19 +12,19 @@
           .well
             = @page.description
 
-        %table.table.table-hover.table-bordered
-          - if @posts
-            = paginate @posts
-            - @posts.each do |post|
-              %tr
-                %td
-                  %h4
-                    - if @is_trip
-                      = link_to post.title, trip_instance_post_path(:trip_instance_id => @instance.id, :id =>post.id)
-                    - else
-                      = link_to post.title, page_post_path(:page_id => @page.id, :id =>post.id)
-                  %br
-                  Created by: #{post.user.name}
+      %table.table.table-hover.table-bordered
+        - if @posts
+          = paginate @posts
+          - @posts.each do |post|
+            %tr
+              %td
+                %h4
+                  - if @is_trip
+                    = link_to post.title, trip_instance_post_path(:trip_instance_id => @instance.id, :id =>post.id)
+                  - else
+                    = link_to post.title, page_post_path(:page_id => @page.id, :id =>post.id)
+                %br
+                Created by: #{post.user.name}
 
     - if @is_trip
       = render :partial=>'/posts/internal_sidebar', :locals => {:instance_id => @instance_id}

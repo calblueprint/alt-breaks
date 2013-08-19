@@ -43,74 +43,84 @@
     /         .modal-footer
     /           %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
 
-    .row-fluid
-      .span12
-        .heading.center ABOUT THIS TRIP
-        .text
-          = @trip.description
+  .row-fluid
+    .span12
+      .heading.center ABOUT THIS TRIP
+      .text
+        = @trip.description
 
-    .row-fluid
-      .span12
-        .heading.center PHOTOS FORM PAST TRIPS
-        #myCarousel.carousel.slide
-          %ol.carousel-indicators
-            %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
-            %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
-            %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
-
-          .carousel-inner
-            - first = true
-            - if @photos != []
-              - @photos.each_slice(10).first.each do |photo|
-                - if first
-                  .active.item.cphoto
-                    = image_tag photo.photo.url(:medium), :class => "slide"
-                  - first = false
-                - else
-                  .item.cphoto= image_tag photo.photo.url(:medium), :class => "slide"
+.row-fluid.gray
+  / .heading.center PHOTOS FORM PAST TRIPS
+  .container
+    #myCarousel.carousel.slide
+      .span9
+        .carousel-inner
+          - first = true
+          - if @photos != []
+            - @photos.each_slice(10).first.each do |photo|
+              - if first
+                .active.item.cphoto
+                  = image_tag photo.photo.url(:original), :class => "slide"
+                  .carousel-caption
+                    = photo.caption
+                - first = false
+              - else
+                .item.cphoto
+                  = image_tag photo.photo.url(:original), :class => "slide"
+                  .carousel-caption
+                    = photo.caption
+        .controls
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+      .span3
+        .carousel-thumbnails
+          - count = 0
+          - @photos.each_slice(3) do |slice|
+            .row-fluid
+              - slice.each do |photo|
+                .span4
+                  .carousel-thumbnail{"data-slide-to" => count, "data-target" => "#myCarousel"}
+                    = image_tag photo.photo.url(:thumb)
+                  - count+=1
 
-    .row-fluid
-      .span12
-        .heading.center MEET THE BREAK LEADERS
-        - @trip.break_leaders.each do |leader|
-          .leader
-            .avatar
-              - if leader.avatar.exists?
-                = link_to(image_tag(leader.avatar.url(:medium)), user_path(leader.id))
-              - else
-                = link_to(image_tag("/assets/cat.png"), user_path(leader.id))
-            .description
-              .name
-                = link_to(leader.name, user_path(leader.id))
-              .bio
-                = leader.about_me
-
-
-    .row-fluid
-      .span12
-        .heading.center TESTIMONIES
-    .row-fluid
-      %table.table.table-hover.table-bordered
-        - if @testimonies
-          - @testimonies.each do |testimony|
-            %tr
-            .well
-              %ul.thumbnails
-                %li
-                  .row-fluid
-                    .span2
-                      %a.thumbnail{:href => "#"}
-                        %img{:alt => "", :src => "/assets/panda.jpg"}/
-                    .span10
-                      .row-fluid
-                        %strong Author:
-                        = link_to(testimony.user.name, user_path(testimony.user.id))
-                      .row-fluid
-                        %br/
-                        = link_to(testimony.description, [@trip.current_trip_instance, testimony])
+.container
+  .row-fluid
+    .span12
+      .heading.center MEET THE BREAK LEADERS
+      - @trip.break_leaders.each do |leader|
+        .leader
+          .avatar
+            - if leader.avatar.exists?
+              = link_to(image_tag(leader.avatar.url(:medium)), user_path(leader.id))
+            - else
+              = link_to(image_tag("/assets/cat.png"), user_path(leader.id))
+          .description
+            .name
+              = link_to(leader.name, user_path(leader.id))
+            .bio
+              = leader.about_me
 
 
-        /
-          link_to &quot;See all&quot;, trip_testimonies_path(@trip.id)
+  .row-fluid
+    .span12
+      .heading.center TESTIMONIES
+  .row-fluid
+    %table.table.table-hover.table-bordered
+      - if @testimonies
+        - @testimonies.each do |testimony|
+          %tr
+          .well
+            %ul.thumbnails
+              %li
+                .row-fluid
+                  .span2
+                    %a.thumbnail{:href => "#"}
+                      %img{:alt => "", :src => "/assets/panda.jpg"}/
+                  .span10
+                    .row-fluid
+                      %strong Author:
+                      = link_to(testimony.user.name, user_path(testimony.user.id))
+                    .row-fluid
+                      %br/
+                      = link_to(testimony.description, [@trip.current_trip_instance, testimony])
+      / link_to &quot;See all&quot;, trip_testimonies_path(@trip.id)
