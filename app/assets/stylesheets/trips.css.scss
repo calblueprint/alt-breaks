@@ -6,7 +6,7 @@ $lightGray	:		rgb(237, 243, 250);
 	padding: 20px 0px;
 }
 
-#myCarousel {
+#photos-carousel {
 	.controls {
 		margin: auto;
 		margin-top: 20px;
@@ -35,6 +35,20 @@ $lightGray	:		rgb(237, 243, 250);
 		height: 400px;
 		overflow: hidden;
 		background-color: black;
+	}
+}
+
+#testimonies-controls-carousel {
+	.controls {
+		margin: auto;
+		width: 780px;
+		height: 30px;
+		.carousel-control {
+			width: 35px;
+			height: 35px;
+			font-size: 50px;
+			line-height: 28px;
+		}
 	}
 }
 
@@ -111,6 +125,22 @@ $lightGray	:		rgb(237, 243, 250);
 	}
 }
 
+.avatar {
+	width: 120px;
+}
+
+#testimonies-controls-carousel {
+	text-align: center;
+	.testimony-avatar {
+		width: 80px;
+		display: inline-block;
+	}
+}
+#testimonies-carousel {
+	.well {
+		background-color: rgba(255, 255, 255, 0.4);
+	}
+}
 .leader {
 	margin-bottom: 15px;
 	.avatar {

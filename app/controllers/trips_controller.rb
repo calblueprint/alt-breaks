@@ -22,6 +22,8 @@ class TripsController < ApplicationController
       end
     end
 
+    @photos = Kaminari.paginate_array(@photos).page(params[:page]).per(18)
+
     respond_to do |format|
       format.html
       format.json { render json: @trip }

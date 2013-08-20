@@ -49,39 +49,33 @@
       .text
         = @trip.description
 
-.row-fluid.gray
-  / .heading.center PHOTOS FORM PAST TRIPS
-  .container
-    #myCarousel.carousel.slide
-      .span9
-        .carousel-inner
-          - first = true
-          - if @photos != []
-            - @photos.each_slice(10).first.each do |photo|
-              - if first
-                .active.item.cphoto
-                  = image_tag photo.photo.url(:original), :class => "slide"
-                  .carousel-caption
-                    = photo.caption
-                - first = false
-              - else
-                .item.cphoto
-                  = image_tag photo.photo.url(:original), :class => "slide"
-                  .carousel-caption
-                    = photo.caption
-        .controls
-          %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
-          %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
-      .span3
-        .carousel-thumbnails
-          - count = 0
-          - @photos.each_slice(3) do |slice|
-            .row-fluid
-              - slice.each do |photo|
-                .span4
-                  .carousel-thumbnail{"data-slide-to" => count, "data-target" => "#myCarousel"}
-                    = image_tag photo.photo.url(:thumb)
-                  - count+=1
+- if @photos.any?
+  .row-fluid.gray
+    .container
+      #photos-carousel.carousel.slide
+        .span9
+          .carousel-inner
+            - first = true
+            - @photos.each_slice(18).first.each do |photo|
+              .item.cphoto{:class => "#{'active' if first}"}
+                = image_tag photo.photo.url(:original), :class => "slide"
+                .carousel-caption
+                  = photo.caption
+              - first = false
+          .controls
+            %a.carousel-control.left{"data-slide" => "prev", :href => "#photos-carousel"} ‹
+            %a.carousel-control.right{"data-slide" => "next", :href => "#photos-carousel"} ›
+        .span3
+          .carousel-thumbnails
+            - count = 0
+            - @photos.each_slice(3) do |slice|
+              .row-fluid
+                - slice.each do |photo|
+                  .span4
+                    .carousel-thumbnail{"data-slide-to" => count, "data-target" => "#photos-carousel"}
+                      = image_tag photo.photo.url(:thumb)
+                    - count+=1
+            = paginate @photos
 
 .container
   .row-fluid
@@ -93,7 +87,7 @@
             - if leader.avatar.exists?
               = link_to(image_tag(leader.avatar.url(:medium)), user_path(leader.id))
             - else
-              = link_to(image_tag("/assets/cat.png"), user_path(leader.id))
+              = link_to(image_tag("/assets/panda.png"), user_path(leader.id))
           .description
             .name
               = link_to(leader.name, user_path(leader.id))
@@ -101,26 +95,49 @@
               = leader.about_me
 
 
-  .row-fluid
-    .span12
+- if @testimonies.any?
+  .row-fluid.gray
+    .container
       .heading.center TESTIMONIES
-  .row-fluid
-    %table.table.table-hover.table-bordered
-      - if @testimonies
-        - @testimonies.each do |testimony|
-          %tr
-          .well
-            %ul.thumbnails
-              %li
+      #testimonies-carousel.carousel.slide
+        .carousel-inner
+          - first = true
+          - @testimonies.each do |testimony|
+            .item{:class => "#{'active' if first}"}
+              .well
                 .row-fluid
                   .span2
-                    %a.thumbnail{:href => "#"}
-                      %img{:alt => "", :src => "/assets/panda.jpg"}/
+                    %a{:href => "#"}
+                      /make this into a helper
+                      - if testimony.user.avatar.exists?
+                        .avatar= image_tag testimony.user.avatar.url(:original)
+                      - else
+                        %img.avatar{:alt => "", :src => "/assets/panda.jpg"}
                   .span10
                     .row-fluid
                       %strong Author:
                       = link_to(testimony.user.name, user_path(testimony.user.id))
                     .row-fluid
-                      %br/
+                      %br
                       = link_to(testimony.description, [@trip.current_trip_instance, testimony])
-      / link_to &quot;See all&quot;, trip_testimonies_path(@trip.id)
+              - first = false
+
+      #testimonies-controls-carousel.carousel.slide
+        .carousel-inner
+          - count = 0
+          - first = true
+          - @testimonies.each_slice(8) do |slice|
+            .item{:class => "#{'active' if first}"}
+              - slice.each do |testimony|
+                %a.testimony-avatar{"data-slide-to" => count, "data-target" => "#testimonies-carousel"}
+                  - if testimony.user.avatar.exists?
+                    = image_tag testimony.user.avatar.url(:original)
+                  - else
+                    %img{:alt => "", :src => "/assets/panda.jpg"}
+                - count += 1
+            - first = false
+        .controls
+          %a.carousel-control.left{"data-slide" => "prev", :href => "#testimonies-controls-carousel"} ‹
+          %a.carousel-control.right{"data-slide" => "next", :href => "#testimonies-controls-carousel"} ›
+
+      / link_to 'See all', trip_testimonies_path(@trip.id)
