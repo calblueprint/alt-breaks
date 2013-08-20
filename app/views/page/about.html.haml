@@ -1,5 +1,6 @@
 .cover-wrapper
-  .cover-photo{:style => "background-image: url(#{CoverPhoto.about.photo.url(:large)})" }
+  - if CoverPhoto.about
+    .cover-photo{:style => "background-image: url(#{CoverPhoto.about.photo.url(:large)})" }
   .title-container
     .title
       About Us

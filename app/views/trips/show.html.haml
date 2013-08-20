@@ -1,7 +1,8 @@
 %p#notice= notice
 
 .cover-wrapper
-  .cover-photo{:style => "background-image: url(#{@trip.cover_photo.url(:large)})" }
+  - if @trip.cover_photo
+    .cover-photo{:style => "background-image: url(#{@trip.cover_photo.url(:large)})" }
   .title-container
     .title
       = @trip.name

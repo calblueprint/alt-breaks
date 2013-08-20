@@ -10,8 +10,4 @@ class CoverPhoto < ActiveRecord::Base
   def self.team
     CoverPhoto.find_by_page("Team")
   end
-
-  def self.map
-    CoverPhoto.find_by_page("Map")
-  end
 end
