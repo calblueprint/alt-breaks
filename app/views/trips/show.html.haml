@@ -1,4 +1,4 @@
-%p#notice= notice
+#notice= notice
 
 .cover-wrapper
   - if @trip.cover_photo
@@ -12,7 +12,7 @@
       = @trip.location
 
 
-.container
+.section
   .row-fluid
     / .span12
     /   .row-fluid
@@ -52,7 +52,7 @@
 
 - if @photos.any?
   .row-fluid.gray
-    .container
+    .section
       #photos-carousel.carousel.slide
         .span9
           .carousel-inner
@@ -78,7 +78,7 @@
                     - count+=1
             = paginate @photos
 
-.container
+.section
   .row-fluid
     .span12
       .heading.center MEET THE BREAK LEADERS
@@ -98,7 +98,7 @@
 
 - if @testimonies.any?
   .row-fluid.gray
-    .container
+    .section
       .heading.center TESTIMONIES
       #testimonies-carousel.carousel.slide
         .carousel-inner

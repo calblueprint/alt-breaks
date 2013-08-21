@@ -1,10 +1,5 @@
 $blue   :   #3a87ad;
-$lightGray	:		rgb(237, 243, 250);
 
-.gray {
-	background-color: $lightGray;
-	padding: 20px 0px;
-}
 
 #photos-carousel {
 	.controls {
@@ -74,7 +69,6 @@ $lightGray	:		rgb(237, 243, 250);
 .cover-wrapper {
 	height: 200px;
 	position: relative;
-	margin-bottom: 20px;
 	.cover-photo {
 		height: 200px;
 /*		background-repeat: no-repeat;*/
@@ -142,7 +136,7 @@ $lightGray	:		rgb(237, 243, 250);
 	}
 }
 .leader {
-	margin-bottom: 15px;
+	margin: 10px 0px;
 	min-height: 120px;
 	.avatar {
 		width: 120px;

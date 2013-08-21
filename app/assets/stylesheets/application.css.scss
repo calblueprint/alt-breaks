@@ -13,8 +13,37 @@
  *= require_tree .
  */
 
-@import "pages";
+$lightGray  :   rgb(237, 243, 250);
+$darkGrayBlue : rgb(67,80,94);
 
 .body {
   overflow-x: hidden;
+}
+
+.gray {
+  background-color: $lightGray;
+}
+.section {
+  width: 940px;
+  padding: 30px 0px;
+  margin: auto;
+}
+
+.heading {
+  font-size: 20px;
+  color: $darkGrayBlue;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+}
+
+.center {
+  text-align: center;
+}
+
+.btn-primary {
+  a, a:hover {
+    color: white;
+    text-decoration: none;
+  }
 }
