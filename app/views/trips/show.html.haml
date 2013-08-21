@@ -137,8 +137,9 @@
                     %img{:alt => "", :src => "/assets/panda.jpg"}
                 - count += 1
             - first = false
-        .controls
-          %a.carousel-control.left{"data-slide" => "prev", :href => "#testimonies-controls-carousel"} ‹
-          %a.carousel-control.right{"data-slide" => "next", :href => "#testimonies-controls-carousel"} ›
+        - if @testimonies.count > 8
+          .controls
+            %a.carousel-control.left{"data-slide" => "prev", :href => "#testimonies-controls-carousel"} ‹
+            %a.carousel-control.right{"data-slide" => "next", :href => "#testimonies-controls-carousel"} ›
 
       / link_to 'See all', trip_testimonies_path(@trip.id)
