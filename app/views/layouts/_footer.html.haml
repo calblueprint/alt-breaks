@@ -1,33 +1,32 @@
-.section-footer
-  .container.footer
-    .row
-      .span2
-        .left-footer
-          .bp-power
-            .bp-logo
-              %a{:href => "http://bptech.berkeley.edu/"}
-                %span.powered_by_text Powered by
-                %img.blueprint-logo{:src => "/assets/PAW_30x30.png"}
+.container
+  .row
+    .span2
+      .left-footer
+        .bp-power
+          .bp-logo
+            %a{:href => "http://bptech.berkeley.edu/"}
+              %span.powered_by_text Powered by
+              %img.blueprint-logo{:src => "/assets/PAW_30x30.png"}
 
-      .span3.white-text
-        %h5.footer-header TRIPS
-        %ul.link-list
-          - Trip.all.each do |trip|
-            %li
-              = link_to trip.name, trip_path(trip.id)
-      .span2.white-text
-        %h5.footer-header ORGANIZATION
-        %ul.link-list
+    .span3.white-text
+      %h5.footer-header TRIPS
+      %ul.link-list
+        - Trip.all.each do |trip|
           %li
-            =link_to('About', about_path)
-          %li
-            =link_to('Team', team_path)
-          %li
-            %a{:href => ""} Contact
-      .span2
-      .span4
-        .right-footer
-          %img.cal-logo{:src => "http://sa.berkeley.edu/sites/default/files/UC-Berkeley-Logo-White.png"}
-            %img.cc-logo{:src => "/assets/CalCorpsSmall.gif", :href => "http://publicservice.berkeley.edu"}
-          .address
-            102 Sproul Hall  |  M-F: 9-5  |   510-642-3916  | publicservice@berkeley.edu
+            = link_to trip.name, trip_path(trip.id)
+    .span2.white-text
+      %h5.footer-header ORGANIZATION
+      %ul.link-list
+        %li
+          =link_to('About', about_path)
+        %li
+          =link_to('Team', team_path)
+        %li
+          %a{:href => ""} Contact
+    .span2
+    .span4
+      .right-footer
+        %img.cal-logo{:src => "http://sa.berkeley.edu/sites/default/files/UC-Berkeley-Logo-White.png"}
+          %img.cc-logo{:src => "/assets/CalCorpsSmall.gif", :href => "http://publicservice.berkeley.edu"}
+        .address
+          102 Sproul Hall  |  M-F: 9-5  |   510-642-3916  | publicservice@berkeley.edu

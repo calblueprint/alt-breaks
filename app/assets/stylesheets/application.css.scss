@@ -16,16 +16,22 @@
 $lightGray  :   rgb(237, 243, 250);
 $darkGrayBlue : rgb(67,80,94);
 
-.body {
+/*.body {
   overflow-x: hidden;
+}*/
+
+#container {
+  min-height: 100%;
+  position: relative;
 }
+
 
 .gray {
   background-color: $lightGray;
 }
 .section {
   width: 940px;
-  padding: 30px 0px;
+  padding: 40px 0px;
   margin: auto;
 }
 

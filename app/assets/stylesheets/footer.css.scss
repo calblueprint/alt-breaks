@@ -1,10 +1,14 @@
-
-* {
-margin: 0;
-}
+// * {
+// margin: 0;
+// }
 html, body {
   height: 100%;
 }
+
+#body {
+  padding-bottom: 310px;
+}
+
 .wrapper {
   min-height: 100%;
   height: auto !important;
@@ -12,100 +16,79 @@ html, body {
   margin: 0 auto -4em;
 }
 
-.footer-wrapper{
+#footer {
   background-color: #6D92C0;
   text-align: center;
-}
-
-.content-wrapper{
-  height: auto;
-  min-height: 100%;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.section-footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
   padding: 30px 0px;
   height: 250px;
-}
 
-.footer .powered_by_text {
-  color: rgb(0, 0, 0);
-}
-
-.footer a {
-  color: rgb(125, 125, 125);
-}
-
-.footer a:hover {
-  color: rgb(82, 185, 233);
-  text-decoration: none;
-}
-
-.right-footer {
-/*  margin-left: 100px;*/
-  text-align: left;
-  .cal-logo {
-    width: 230px;
+  a {
+    color: rgb(230, 230, 230);
   }
-  .cc-logo {
-    margin-top: 15px;
-    width: 200px;
+
+  a:hover {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
   }
-  .bp-power {
-    margin-top: 10px;
+  .powered_by_text {
+    color: rgb(0, 0, 0);
   }
-  .address {
-    color: #FFFFFF;
-    font-size: 13px;
-    margin-top: 15px;
+
+  .right-footer {
+    text-align: left;
+    .cal-logo {
+      width: 230px;
+    }
+    .cc-logo {
+      margin-top: 15px;
+      width: 200px;
+    }
+    .bp-power {
+      margin-top: 10px;
+    }
+    .address {
+      color: #FFFFFF;
+      font-size: 13px;
+      margin-top: 15px;
+    }
   }
-}
 
-.link-list {
-  list-style: none;
-  float: none;
-  text-align: left;
-}
+  .link-list {
+    list-style: none;
+    float: none;
+    text-align: left;
+  }
 
-.link-list a {
-  color: rgb(230, 230, 230);
-}
+  .footer-header {
+    text-align: left;
+    margin-left: 22px;
+  }
 
-.link-list a:hover {
-  color: rgb(255, 255, 255);
-}
+  .blueprint-logo {
+      -webkit-transition: -webkit-transform 0.5s ease-in-out;
+         -moz-transition:    -moz-transform 0.5s ease-in-out;
+           -o-transition:      -o-transform 0.5s ease-in-out;
+              transition:         transform 0.5s ease-in-out;
+      -webkit-filter: grayscale(100%);
+         -moz-filter: grayscale(100%);
+          -ms-filter: grayscale(100%);
+           -o-filter: grayscale(100%);
+              filter: grayscale(100%);
+  }
 
-.footer-header {
-  text-align: left;
-  margin-left: 22px;
-}
-
-.footer .blueprint-logo {
-    -webkit-transition: -webkit-transform 0.5s ease-in-out;
-       -moz-transition:    -moz-transform 0.5s ease-in-out;
-         -o-transition:      -o-transform 0.5s ease-in-out;
-            transition:         transform 0.5s ease-in-out;
-    -webkit-filter: grayscale(100%);
-       -moz-filter: grayscale(100%);
-        -ms-filter: grayscale(100%);
-         -o-filter: grayscale(100%);
-            filter: grayscale(100%);
-}
-
-.footer .blueprint-logo:hover {
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  transform: rotate(360deg);
-  -webkit-filter: none;
-  -moz-filter: none;
-  -ms-filter: none;
-  -o-filter: none;
-  filter: none;
-}​
-
-.footer {
-
+  .blueprint-logo:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-filter: none;
+    -moz-filter: none;
+    -ms-filter: none;
+    -o-filter: none;
+    filter: none;
+  }
 }

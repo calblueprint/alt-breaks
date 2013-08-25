@@ -1,0 +1,19 @@
+!!!
+%html
+  #container
+    %head
+      %title Altbreaks
+      = csrf_meta_tags
+      = javascript_include_tag 'application'
+      = stylesheet_link_tag "application", :media => "all"
+      = javascript_include_tag :testimonies
+      = yield(:head)
+    #body
+      .navbar.navbar-static-top
+        %nav.navbar-inner
+          .container
+            = render "layouts/navigation"
+      = yield
+    #footer
+      = render "layouts/footer"
+      = yield :scripts

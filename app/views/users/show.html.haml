@@ -1,0 +1,47 @@
+#profile
+  .container
+    .row-fluid
+      .span3
+        .avatar
+          - if @user.avatar.exists?
+            = image_tag @user.avatar.url(:medium)
+          - else
+            = image_tag("/assets/cat.png")
+      .span9
+        .well
+          %h3= @user.name
+          %h4
+            = @user.major
+            = @user.grad_year
+          - @user_trip.each do |trip|
+            %h4
+              = controller.pts(trip)
+              | #{trip.trip_instance.name} #{trip.trip_instance.year}
+          / Button to trigger modal
+          - if user_signed_in? && current_user.id == @user.id
+            %a.btn{"data-toggle" => "modal", :href => "#myModal", :role => "button", :style => "text-align:right"} Edit My Profile
+    .row-fluid
+      .span12
+        %h3 About me
+        .well
+          = @user.about_me
+    .row-fluid
+      .span12
+        %h3 Recent Posts and Responses
+        - if @user_posts
+          - @user_posts.each do |post|
+            - if post.trip_instance != nil
+              .well
+                %h4= link_to post.title, trip_instance_post_path(:trip_instance_id => post.trip_instance.id, :id =>post.id)
+                Posted in: #{post.trip_instance.name} #{post.trip_instance.year}
+            - else
+              .well
+                %h4= link_to post.title, page_post_path(:page_id => post.page.id, :id =>post.id)
+                %br/
+                Posted in: General
+    / Edit Profile Modal
+    #myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3#myModalLabel Edit User
+      = render 'form', :locals=>{:user => @user}

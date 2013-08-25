@@ -1,3 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+console.log "hi"
+
+$("#photos a").click (e) ->
+  e.preventDefault()
+  $(this).tab "show"
+
+$("#testimonies a").click (e) ->
+  e.preventDefault()
+  $(this).tab "show"
+
+# $("#tripTabs a:last").tab "show"
+
+

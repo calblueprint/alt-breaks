@@ -17,6 +17,7 @@ $blue   :   #3a87ad;
 	}
 	.carousel-thumbnails {
 		width: 180px;
+		padding-left: 30px;
 		.carousel-thumbnail {
 			width: 60px;
 			margin: 5px;
@@ -182,4 +183,12 @@ $blue   :   #3a87ad;
 			color: green;
 		}
 	}
+}
+
+#tripTabs {
+	margin: 0px auto;
+}
+
+.tab-content.past-trips {
+	height: 450px;
 }
