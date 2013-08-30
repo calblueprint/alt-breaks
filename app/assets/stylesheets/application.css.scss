@@ -21,7 +21,6 @@ $darkGrayBlue : rgb(67,80,94);
   position: relative;
 }
 
-
 .gray {
   background-color: $lightGray;
 }
@@ -30,6 +29,12 @@ $darkGrayBlue : rgb(67,80,94);
   width: 940px;
   padding: 40px 0px;
   margin: auto;
+}
+
+.page {
+  width: 940px;
+  margin: auto;
+  padding: 20px 0px 30px;
 }
 
 .heading {

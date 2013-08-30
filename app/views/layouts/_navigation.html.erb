@@ -1,56 +1,56 @@
-  <%= link_to "Alternative Breaks", root_path, :class => 'brand' %>
-  <ul class="nav">
-    <li><%= link_to('Map', map_path) %></li>
-    <% if user_signed_in? %>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forums <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><%= link_to('General', page_path(1)) %></li>
-          <% if is_internal? %>
-            <li><%= link_to('Internal', page_path(2)) %></li>
-          <% end %>
-          <% if permissions = current_user.trip_permissions %>
-            <% permissions.each do |p| %>
-              <% instance = p.trip_instance %>
-              <% name = instance.trip.name %>
-              <li><%= link_to(name + " " + instance.year.to_s, trip_instance_path(instance[:id])) %></li>
-            <% end %>
-          <% end %>
-        </ul>
-      </li>
-    <% end %>
-
-    <!-- Don't think we need this section. Redundant because because should be able to navigation to trips page. Make green titles into links-->
-    <!--
+<%= link_to "Alternative Breaks", root_path, :class => 'brand' %>
+<ul class="nav">
+  <li><%= link_to('Map', map_path) %></li>
+  <% if user_signed_in? %>
     <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
-      <ul class="dropdown-menu" role="menu">
-        <% Trip.all.each do |trip| %>
-          <li>
-            <%= link_to(trip[:name], trip_path(trip[:id])) %>
-          </li>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forums <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><%= link_to('General', page_path(1)) %></li>
+        <% if is_internal? %>
+          <li><%= link_to('Internal', page_path(2)) %></li>
+        <% end %>
+        <% if permissions = current_user.trip_permissions %>
+          <% permissions.each do |p| %>
+            <% instance = p.trip_instance %>
+            <% name = instance.trip.name %>
+            <li><%= link_to(name + " " + instance.year.to_s, trip_instance_path(instance[:id])) %></li>
+          <% end %>
         <% end %>
       </ul>
     </li>
-    -->
-  </ul>
+  <% end %>
 
-  <ul class="nav pull-right">
-    <% if user_signed_in? %>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="dropdown">
-          <%= current_user.name %>
-          <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><%= link_to('Dashboard', dashboard_path) %></li>
-          <li><%= link_to "Profile", user_path(current_user.id) %></li>
-          <li><%= link_to('Account Settings', edit_user_registration_path) %></li>
-          <li><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
-        </ul>
-      </li>
-    <% else %>
-      <li><%= link_to('Login', new_user_session_path)  %></li>
-      <li><%= link_to('Sign up', new_user_registration_path)  %></li>
-    <% end %>
-  </ul>
+  <!-- Don't think we need this section. Redundant because because should be able to navigation to trips page. Make green titles into links-->
+  <!--
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu">
+      <% Trip.all.each do |trip| %>
+        <li>
+          <%= link_to(trip[:name], trip_path(trip[:id])) %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+  -->
+</ul>
+
+<ul class="nav pull-right">
+  <% if user_signed_in? %>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="dropdown">
+        <%= current_user.name %>
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to('Dashboard', dashboard_path) %></li>
+        <li><%= link_to "Profile", user_path(current_user.id) %></li>
+        <li><%= link_to('Account Settings', edit_user_registration_path) %></li>
+        <li><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
+      </ul>
+    </li>
+  <% else %>
+    <li><%= link_to('Login', new_user_session_path)  %></li>
+    <li><%= link_to('Sign up', new_user_registration_path)  %></li>
+  <% end %>
+</ul>
