@@ -1,0 +1,12 @@
+= form_for(@new_admin) do |f|
+  .modal-body.chosen-form
+    = f.label :user_id, "Name"
+    = f.collection_select :user_id, User.order(:first_name), :id, :full_name, {}, {:class=>'chzn-select', :id => nil}
+
+    = f.label :title
+    = f.text_field :title
+
+    = f.hidden_field :permission, :value => permission
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    = f.button :submit, :class => 'btn btn-primary'

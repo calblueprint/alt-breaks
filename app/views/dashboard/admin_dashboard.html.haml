@@ -1,133 +1,16 @@
-.container
+.container#page
   %h2 Admin Dashboard
-  %h5 Cover Photos
-  - @cover_photos.each do |photo|
-    = form_for(photo) do |f|
-      = f.label :photo, photo.page + ' Page'
-      = f.file_field :photo
-      = f.button :submit, :class => 'btn btn-primary'
-
-
-  %h5 Admins
-  %a.btn{"data-toggle" => "modal", :href => "#addAdmin", :role => "button"} Add Admin
-  .well
-    .row-fluid
-      - AdminPermission.all.each_slice(12) do |set|
-        %ul.thumbnails
-        .row-fluid
-          - set.each do |adm|
-            %li.span1
-              .thumbnail
-                - if AdminPermission.all.size > 1
-                  = link_to "x", delete_admin_path(adm.id), :class=>"btn btn-mini btn-danger", :confirm => "Are you sure you want to delete this Admin?"
-                - else
-                  = link_to "x", dashboard_url, :class=>"btn btn-mini btn-danger disabled"
-                - if adm.user.avatar.exists?
-                  = link_to(image_tag(adm.user.avatar.url(:small)), user_path(adm.user.id))
-                - else
-                  = link_to(image_tag("/assets/cat.png"), user_path(adm.user.id))
-              = link_to(adm.user.name, user_path(adm.user.id))
-  / Modal
-  #addAdmin.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-header
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-      %h3#myModalLabel Add Admin
-    = render :partial=>'adminForm'
-  %h5 Trips
-  #accordionOptions.accordion
-    - cindex = 0
-    - Trip.all.each do |trip|
-      .accordion-group
-        .accordion-heading
-          = link_to(trip[:name], "#collapse#{cindex}", :class=>"accordion-toggle", "data-toggle"=>"collapse", "data-parent"=>"accordionOptions" )
-        .accordion-body.collapse{:id => "collapse#{cindex}"}
-          .accordion-inner
-            .row-fluid
-              .span8
-                - trip.trip_instances.all.each do |inst|
-                  .well
-                    .row-fluid
-                      .span6
-                        %h5 Trip Group
-                        - if trip.current_trip_instance_id == inst.id
-                          Current Trip: #{link_to(inst[:season]+' '+inst[:year].to_s, trip_instance_path(inst[:id]))}
-                          %br/
-                        - else
-                          = link_to(inst[:season]+' '+inst[:year].to_s, trip_instance_path(inst[:id]))
-                          %br/
-                        / WIP
-                        - if trip.current_trip_instance == inst
-                          .btn.btn-danger This is the displayed trip
-                        - else
-                          = link_to "Display Instance On Trip Page", change_current_path(trip.id, inst.id), :class=>"btn btn-primary"
-                      .span6
-                        %h5 Break Leaders
-                        - inst.trip_permissions.where("permission = '1'").each_slice(2) do |set|
-                          %ul.thumbnails
-                          .row-fluid
-                            - set.each do |permission|
-                              %li.span3
-                                .thumbnail
-                                  = link_to "x", dashboard_url, :class=>"btn btn-mini btn-danger", :confirm => "Are you sure you want to delete this break leader?"
-                                  - if permission.user.avatar.exists?
-                                    = link_to(image_tag(permission.user.avatar.url(:small)), user_path(permission.user.id))
-                                  - else
-                                    = link_to(image_tag("/assets/cat.png"), user_path(permission.user.id))
-                                = link_to(permission.user.name, user_path(permission.user.id))
-                        / Modal: Add Break Leader
-                        %a.btn{"data-toggle" => "modal", :href => "#leaderModal#{inst.id}", :role => "button"} Add Break Leader
-                        %br/
-                        .modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :id => "leaderModal#{inst.id}", :role => "dialog", :tabindex => "-1"}
-                          .modal-header
-                            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-                            %h3#myModalLabel Add Break Leader
-                          = render :partial=>'breakLeaderForm', :locals => {:trip_instance_id=>inst.id}
-              .span4
-                .well
-                  %h5 Community Partners
-                  - trip.partners.all.each_slice(2) do |pset|
-                    %ul.thumbnails
-                    .row-fluid
-                      - pset.each do |p|
-                        %li.span3
-                          .thumbnail
-                            = link_to "x", dashboard_url, :class=>"btn btn-mini btn-danger", :confirm => "Are you sure you want to delete this community partner?"
-                            - if p.logo.exists?
-                              = link_to(image_tag(p.logo.url(:small)), "http://"+p.website)
-                              = link_to p.name, "http://"+p.website
-                            - else
-                              = link_to(image_tag("/assets/community.jpg"), "http://"+p.website)
-                              = link_to p.name, "http://"+p.website
-                  / Modal: Add Community Partner
-                  %a.btn{"data-toggle" => "modal", :href => "#partnerModal#{trip.id}", :role => "button"} Add Community Partner
-                  %br/
-                  .modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :id => "partnerModal#{trip.id}", :role => "dialog", :tabindex => "-1"}
-                    .modal-header
-                      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-                      %h3#myModalLabel Add Community Partner
-                    = render :partial=>'partnerForm', :locals => {:trip_id=>trip.id}
-            / Modal: Add Trip Instance
-            %a.btn{"data-toggle" => "modal", :href => "#addInstance#{trip.id}", :role => "button"} Add Trip Group
-            .modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :id => "addInstance#{trip.id}", :role => "dialog", :tabindex => "-1"}
-              .modal-header
-                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-                %h3#myModalLabel Add Trip Group
-              = render :partial=>'tripInstanceForm', :locals => {:trip_id=>trip.id}
-            %br/
-            %br/
-            / Modal: Edit Trip
-            %a.btn{"data-toggle" => "modal", :href => "#editTrip#{trip.id}", :role => "button"} Edit Trip
-            .modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :id => "editTrip#{trip.id}", :role => "dialog", :tabindex => "-1"}
-              .modal-header
-                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-                %h3#myModalLabel Edit Trip
-              = render :partial=>'tripForm', :locals => {:trip=>trip}
-      - cindex += 1
-  %a.btn{"data-toggle" => "modal", :href => "#addTrip", :role => "button"} Add Trip
-  %br/
-  / Modal
-  #addTrip.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-header
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-      %h3#myModalLabel Add Trip
-    = render :partial=>'tripForm', :locals => {:trip => @new_trip}
+  %ul.nav.nav-tabs#tripTabs.container
+    %li.active
+      %a{:href => "#users", "data-toggle" => "tab"} Users
+    %li
+      %a{:href => "#trips", "data-toggle" => "tab"} Trips
+    %li
+      %a{:href => "#cover-photos", "data-toggle" => "tab"} Cover Photos
+  .tab-content
+    .tab-pane.active#users
+      = render :partial => 'dashboard/admin/users'
+    .tab-pane#trips
+      = render :partial => 'dashboard/admin/trips'
+    .tab-pane#cover-photos
+      = render :partial => 'dashboard/admin/cover_photos'

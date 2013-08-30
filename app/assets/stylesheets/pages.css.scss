@@ -15,6 +15,16 @@ h3 {
   font-weight: 400;
 }
 
+.container {
+  &#page {
+    padding: 20px 0px 60px;
+  }
+}
+
+.tab-pane {
+  margin-top: 20px;
+}
+
 .blue {
   color: $blue;
 }
@@ -66,28 +76,36 @@ h3 {
   }
 }
 
-/* team */
-.member {
-  display: inline-block;
-  margin-right: 50px;
-  .avatar {
-    width: 150px;
-    border: 1px solid $grayLight;
+
+#team {
+  padding: 40px 0px 20px;
+  .member {
+    display: inline-block;
+    margin-right: 40px;
+    width: 200px;
+    .avatar {
+      width: 150px;
+      border: 1px solid $grayLight;
+    }
+    .name {
+      margin-top: 7px;
+      font-size: 18px;
+      font-weight: 500;
+      color: $darkGrayBlue;
+    }
+    .title {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #AFB5B9;
+      font-weight: 300;
+    }
   }
-  .name {
-    margin-top: 7px;
-    font-size: 18px;
-    font-weight: 500;
-  }
-  .title {
-    margin-top: 5px;
-    font-size: 14px;
-    color: $grayBlue;
+  .section {
+    padding: 20px 0px 40px;
   }
 }
 
 .arrow {
-
   border-top: 14px solid transparent;
   border-bottom: 14px solid transparent;
 

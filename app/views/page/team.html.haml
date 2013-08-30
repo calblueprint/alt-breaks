@@ -5,22 +5,27 @@
     .title
       Team
 
-.container
-  .row-fluid
-    .heading
-      Staff
-  .row-fluid
-    .heading
-      Directors
-    .section
-      - @directors.each do |m|
-        = render 'page/director', :member => m
-  .row-fluid
-    .heading
-      Break Leaders
-    .section
-      - @break_leaders.each do |m|
-        = render 'page/break_leader', :member => m
-  .row-fluid
+#team
+  .container
+    .row-fluid
+      .heading.center
+        Staff
+      .section
+        - @staff.each do |m|
+          = render 'page/director', :member => m
+
+    .row-fluid
+      .heading.center
+        Directors
+      .section
+        - @directors.each do |m|
+          = render 'page/director', :member => m
+    .row-fluid
+      .heading.center
+        Break Leaders
+      .section
+        - @break_leaders.each do |m|
+          = render 'page/break_leader', :member => m
+    .row-fluid
 
 

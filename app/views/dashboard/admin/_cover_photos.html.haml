@@ -1,0 +1,5 @@
+- @cover_photos.each do |photo|
+  = form_for(photo) do |f|
+    = f.label :photo, photo.page + ' Page'
+    = f.file_field :photo
+    = f.button :submit, :class => 'btn btn-primary'

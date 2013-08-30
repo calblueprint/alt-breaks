@@ -16,10 +16,6 @@
 $lightGray  :   rgb(237, 243, 250);
 $darkGrayBlue : rgb(67,80,94);
 
-/*.body {
-  overflow-x: hidden;
-}*/
-
 #container {
   min-height: 100%;
   position: relative;
@@ -29,6 +25,7 @@ $darkGrayBlue : rgb(67,80,94);
 .gray {
   background-color: $lightGray;
 }
+
 .section {
   width: 940px;
   padding: 40px 0px;

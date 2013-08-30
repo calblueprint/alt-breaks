@@ -4,6 +4,7 @@ class PageController < ApplicationController
   end
 
   def team
+    @staff = User.staff
     @directors = User.directors
     @break_leaders = User.break_leaders
   end

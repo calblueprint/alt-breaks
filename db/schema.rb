@@ -11,12 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130818054913) do
+ActiveRecord::Schema.define(:version => 20130826000908) do
 
   create_table "admin_permissions", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "title"
+    t.integer  "permission"
   end
 
   create_table "cover_photos", :force => true do |t|
@@ -175,7 +177,6 @@ ActiveRecord::Schema.define(:version => 20130818054913) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.text     "about_me"
-    t.string   "title"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

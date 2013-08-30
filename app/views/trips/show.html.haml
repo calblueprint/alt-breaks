@@ -128,7 +128,7 @@
                         = link_to(testimony.user.name, user_path(testimony.user.id))
                       .row-fluid
                         %br
-                        = link_to(testimony.description, [@trip.current_trip_instance, testimony])
+                        = testimony.description
                 - first = false
         #testimonies-controls-carousel.carousel.slide
           .carousel-inner

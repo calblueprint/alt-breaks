@@ -21,7 +21,11 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :presence => :true
 
   scope :directors, lambda {
-    User.where("id IN (SELECT user_id FROM admin_permissions)")
+    User.joins(:admin_permission).where("admin_permissions.permission = ?", AdminPermission::DIRECTOR)
+  }
+
+  scope :staff, lambda {
+    User.joins(:admin_permission).where("admin_permissions.permission = ?", AdminPermission::STAFF)
   }
 
   scope :break_leaders, lambda {

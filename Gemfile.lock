@@ -39,6 +39,9 @@ GEM
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (~> 3.1)
     better_errors (0.3.2)
       coderay (>= 1.0.0)
       erubis (>= 2.7.0)
@@ -171,6 +174,7 @@ DEPENDENCIES
   actionmailer
   aws-s3
   aws-sdk
+  best_in_place
   better_errors
   binding_of_caller
   chosen-rails

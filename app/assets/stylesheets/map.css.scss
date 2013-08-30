@@ -46,8 +46,11 @@ $grayLight  :   #D4D4D4;
 			width: 100%;
 			margin: 10px 0;
 			padding: 10px 0;
-
 			background-color: #add77f;
+
+			&:hover {
+				background-color: #A4C97B;
+			}
 		}
 
 		li:hover {
