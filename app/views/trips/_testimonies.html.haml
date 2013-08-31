@@ -1,0 +1,44 @@
+- if @testimonies.any?
+  #testimonies-carousel.carousel.slide
+    .carousel-inner
+      - first = true
+      - @testimonies.each do |testimony|
+        .item{:class => "#{'active' if first}"}
+          .well
+            .row-fluid
+              .span2
+                %a{:href => "#"}
+                  /make this into a helper
+                  - if testimony.user.avatar.exists?
+                    .avatar= image_tag testimony.user.avatar.url(:original)
+                  - else
+                    %img.avatar{:alt => "", :src => "/assets/panda.jpg"}
+              .span10
+                .row-fluid
+                  %strong Author:
+                  = link_to(testimony.user.name, user_path(testimony.user.id))
+                .row-fluid
+                  %br
+                  = testimony.description
+          - first = false
+  #testimonies-controls-carousel.carousel.slide
+    .carousel-inner
+      - count = 0
+      - first = true
+      - @testimonies.each_slice(8) do |slice|
+        .item{:class => "#{'active' if first}"}
+          - slice.each do |testimony|
+            %a.testimony-avatar{"data-slide-to" => count, "data-target" => "#testimonies-carousel"}
+              - if testimony.user.avatar.exists?
+                = image_tag testimony.user.avatar.url(:original)
+              - else
+                %img{:alt => "", :src => "/assets/panda.jpg"}
+            - count += 1
+        - first = false
+    - if @testimonies.count > 8
+      .controls
+        %a.carousel-control.left{"data-slide" => "prev", :href => "#testimonies-controls-carousel"} ‹
+        %a.carousel-control.right{"data-slide" => "next", :href => "#testimonies-controls-carousel"} ›
+  / link_to 'See all', trip_testimonies_path(@trip.id)
+-else
+  No testimonies yet.
