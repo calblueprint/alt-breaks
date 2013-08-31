@@ -147,12 +147,22 @@ $blue   :   #3a87ad;
 		vertical-align: top;
 		padding-left: 15px;
 		margin-left: 120px;
+		::-webkit-scrollbar {
+		  -webkit-appearance: none;
+		  width: 7px;
+		}
+		::-webkit-scrollbar-thumb {
+	    border-radius: 4px;
+	    background-color: rgba(0,0,0,.5);
+	    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+		}
 		.name {
 			font-size: 18px;
 			margin-bottom: 10px;
 		}
 		.bio {
-
+			height: 100px;
+			overflow: auto;
 		}
 	}
 }
