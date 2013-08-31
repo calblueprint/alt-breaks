@@ -192,3 +192,25 @@ $blue   :   #3a87ad;
 .tab-content.past-trips {
 	height: 450px;
 }
+
+
+.partners {
+	margin-top: 30px;
+	text-align: center;
+	.partner-logo {
+		width: 100px;
+		display: inline-block;
+		margin: 0 20px;
+		filter: url(filters.svg#grayscale);
+    filter: gray;
+    -webkit-filter: grayscale(1);
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    &:hover {
+    	filter: none;
+    	-webkit-filter: grayscale(0);
+    	opacity: 1;
+    	filter: alpha(opacity=100);
+    }
+	}
+}

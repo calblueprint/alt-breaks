@@ -13,8 +13,10 @@
  *= require_tree .
  */
 
-$lightGray  :   rgb(237, 243, 250);
-$darkGrayBlue : rgb(67,80,94);
+$lightGray      :   rgb(237, 243, 250);
+$grayBlue       :   rgb(130, 150, 174);
+$lightGrayBlue  :   rgb(195, 208, 223);
+$darkGrayBlue   :   rgb(67,80,94);
 
 #container {
   min-height: 100%;
@@ -42,7 +44,17 @@ $darkGrayBlue : rgb(67,80,94);
   color: $darkGrayBlue;
   font-weight: 600;
   margin-bottom: 20px;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  &.small {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+}
+.subheading {
+  font-size: 19px;
+  color: $grayBlue;
+  font-weight: 400;
+  margin-bottom: 20px;
 }
 
 .center {
@@ -55,3 +67,4 @@ $darkGrayBlue : rgb(67,80,94);
     text-decoration: none;
   }
 }
+
