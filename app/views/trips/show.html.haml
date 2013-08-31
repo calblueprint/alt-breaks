@@ -24,9 +24,9 @@
         - @trip.partners.each do |partner|
           .partner-logo
             - if partner.logo.exists?
-              = link_to(image_tag(partner.logo.url(:medium)), "http://"+partner.website)
+              = link_to(image_tag(partner.logo.url(:medium)), partner.website)
             - else
-              = link_to(image_tag("/assets/community.jpg"), "http://"+partner.website)
+              = link_to(image_tag("/assets/community.jpg"), partner.website)
 
 .row-fluid.gray
   .section
