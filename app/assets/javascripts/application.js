@@ -18,11 +18,5 @@
 
 $('.chzn-select').chosen();
 
-// $(document).ready(function() {
-//   /* Activating Best In Place */
-//   console.log("calling best in place")
-//   jQuery(".best_in_place").best_in_place();
-// });
-
 //jQuery ->
 //	$('#trip_permission_user_id').chosen()

@@ -108,3 +108,13 @@ $subtitle-height: 15px;
 		}
 	}
 }
+
+.pan {
+	a {
+		color: rgb(100, 100, 100);
+		&:hover {
+			text-decoration: none;
+			color: white;
+		}
+	}
+}
