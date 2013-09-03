@@ -171,3 +171,7 @@ Post.create! :title => 'Items you should bring to the trip', :description => 'Sl
 
 Page.create!(:name => 'General', :description => 'Announcements and general discussion will be posted here', :permission => 2)
 Page.create!(:name => 'Internal', :description => 'Internal discussion for just break leaders and directors', :permission => 1)
+
+
+CoverPhoto.create!(:page => 'About')
+CoverPhoto.create!(:page => 'Team')
