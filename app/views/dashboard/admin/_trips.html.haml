@@ -35,9 +35,9 @@
                           %a{"data-toggle" => "modal", :href => "#leaderModal#{inst.id}", :role => "button"} +
                       %td
                         - if trip.current_trip_instance == inst
-                          .btn.btn-danger Displayed
+                          = link_to "Undisplay", undisplay_trip_instance_path(inst), :class => "btn btn-danger"
                         - else
-                          = link_to "Display", change_current_path(trip.id, inst.id), :class=>"btn btn-primary"
+                          = link_to "Display", display_trip_instance_path(inst), :class => "btn btn-primary"
                   %tr
                     %td{:colspan => 3}
                       %a.btn{"data-toggle" => "modal", :href => "#addInstance#{trip.id}", :role => "button"} Add Trip Group

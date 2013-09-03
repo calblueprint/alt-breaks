@@ -11,7 +11,7 @@
     .span3.white-text
       %h5.footer-header TRIPS
       %ul.link-list
-        - Trip.all.each do |trip|
+        - Trip.current.each do |trip|
           %li
             = link_to trip.name, trip_path(trip.id)
     .span2.white-text

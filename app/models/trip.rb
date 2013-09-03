@@ -14,7 +14,10 @@ class Trip < ActiveRecord::Base
   # this lets the gmaps gem know that this model can be plotted on a map
   acts_as_gmappable :lat => 'latitude', :lng => 'longitude', :process_geocoding => false
 
-  # i have no idea what this does
+  # TO DO!!!!!!!!!!!
+  scope :mappable, where("latitude IS NOT NULL").joins(:current_trip_instance)
+
+  scope :current, joins(:current_trip_instance)
 
   def default_values
     self.zoom_level = 5 if self.zoom_level.nil?

@@ -44,7 +44,6 @@ create_and_bind_infobubble = (map, marker, html, zoom_level) ->
 create_and_bind_hover_link = (map, marker, name, zoom_level) ->
     html = $ "<div class='pan'><a href = '/trips/#{marker.id}'><li>#{name}</li></a></div>"
     $(".trips ul").append html
-    # console.log marker.id
     html.hover ->
         if map.getZoom() != zoom_level
             map.setZoom zoom_level

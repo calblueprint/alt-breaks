@@ -49,4 +49,18 @@ class TripInstancesController < ApplicationController
       end
     end
   end
+
+  def display
+    instance = TripInstance.find(params[:id])
+    trip = instance.trip
+    trip.update_attributes(:current_trip_instance => instance)
+    redirect_to dashboard_url, notice: 'Displayed Trip was updated.'
+  end
+
+  def undisplay
+    instance = TripInstance.find(params[:id])
+    trip = instance.trip
+    trip.update_attributes(:current_trip_instance => nil)
+    redirect_to dashboard_url, notice: 'Displayed Trip was updated.'
+  end
 end
