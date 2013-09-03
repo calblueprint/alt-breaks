@@ -148,7 +148,7 @@ trips_hash.each do |trip|
   TripPermission.create!(:trip_instance_id => i1.id, :user => leader2, :permission => 1) #breakleader
 end
 
-admin1 = User.create!({:first_name=> 'Kati', :last_name=> 'Hinman', :email=> 'notkatihinman@gmail.com', :password=> 'password', :major=> 'Unknown', :grad_year=> 2013, :title => 'Community Partnerships Director'}) # Admin/Director, :ID = 1
+admin1 = User.create!({:first_name=> 'Kati', :last_name=> 'Hinman', :email=> 'notkatihinman@gmail.com', :password=> 'password', :major=> 'Unknown', :grad_year=> 2013}) # Admin/Director, :ID = 1
 
 
 AdminPermission.create!({:user => admin1})
