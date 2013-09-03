@@ -12,4 +12,7 @@ class TripInstance < ActiveRecord::Base
     trip.name
   end
 
+  def break_leader_permissions
+    trip_permissions.where(:permission => TripPermission::BREAK_LEADER)
+  end
 end

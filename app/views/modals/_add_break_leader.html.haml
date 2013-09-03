@@ -1,0 +1,5 @@
+.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :id => "leaderModal#{inst.id}", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Add Break Leader
+  = render :partial=>'breakLeaderForm', :locals => {:trip_instance_id=>inst.id}

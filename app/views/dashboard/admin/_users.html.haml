@@ -1,4 +1,4 @@
-%h5 Staff
+%h3.blue Staff
 %table.table.table-striped
   %thead
     %tr
@@ -27,7 +27,9 @@
           = user.email
         %td
           = link_to "Remove", delete_admin_path(adm.id), :class=>"btn btn-mini btn-danger", :confirm => "Are you sure you want to delete this Admin?", :class => 'btn btn-danger'
-%a.btn{"data-toggle" => "modal", :href => "#addAdmin", :role => "button", :class => "btn-primary"} Add Staff
+    %tr
+      %td{:colspan => 5}
+        %a.btn{"data-toggle" => "modal", :href => "#addAdmin", :role => "button", :class => "btn-primary"} Add Staff
 #addAdmin.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-header
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
@@ -35,7 +37,7 @@
   = render :partial=>'dashboard/admin/admin_form', :locals => {:permission=>AdminPermission::STAFF}
 
 .user-panel
-  %h5 Directors
+  %h3.blue Directors
   %table.table.table-striped
     %thead
       %tr
@@ -64,7 +66,9 @@
             = user.email
           %td
             = link_to "Remove", delete_admin_path(adm.id), :class=>"btn btn-mini btn-danger", :confirm => "Are you sure you want to delete this Admin?", :class => 'btn btn-danger'
-  %a.btn{"data-toggle" => "modal", :href => "#addAdmin", :role => "button", :class => "btn-primary"} Add Director
+      %tr
+        %td{:colspan => 5}
+          %a.btn{"data-toggle" => "modal", :href => "#addAdmin", :role => "button", :class => "btn-primary"} Add Director
   #addAdmin.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×

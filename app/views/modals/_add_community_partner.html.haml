@@ -1,0 +1,5 @@
+.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :id => "partnerModal#{trip.id}", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Add Community Partner
+  = render :partial=>'partnerForm', :locals => {:trip_id=>trip.id}
