@@ -1,0 +1,11 @@
+= form_for @partner do |f|
+  .modal-body
+    .row-field Name: #{f.text_field :name}
+    .row-field Latitude: #{f.text_field :latitude}
+    .row-field Longitude: #{f.text_field :longitude}
+    .row-field Description: #{f.text_area :description, rows: 6, :class=>"span6"}
+    .row-field Website: #{f.text_field :website}
+    .row-field Upload Logo: #{f.file_field :logo}
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    = f.button :submit, :class => 'btn btn-primary'

@@ -13,7 +13,7 @@ before_filter :require_login
   def destroy
     permission = TripPermission.find(params[:id])
     permission.destroy
-    redirect_to dashboard_url, notice: 'Break Leader was destroyed'
+    redirect_to dashboard_url, notice: 'Break Leader was removed'
   end
 
 end

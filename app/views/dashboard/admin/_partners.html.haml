@@ -1,0 +1,29 @@
+= render :partial=>'modals/add_community_partner'
+%table.table.table-striped
+  %thead
+    %tr
+      %th Avatar
+      %th Name
+      %th Description
+      %th Actions
+  %tbody
+    - Partner.all.each do |partner|
+      = render :partial=>'modals/edit_community_partner', :locals => {:partner => partner}
+      %tr
+        %td.span1
+          .thumbnail
+            - if partner.logo.exists?
+              = link_to(image_tag(partner.logo.url(:small)), "http://"+partner.website)
+            - else
+              = link_to(image_tag("/assets/community.jpg"), "http://"+partner.website)
+        %td
+          = partner.name
+        %td
+          = partner.description
+        %td
+          %a{"data-toggle" => "modal", :href => "#editPartnerModal#{partner.id}", :role => "button"} Edit
+          \/
+          = link_to "Remove", partner_path(partner), method: :delete, confirm: "Are you sure you want to delete this break leader?"
+    %tr
+      %td{:colspan => 4}
+        %a.btn{"data-toggle" => "modal", :href => "#newPartnerModal", :role => "button"} Add Partner

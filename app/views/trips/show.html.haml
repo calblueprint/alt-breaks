@@ -17,11 +17,11 @@
       .heading.center ABOUT THIS TRIP
       .text
         = @trip.description
-  - if not @trip.partners.all.empty?
+  - if not @trip.current_trip_instance.partners.all.empty?
     .row-fluid.partners
       .subheading.center Community Partners
       .logos
-        - @trip.partners.each do |partner|
+        - @trip.current_trip_instance.partners.each do |partner|
           .partner-logo
             - if partner.logo.exists?
               = link_to(image_tag(partner.logo.url(:medium)), partner.website)

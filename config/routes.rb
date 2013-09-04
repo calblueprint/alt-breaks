@@ -24,6 +24,8 @@ Altbreaks::Application.routes.draw do
     member do
       get 'display'
       get 'undisplay'
+      put 'add_partner'
+      delete 'remove_partner'
     end
   end
 

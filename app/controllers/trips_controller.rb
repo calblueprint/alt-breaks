@@ -47,9 +47,6 @@ class TripsController < ApplicationController
     @trip = Trip.new(params[:trip])
     @trip.latitude = Float(@trip.latitude)
     @trip.longitude = Float(@trip.longitude)
-    puts params[:trip]
-    puts @trip.latitude
-    puts @trip.longitude
 
     respond_to do |format|
       if @trip.save!

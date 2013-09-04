@@ -1,38 +1,29 @@
 class PartnersController < ApplicationController
+	def destroy
+		partner = Partner.find(params[:id])
+		partner.destroy
+		redirect_to dashboard_url, notice: 'Community Partner was destroyed'
+	end
 
 	def create
-
-		if params[:form_id].split('/').last.split('#').last.start_with?('new')
-			@community_partner = Partner.new(params[:partner])
-
-			respond_to do |format|
-		      if @community_partner.save
-		      	@trip = Trip.find(params[:partner][:trip_id])
-				@trip.partners << @community_partner
-				@trip.save
-		        format.html { redirect_to dashboard_url, notice: 'Community Partner was successfully created.' }
-		        format.json { render json: @community_partner, status: :created, location: @community_partner }
-		      else
-		        format.html { render action: "new" }
-		        format.json { render json: @community_partner.errors, status: :unprocessable_entity }
-		      end
-	    	end
-	    else
-	    	
-	    	@community_partner = Partner.find(params[:partner][:partner_id])
-	    	@trip = Trip.find(params[:partner][:trip_id])
-			@trip.partners << @community_partner
-			@trip.save
-			
-			respond_to do |format|
-				if @trip.save
-					format.html { redirect_to dashboard_url, notice: 'Community Partner was successfully created.' }
-			     	format.json { render json: @community_partner, status: :created, location: @community_partner }
-			   	else
-			    	format.html { render action: "new" }
-			    	format.json { render json: @community_partner.errors, status: :unprocessable_entity }
-			    end
-    		end
+		partner = Partner.new(params[:partner])
+		respond_to do |format|
+			if partner.save
+				format.html { redirect_to dashboard_url, notice: 'Community Partner was successfully created.' }
+	   	else
+	    	format.html { render action: "new" }
 	    end
+    end
+	end
+
+	def update
+		partner = Partner.find(params[:id])
+		respond_to do |format|
+			if partner.update_attributes(params[:partner])
+				format.html { redirect_to dashboard_url, notice: 'Community Partner was successfully updated.' }
+	   	else
+	    	format.html { render action: "new" }
+	    end
+    end
 	end
 end
