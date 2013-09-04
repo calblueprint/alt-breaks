@@ -1,0 +1,7 @@
+= form_for inst, :url => add_partner_trip_instance_path(inst) do |f|
+  .modal-body.chosen-form
+    = f.label :partner_id, "Name"
+    = f.collection_select :partner_id, Partner.order(:name), :id, :name, {}, {:class=>'chzn-select', :id => nil}
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    = f.button :submit, :class => 'btn btn-primary'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826000908) do
+ActiveRecord::Schema.define(:version => 20130903230123) do
 
   create_table "admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -54,19 +54,19 @@ ActiveRecord::Schema.define(:version => 20130826000908) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.integer  "trip_id"
     t.integer  "partner_id"
     t.float    "longitude"
     t.float    "latitude"
+    t.integer  "trip_instance_id"
   end
 
-  create_table "partners_trips", :id => false, :force => true do |t|
+  create_table "partners_trip_instances", :id => false, :force => true do |t|
     t.integer "partner_id"
-    t.integer "trip_id"
+    t.integer "trip_instance_id"
   end
 
-  add_index "partners_trips", ["partner_id", "trip_id"], :name => "index_partners_trips_on_partner_id_and_trip_id"
-  add_index "partners_trips", ["trip_id", "partner_id"], :name => "index_partners_trips_on_trip_id_and_partner_id"
+  add_index "partners_trip_instances", ["partner_id", "trip_instance_id"], :name => "index_partners_trip_instances_on_partner_id_and_trip_instance_id"
+  add_index "partners_trip_instances", ["trip_instance_id", "partner_id"], :name => "index_partners_trip_instances_on_trip_instance_id_and_partner_id"
 
   create_table "photos", :force => true do |t|
     t.text     "caption"

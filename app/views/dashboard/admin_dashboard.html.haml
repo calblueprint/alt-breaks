@@ -2,15 +2,19 @@
   %h2 Admin Dashboard
   %ul.nav.nav-tabs#tripTabs.container
     %li.active
-      %a{:href => "#users", "data-toggle" => "tab"} Users
-    %li
       %a{:href => "#trips", "data-toggle" => "tab"} Trips
     %li
+      %a{:href => "#users", "data-toggle" => "tab"} Users
+    %li
       %a{:href => "#cover-photos", "data-toggle" => "tab"} Cover Photos
+    %li
+      %a{:href => "#partners", "data-toggle" => "tab"} Community Partners
   .tab-content
-    .tab-pane.active#users
-      = render :partial => 'dashboard/admin/users'
-    .tab-pane#trips
+    .tab-pane.active#trips
       = render :partial => 'dashboard/admin/trips'
+    .tab-pane#users
+      = render :partial => 'dashboard/admin/users'
     .tab-pane#cover-photos
       = render :partial => 'dashboard/admin/cover_photos'
+    .tab-pane#partners
+      = render :partial => 'dashboard/admin/partners'

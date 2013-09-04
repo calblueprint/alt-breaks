@@ -34,7 +34,7 @@ class DashboardController < ApplicationController
     @trip_instance = TripInstance.new
     @trip_permission = TripPermission.new
     @new_trip = Trip.new
-    @community_partner = Partner.new
+    @partner = Partner.new
     @new_admin = AdminPermission.new
     @cover_photos = CoverPhoto.all
 

@@ -7,6 +7,9 @@ class TripInstance < ActiveRecord::Base
   has_many :testimonies
   has_many :photos
   has_many :requests
+  has_and_belongs_to_many :partners
+
+  attr_accessor :partner_id
 
   def name
     trip.name

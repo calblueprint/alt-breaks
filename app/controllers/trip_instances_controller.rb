@@ -26,13 +26,11 @@ class TripInstancesController < ApplicationController
     else
       @users = temp_users
     end
-
     render "posts/index"
   end
 
   def create
     @trip_instance = TripInstance.new(params[:trip_instance])
-    puts params[:trip_instance][:trip_id]
     trip = Trip.find(params[:trip_instance][:trip_id])
 
     if trip.current_trip_instance == nil
@@ -62,5 +60,21 @@ class TripInstancesController < ApplicationController
     trip = instance.trip
     trip.update_attributes(:current_trip_instance => nil)
     redirect_to dashboard_url, notice: 'Displayed Trip was updated.'
+  end
+
+  def add_partner
+    partner = Partner.find(params[:trip_instance][:partner_id])
+    instance = TripInstance.find(params[:id])
+    instance.partners << partner
+    instance.save
+    redirect_to dashboard_url, notice: 'Partner added to Trip Group.'
+  end
+
+  def remove_partner
+    partner = Partner.find(params[:partner_id])
+    instance = TripInstance.find(params[:id])
+    instance.partners.delete(partner)
+    instance.save
+    redirect_to dashboard_url, notice: 'Partner added to Trip Group.'
   end
 end

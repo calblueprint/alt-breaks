@@ -1,0 +1,5 @@
+.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :id => "editPartnerModal#{partner.id}", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Edit Community Partner
+  = render :partial=>'modals/edit_partner_form', :locals => {:partner => partner}
