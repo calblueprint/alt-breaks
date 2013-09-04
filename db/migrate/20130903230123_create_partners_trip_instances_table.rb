@@ -5,8 +5,7 @@ class CreatePartnersTripInstancesTable < ActiveRecord::Migration
         t.references :partner
         t.references :trip_instance
     end
-    add_index :partners_trip_instances, [:partner_id, :trip_instance_id]
-    add_index :partners_trip_instances, [:trip_instance_id, :partner_id]
+    add_index :partners_trip_instances, [:partner_id, :trip_instance_id], :name => 'partner_instance_index'
   end
 
   def down
@@ -16,6 +15,5 @@ class CreatePartnersTripInstancesTable < ActiveRecord::Migration
         t.references :trip
     end
     add_index :partners_trips, [:partner_id, :trip_id]
-    add_index :partners_trips, [:trip_id, :partner_id]
   end
 end

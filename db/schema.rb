@@ -65,8 +65,7 @@ ActiveRecord::Schema.define(:version => 20130903230123) do
     t.integer "trip_instance_id"
   end
 
-  add_index "partners_trip_instances", ["partner_id", "trip_instance_id"], :name => "index_partners_trip_instances_on_partner_id_and_trip_instance_id"
-  add_index "partners_trip_instances", ["trip_instance_id", "partner_id"], :name => "index_partners_trip_instances_on_trip_instance_id_and_partner_id"
+  add_index "partners_trip_instances", ["partner_id", "trip_instance_id"], :name => "partner_instance_index"
 
   create_table "photos", :force => true do |t|
     t.text     "caption"
