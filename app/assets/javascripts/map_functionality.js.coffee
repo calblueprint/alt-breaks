@@ -29,7 +29,7 @@ are_infobubbles_open = (return_them, close_them, except_current) ->
 create_and_bind_infobubble = (map, marker, html, zoom_level) ->
     bubble = create_new_infobubble html
     marker.bubble = marker.bubble || bubble
-
+    window.marker = marker
     google.maps.event.addListener marker.serviceObject, 'click', ->
         if !bubble.isOpen()
             if map.getZoom() != zoom_level
@@ -62,13 +62,17 @@ Gmaps.map.callback = ->
     # @markers is automatically populated by gmaps4rails. so is @map
     window.markers = @markers
 
-    if window.rendered_htmls?.length != @markers.length
-        console.log "ERROR: Something is going wrong with the rendered html and markers."
-        return
-
     for i in [0...@markers.length]
-        create_and_bind_infobubble(@map, @markers[i], window.rendered_htmls[i], window.zoom_levels[i])
-        create_and_bind_hover_link(@map, @markers[i], window.trip_names[i], window.zoom_levels[i])
+        current_marker = @markers[i]
+        if current_marker['type'] == 'trip'
+            create_and_bind_infobubble(@map, @markers[i], window.rendered_htmls[i], window.zoom_levels[i])
+            create_and_bind_hover_link(@map, @markers[i], window.trip_names[i], window.zoom_levels[i])
+        else
+            # TODO: setting the zoom level to 16 is quite arbitrary. ideally we should store the zoom
+            # level of a partner location directly in the model and store it in the window to be retrieved here.
+            create_and_bind_infobubble(@map, @markers[i], window.rendered_htmls[i], 5)
+            # make the icon white
+            @markers[i].serviceObject.setIcon('http://maps.google.com/mapfiles/marker_white.png')
 
     google.maps.event.addListener @map, 'click', ->
         window.open_infobubble?.close()

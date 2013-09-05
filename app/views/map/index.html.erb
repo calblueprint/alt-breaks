@@ -16,7 +16,7 @@
   	:type => :TERRAIN
   },
   "markers" => {
-  	"data" => @json,
+  	"data" => @trip_and_partner_json,
   	"options" => {
   		"draggable" => true
   	}
@@ -41,15 +41,24 @@
   		window.trip_names = [];
   		window.zoom_levels = [];
   		window.rendered_htmls = [];
-  		<% Trip.all.each do |trip| %>
-  			<% if curr_inst = trip.current_trip_instance %>
-  				<% leaders = curr_inst.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
-  				<% photos = curr_inst.photos.flatten.sample(2) %>
-  				window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders, :photos => photos}%>");
-  				window.trip_names.push("<%= trip.name %>");
-  				window.zoom_levels.push(<%= trip.zoom_level %>);
-  			<% end %>
-  		<% end %>
+      <% Trip.all.each do |trip| %>
+        <% if curr_inst = trip.current_trip_instance %>
+          <% leaders = curr_inst.trip_permissions.where(:permission => 1).map {|permission| permission.user} %>
+          <% photos = curr_inst.photos.flatten.sample(2) %>
+          window.rendered_htmls.push("<%= j render :partial => 'map/popup', :locals => {:trip => trip, :leaders => leaders, :photos => photos}%>");
+          window.trip_names.push("<%= trip.name %>");
+          window.zoom_levels.push(<%= trip.zoom_level %>);
+        <% end %>
+      <% end %>
+
+      window.rendered_partner_htmls = [];
+      <% Partner.all.each do |partner| %>
+        window.rendered_htmls.push("<%= j render :partial => 'map/partner_popup', :locals => {:partner => partner}%>");
+        // TODO: in order to keep indicies consistent, we push null onto the list when there isnt data about it.
+        // we should figure out a better way to do this.
+        window.trip_names.push(null);
+        window.zoom_levels.push(null);
+      <% end %>
   	</script>
   <% end %>
 
