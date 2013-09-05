@@ -31,7 +31,7 @@
                             .times
                               = link_to "x", permission, method: :delete, confirm: "Are you sure you want to delete this break leader?"
                             = link_to leader.first_name, user_path(leader)
-                        .small-well
+                        .small-well.add
                           %a{"data-toggle" => "modal", :href => "#leaderModal#{inst.id}", :role => "button"} +
                       %td
                         - inst.partners.each do |partner|
