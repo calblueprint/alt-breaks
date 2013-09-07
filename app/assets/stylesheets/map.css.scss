@@ -107,6 +107,24 @@ $subtitle-height: 15px;
 			margin-left: 10px;
 		}
 	}
+	.logo {
+		display: block;
+		float: left;
+		padding-right: 10px;
+		img {
+			display: block;
+			max-width: $title-height + $subtitle-height;
+			max-height: $title-height + $subtitle-height;
+		}
+	}
+	.partner-disclaimer {
+		font-size: 11px;
+		color: #ddd;
+	}
+}
+
+.popup.partner .subtitle {
+	margin-bottom: 10px;
 }
 
 .pan {

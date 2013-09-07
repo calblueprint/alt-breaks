@@ -2,7 +2,7 @@ class MapController < ApplicationController
   def index
     # the gmap function in teh view expects json so we have to render it
     # until all teh trips have dummy current_trip_instance_ids, we will only do Where the Wild Things Are
-    @json = Trip.mappable.to_gmaps4rails do |trip, marker|
+    trips_json = Trip.mappable.to_gmaps4rails do |trip, marker|
     	###
     	# comment in for new breakleader code:
     	# leaders = trip.break_leader_permissions.map do |permission|
@@ -34,7 +34,15 @@ class MapController < ApplicationController
 
     	# render teh html that will be requested when the marker is clicked on
     	# return teh json
-    	marker.json(:id => trip.id)
+    	marker.json(:id => trip.id, :type => "trip")
     end
+
+    partners_json = Partner.mappable.to_gmaps4rails do |partner, marker|
+        marker.json(:id => partner.id, :type => "partner")
+    end
+
+    # TODO: this is a terrible hack to put the trip and partner markers into one list...
+    # there doesn't seem to be any way in gmaps4rails to do this.
+    @trip_and_partner_json = JSON.dump(JSON.load(trips_json) + JSON.load(partners_json))
   end
 end
